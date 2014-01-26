@@ -91,7 +91,7 @@
 @implementation RMPickerViewController
 
 #pragma mark - Class
-+ (instancetype)dateSelectionController {
++ (instancetype)pickerController {
     return [[RMPickerViewController alloc] init];
 }
 

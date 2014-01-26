@@ -33,28 +33,29 @@
 @implementation RMViewController
 
 #pragma mark - Actions
-- (IBAction)openDateSelectionController:(id)sender {
-    RMPickerViewController *dateSelectionVC = [RMPickerViewController dateSelectionController];
-    dateSelectionVC.delegate = self;
+- (IBAction)openPickerController:(id)sender {
+    RMPickerViewController *pickerVC = [RMPickerViewController pickerController];
+    pickerVC.delegate = self;
     
     //You can enable or disable bouncing and motion effects
-    //dateSelectionVC.disableBouncingWhenShowing = YES;
-    //dateSelectionVC.disableMotionEffects = YES;
+    //pickerVC.disableBouncingWhenShowing = YES;
+    //pickerVC.disableMotionEffects = YES;
     
-    [dateSelectionVC show];
+    [pickerVC show];
     
     //You can also adjust colors (enabling example will result in a black version)
-    //dateSelectionVC.tintColor = [UIColor whiteColor];
-    //dateSelectionVC.backgroundColor = [UIColor colorWithWhite:0.25 alpha:1];
+    //pickerVC.tintColor = [UIColor whiteColor];
+    //pickerVC.backgroundColor = [UIColor colorWithWhite:0.25 alpha:1];
 }
 
-- (IBAction)openDateSelectionControllerWithBlock:(id)sender {
-    RMPickerViewController *dateSelectionVC = [RMPickerViewController dateSelectionController];
+- (IBAction)openPickerControllerWithBlock:(id)sender {
+    RMPickerViewController *pickerVC = [RMPickerViewController pickerController];
     
     //You can enable or disable bouncing and motion effects
-    //dateSelectionVC.disableBouncingWhenShowing = YES;
-    //dateSelectionVC.disableMotionEffects = YES;
-    [dateSelectionVC showWithSelectionHandler:^(RMPickerViewController *vc, NSArray *selectedRows) {
+    //pickerVC.disableBouncingWhenShowing = YES;
+    //pickerVC.disableMotionEffects = YES;
+    
+    [pickerVC showWithSelectionHandler:^(RMPickerViewController *vc, NSArray *selectedRows) {
         NSLog(@"Successfully selected rows: %@ (With block)", selectedRows);
     } andCancelHandler:^(RMPickerViewController *vc) {
         NSLog(@"Selection was canceled (with block)");
@@ -64,9 +65,9 @@
 #pragma mark - UITableView Delegates
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if(indexPath.section == 0 && indexPath.row == 0) {
-        [self openDateSelectionController:self];
+        [self openPickerController:self];
     } else if (indexPath.section == 0 && indexPath.row == 1) {
-        [self openDateSelectionControllerWithBlock:self];
+        [self openPickerControllerWithBlock:self];
     }
     
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];

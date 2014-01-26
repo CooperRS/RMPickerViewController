@@ -112,7 +112,7 @@ typedef void (^RMCancelBlock)(RMPickerViewController *vc);
  
  @return Returns a new instance of `RMPickerViewController`
  */
-+ (instancetype)dateSelectionController;
++ (instancetype)pickerController;
 
 /**
  Set a localized title for the select button. Default is 'Now'.

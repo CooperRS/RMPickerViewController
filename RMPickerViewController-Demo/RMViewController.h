@@ -30,6 +30,4 @@
 
 @interface RMViewController : UITableViewController <RMPickerViewControllerDelegate>
 
-- (IBAction)openDateSelectionController:(id)sender;
-
 @end
