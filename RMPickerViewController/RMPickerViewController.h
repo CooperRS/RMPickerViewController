@@ -115,11 +115,6 @@ typedef void (^RMCancelBlock)(RMPickerViewController *vc);
 + (instancetype)pickerController;
 
 /**
- Set a localized title for the select button. Default is 'Now'.
- */
-+ (void)setLocalizedTitleForNowButton:(NSString *)newLocalizedTitle;
-
-/**
  Set a localized title for the select button. Default is 'Cancel'.
  */
 + (void)setLocalizedTitleForCancelButton:(NSString *)newLocalizedTitle;

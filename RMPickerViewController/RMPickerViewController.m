@@ -95,13 +95,8 @@
     return [[RMPickerViewController alloc] init];
 }
 
-static NSString *_localizedNowTitle = @"Now";
 static NSString *_localizedCancelTitle = @"Cancel";
 static NSString *_localizedSelectTitle = @"Select";
-
-+ (NSString *)localizedTitleForNowButton {
-    return _localizedNowTitle;
-}
 
 + (NSString *)localizedTitleForCancelButton {
     return _localizedCancelTitle;
@@ -109,10 +104,6 @@ static NSString *_localizedSelectTitle = @"Select";
 
 + (NSString *)localizedTitleForSelectButton {
     return _localizedSelectTitle;
-}
-
-+ (void)setLocalizedTitleForNowButton:(NSString *)newLocalizedTitle {
-    _localizedNowTitle = newLocalizedTitle;
 }
 
 + (void)setLocalizedTitleForCancelButton:(NSString *)newLocalizedTitle {
