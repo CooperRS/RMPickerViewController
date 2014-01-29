@@ -10,6 +10,12 @@ This is an iOS control for selecting something using UIPickerView in a UIActionS
 ![Landscape](http://cooperrs.github.com/RMPickerViewController/images/Screen2.png)
 
 ##Installation
+###CocoaPods
+```ruby
+platform :ios, '7.0'
+pod "RMPickerViewController", "~> 1.0.0"
+```
+
 ###Manual
 1. Check out the project
 2. Add all files in `RMPickerViewController folder to Xcode
