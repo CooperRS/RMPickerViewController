@@ -48,7 +48,7 @@ This is an iOS control for selecting something using UIPickerView in a UIActionS
     	
    		[pickerVC show];
 	}
-
+	
 4. Do not forget to implement `UIPickerViewDelegate` and `UIPickerViewDataSource` methods.
 
 ###How to localize the buttons? 
