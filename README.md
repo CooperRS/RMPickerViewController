@@ -4,7 +4,7 @@ RMDateSelectionViewController
 This is an iOS control for selecting something using UIPickerView in a UIActionSheet like fashion
 
 ### Portrait
-![Portrait](http://cooperrs.github.io/RMPickerViewController/images/Screen!.png)
+![Portrait](http://cooperrs.github.io/RMPickerViewController/images/Screen1.png)
 
 ### Landscape
 ![Landscape](http://cooperrs.github.com/RMPickerViewController/images/Screen2.png)
