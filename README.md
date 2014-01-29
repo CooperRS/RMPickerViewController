@@ -49,8 +49,10 @@ This is an iOS control for selecting something using UIPickerView in a UIActionS
    		[pickerVC show];
 	}
 
+4. Do not forget to implement `UIPickerViewDelegate` and `UIPickerViewDataSource` methods.
+
 ###How to localize the buttons? 
-No localizations available at the moment.
+[Localization](https://github.com/CooperRS/RMPickerViewController/wiki/Localization)
 
 ###Limitations
 Due to some UIKit internals, it is not possible to show a picker view controller from an instance of UITableViewController. If the UITableViewController instance is wrapped into an UINavigationController instance the date selection view controller will be shown from the UINavigationController instance. If no UINavigationController can be used instead, an error will be logged and showing the date selection view controller will be canceled (to prevent your app from crashing).
