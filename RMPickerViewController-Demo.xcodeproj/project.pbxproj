@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA04D6AE18990BBF00A5E59B /* RMPickerViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA04D6AD18990BBF00A5E59B /* RMPickerViewControllerTests.m */; };
 		CABBCD2A189520D50006213F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CABBCD29189520D50006213F /* Foundation.framework */; };
 		CABBCD2C189520D50006213F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CABBCD2B189520D50006213F /* CoreGraphics.framework */; };
 		CABBCD2E189520D50006213F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CABBCD2D189520D50006213F /* UIKit.framework */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CA04D6AD18990BBF00A5E59B /* RMPickerViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMPickerViewControllerTests.m; sourceTree = "<group>"; };
 		CABBCD26189520D50006213F /* RMPickerViewController-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RMPickerViewController-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CABBCD29189520D50006213F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CABBCD2B189520D50006213F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -143,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				CABBCD6A189521190006213F /* Supporting Files */,
+				CA04D6AD18990BBF00A5E59B /* RMPickerViewControllerTests.m */,
 			);
 			path = "RMPickerViewController-Tests";
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA04D6AE18990BBF00A5E59B /* RMPickerViewControllerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
