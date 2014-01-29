@@ -3,13 +3,16 @@ RMDateSelectionViewController
 
 This is an iOS control for selecting something using UIPickerView in a UIActionSheet like fashion
 
-## Screenshots
-At the moment, there are no screenshots available. Take a look at the demo project.
+### Portrait
+![Portrait](http://cooperrs.github.io/RMPickerViewController/images/Screen!.png)
+
+### Landscape
+![Landscape](http://cooperrs.github.com/RMPickerViewController/images/Screen2.png)
 
 ##Installation
 ###Manual
 1. Check out the project
-2. Add all files in `RMPickerViewController` folder to Xcode
+2. Add all files in `RMPickerViewController folder to Xcode
 
 ##Usage
 ###Basic
