@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>CBC93B79-A619-4D4C-86DB-585AF4933E31</string>
+	<key>IDESourceControlProjectName</key>
+	<string>RMPickerViewController-Demo</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>1F0300A9-2FB9-47B0-9D93-5FD8A1C965C4</key>
+		<string>ssh://cooperrs.de:222/home/git/rmpickerviewcontroller</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>RMPickerViewController-Demo.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>1F0300A9-2FB9-47B0-9D93-5FD8A1C965C4</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://cooperrs.de:222/home/git/rmpickerviewcontroller</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>1F0300A9-2FB9-47B0-9D93-5FD8A1C965C4</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>1F0300A9-2FB9-47B0-9D93-5FD8A1C965C4</string>
+			<key>IDESourceControlWCCName</key>
+			<string>RMPickerViewController</string>
+		</dict>
+	</array>
+</dict>
+</plist>
