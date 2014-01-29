@@ -1,4 +1,4 @@
-RMDateSelectionViewController
+RMPickerViewController
 =============================
 
 This is an iOS control for selecting something using UIPickerView in a UIActionSheet like fashion
