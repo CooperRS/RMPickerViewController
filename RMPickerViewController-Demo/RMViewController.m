@@ -47,6 +47,7 @@
     //You can also adjust colors (enabling example will result in a black version)
     //pickerVC.tintColor = [UIColor whiteColor];
     //pickerVC.backgroundColor = [UIColor colorWithWhite:0.25 alpha:1];
+    //pickerVC.titleLabel.textColor = [UIColor whiteColor];
 }
 
 - (IBAction)openPickerControllerWithBlock:(id)sender {

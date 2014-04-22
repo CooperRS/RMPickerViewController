@@ -237,7 +237,7 @@ static NSString *_localizedSelectTitle = @"Select";
     self.titleLabelContainer.layer.cornerRadius = 5;
     self.titleLabelContainer.translatesAutoresizingMaskIntoConstraints = NO;
     
-    self.titleLabel.backgroundColor = [UIColor whiteColor];
+    self.titleLabel.backgroundColor = [UIColor clearColor];
     self.titleLabel.textColor = [UIColor grayColor];
     self.titleLabel.font = [UIFont systemFontOfSize:12];
     self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
@@ -333,6 +333,7 @@ static NSString *_localizedSelectTitle = @"Select";
     }
     
     if(self.backgroundColor) {
+        self.titleLabelContainer.backgroundColor = self.backgroundColor;
         self.pickerContainer.backgroundColor = self.backgroundColor;
         self.cancelAndSelectButtonContainer.backgroundColor = self.backgroundColor;
     }
@@ -447,6 +448,7 @@ static NSString *_localizedSelectTitle = @"Select";
     if(_backgroundColor != newBackgroundColor) {
         _backgroundColor = newBackgroundColor;
         
+        self.titleLabelContainer.backgroundColor = newBackgroundColor;
         self.pickerContainer.backgroundColor = newBackgroundColor;
         self.cancelAndSelectButtonContainer.backgroundColor = newBackgroundColor;
     }
