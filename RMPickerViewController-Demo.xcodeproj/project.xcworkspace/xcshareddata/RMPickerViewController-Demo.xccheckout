@@ -5,34 +5,34 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>D172EF35-9678-431C-9652-AD74E55B24F8</string>
+	<string>060A4B42-C802-457C-A7BC-20694C68B07E</string>
 	<key>IDESourceControlProjectName</key>
 	<string>RMPickerViewController-Demo</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>5A80F7F7-8F28-4C2A-8570-26D9AD3E332E</key>
-		<string>ssh://github.com/CooperRS/RMPickerViewController</string>
+		<key>7AD417F5-6188-43A4-BC77-7EDF19A46228</key>
+		<string>ssh://cooperrs.de:222/home/git/rmpickerviewcontroller</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>RMPickerViewController-Demo.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>5A80F7F7-8F28-4C2A-8570-26D9AD3E332E</key>
+		<key>7AD417F5-6188-43A4-BC77-7EDF19A46228</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://github.com/CooperRS/RMPickerViewController</string>
+	<string>ssh://cooperrs.de:222/home/git/rmpickerviewcontroller</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>5A80F7F7-8F28-4C2A-8570-26D9AD3E332E</string>
+	<string>7AD417F5-6188-43A4-BC77-7EDF19A46228</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>5A80F7F7-8F28-4C2A-8570-26D9AD3E332E</string>
+			<string>7AD417F5-6188-43A4-BC77-7EDF19A46228</string>
 			<key>IDESourceControlWCCName</key>
 			<string>RMPickerViewController</string>
 		</dict>
