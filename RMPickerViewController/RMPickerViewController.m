@@ -70,6 +70,9 @@
 @property (nonatomic, weak) NSLayoutConstraint *widthConstraint;
 @property (nonatomic, weak) NSLayoutConstraint *heightConstraint;
 
+@property (nonatomic, strong) UIView *titleLabelContainer;
+@property (nonatomic, strong, readwrite) UILabel *titleLabel;
+
 @property (nonatomic, strong) UIView *pickerContainer;
 @property (nonatomic, readwrite, strong) UIPickerView *picker;
 @property (nonatomic, strong) NSLayoutConstraint *pickerHeightConstraint;
@@ -146,7 +149,7 @@ static NSString *_localizedSelectTitle = @"Select";
     aViewController.xConstraint = [NSLayoutConstraint constraintWithItem:aViewController.view attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:rootViewController.view attribute:NSLayoutAttributeCenterX multiplier:1 constant:0];
     aViewController.yConstraint = [NSLayoutConstraint constraintWithItem:aViewController.view attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:rootViewController.view attribute:NSLayoutAttributeBottom multiplier:1 constant:height];
     aViewController.widthConstraint = [NSLayoutConstraint constraintWithItem:aViewController.view attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:rootViewController.view attribute:NSLayoutAttributeWidth multiplier:1 constant:0];
-    aViewController.heightConstraint = [NSLayoutConstraint constraintWithItem:aViewController.view attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:0 constant:height];
+    aViewController.heightConstraint = [NSLayoutConstraint constraintWithItem:aViewController.view attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:rootViewController.view attribute:NSLayoutAttributeHeight multiplier:1 constant:0];
     
     [rootViewController.view addConstraint:aViewController.xConstraint];
     [rootViewController.view addConstraint:aViewController.yConstraint];
@@ -197,8 +200,19 @@ static NSString *_localizedSelectTitle = @"Select";
 }
 
 #pragma mark - Init and Dealloc
+- (id)init {
+    self = [super init];
+    if(self) {
+        [self setupUIElements];
+    }
+    return self;
+}
+
 - (void)setupUIElements {
     //Instantiate elements
+    self.titleLabelContainer = [[UIView alloc] initWithFrame:CGRectZero];
+    self.titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    
     self.pickerContainer = [[UIView alloc] initWithFrame:CGRectZero];
     self.picker = [[UIPickerView alloc] initWithFrame:CGRectZero];
     self.picker.delegate = self.delegate;
@@ -209,9 +223,8 @@ static NSString *_localizedSelectTitle = @"Select";
     self.cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.selectButton = [UIButton buttonWithType:UIButtonTypeCustom];
     
-    //Add elements to their subviews
-    [self.view addSubview:self.pickerContainer];
-    [self.view addSubview:self.cancelAndSelectButtonContainer];
+    //Add elements to their views
+    [self.titleLabelContainer addSubview:self.titleLabel];
     
     [self.pickerContainer addSubview:self.picker];
     
@@ -220,6 +233,17 @@ static NSString *_localizedSelectTitle = @"Select";
     [self.cancelAndSelectButtonContainer addSubview:self.selectButton];
     
     //Setup properties of elements
+    self.titleLabelContainer.backgroundColor = [UIColor whiteColor];
+    self.titleLabelContainer.layer.cornerRadius = 5;
+    self.titleLabelContainer.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    self.titleLabel.backgroundColor = [UIColor whiteColor];
+    self.titleLabel.textColor = [UIColor grayColor];
+    self.titleLabel.font = [UIFont systemFontOfSize:12];
+    self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    self.titleLabel.textAlignment = NSTextAlignmentCenter;
+    self.titleLabel.numberOfLines = 0;
+    
     self.pickerContainer.backgroundColor = [UIColor whiteColor];
     self.pickerContainer.layer.cornerRadius = 5;
     self.pickerContainer.translatesAutoresizingMaskIntoConstraints = NO;
@@ -257,8 +281,10 @@ static NSString *_localizedSelectTitle = @"Select";
     UIButton *cancel = self.cancelButton;
     UIButton *select = self.selectButton;
     UIPickerView *picker = self.picker;
+    UIView *labelContainer = self.titleLabelContainer;
+    UILabel *label = self.titleLabel;
     
-    NSDictionary *bindingsDict = NSDictionaryOfVariableBindings(cancelSelectContainer, seperator, pickerContainer, cancel, select, picker);
+    NSDictionary *bindingsDict = NSDictionaryOfVariableBindings(cancelSelectContainer, seperator, pickerContainer, cancel, select, picker, labelContainer, label);
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-(10)-[pickerContainer]-(10)-|" options:0 metrics:nil views:bindingsDict]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-(10)-[cancelSelectContainer]-(10)-|" options:0 metrics:nil views:bindingsDict]];
@@ -266,6 +292,15 @@ static NSString *_localizedSelectTitle = @"Select";
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[pickerContainer]-(10)-[cancelSelectContainer(44)]-(0)-|" options:0 metrics:nil views:bindingsDict]];
     self.pickerHeightConstraint = [NSLayoutConstraint constraintWithItem:self.pickerContainer attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:0 constant:RM_DATE_PICKER_HEIGHT_PORTRAIT];
     [self.view addConstraint:self.pickerHeightConstraint];
+    
+    if(self.titleLabel.text && self.titleLabel.text.length != 0) {
+        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-(10)-[labelContainer]-(10)-|" options:0 metrics:nil views:bindingsDict]];
+        
+        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[labelContainer]-(10)-[pickerContainer]" options:0 metrics:nil views:bindingsDict]];
+        
+        [self.titleLabelContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-(10)-[label]-(10)-|" options:0 metrics:nil views:bindingsDict]];
+        [self.titleLabelContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(10)-[label]-(10)-|" options:0 metrics:nil views:bindingsDict]];
+    }
     
     [self.pickerContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-(0)-[picker]-(0)-|" options:0 metrics:nil views:bindingsDict]];
     [self.cancelAndSelectButtonContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-(0)-[cancel]-(0)-[seperator(1)]-(0)-[select]-(0)-|" options:0 metrics:nil views:bindingsDict]];
@@ -284,7 +319,12 @@ static NSString *_localizedSelectTitle = @"Select";
     self.view.backgroundColor = [UIColor clearColor];
     self.view.layer.masksToBounds = YES;
     
-    [self setupUIElements];
+    if(self.titleLabel.text && self.titleLabel.text.length != 0)
+        [self.view addSubview:self.titleLabelContainer];
+    
+    [self.view addSubview:self.pickerContainer];
+    [self.view addSubview:self.cancelAndSelectButtonContainer];
+    
     [self setupConstraints];
     
     if(self.tintColor) {

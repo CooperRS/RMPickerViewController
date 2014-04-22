@@ -36,6 +36,7 @@
 - (IBAction)openPickerController:(id)sender {
     RMPickerViewController *pickerVC = [RMPickerViewController pickerController];
     pickerVC.delegate = self;
+    pickerVC.titleLabel.text = @"This is an example title.\n\nPlease choose a row and press 'Select' or 'Cancel'.";
     
     //You can enable or disable bouncing and motion effects
     //pickerVC.disableBouncingWhenShowing = YES;
@@ -50,6 +51,7 @@
 
 - (IBAction)openPickerControllerWithBlock:(id)sender {
     RMPickerViewController *pickerVC = [RMPickerViewController pickerController];
+    pickerVC.delegate = self;
     
     //You can enable or disable bouncing and motion effects
     //pickerVC.disableBouncingWhenShowing = YES;

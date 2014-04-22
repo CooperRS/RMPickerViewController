@@ -27,17 +27,17 @@
 #import <UIKit/UIKit.h>
 
 /**
- `RMPickerViewController` is an iOS control for selecting a date using UIDatePicker in a UIActionSheet like fashon.
+ `RMPickerViewController` is an iOS control for selecting a row using UIPickerView in a UIActionSheet like fashion.
  */
 
 @class RMPickerViewController;
 
 /**
- This block is called when the user selects a certain date if blocks are used.
+ This block is called when the user selects a certain row if blocks are used.
  
- @param vc The date selection view controller that just finished selecting a date.
+ @param vc The picker view controller that just finished selecting a row.
  
- @param aDate An array of selected rows (One entry per component).
+ @param selectedRows An array of selected rows (one entry per component).
  */
 
 typedef void (^RMSelectionBlock)(RMPickerViewController *vc, NSArray *selectedRows);
@@ -45,25 +45,25 @@ typedef void (^RMSelectionBlock)(RMPickerViewController *vc, NSArray *selectedRo
 /**
  This block is called when the user cancels if blocks are used.
  
- @param vc The date selection view controller that just got canceled.
+ @param vc The picker view controller that just got canceled.
   */
 typedef void (^RMCancelBlock)(RMPickerViewController *vc);
 
 @protocol RMPickerViewControllerDelegate <UIPickerViewDelegate, UIPickerViewDataSource>
 
 /**
- This delegate method is called when the user selects a certain date.
+ This delegate method is called when the user selects a certain row.
  
- @param vc The date selection view controller that just finished selecting a date.
+ @param vc The picker view controller that just finished selecting a row.
  
- @param aDate The selected date.
+ @param selectedRows An array of selected rows (one entry per component).
  */
 - (void)pickerViewController:(RMPickerViewController *)vc didSelectRows:(NSArray *)selectedRows;
 
 /**
  This delegate method is called when the user selects the cancel button.
  
- @param vc The date selection view controller that just canceled.
+ @param vc The picker view controller that just canceled.
  */
 - (void)pickerViewControllerDidCancel:(RMPickerViewController *)vc;
 
@@ -74,9 +74,16 @@ typedef void (^RMCancelBlock)(RMPickerViewController *vc);
 /// @name Properties
 
 /**
- Will return the instance of UIDatePicker that is used. This property will be nil until -[RMPickerViewController show] or -[RMPickerViewController showFromViewController:] is called.
+ Will return the instance of UIPickerView that is used.
  */
 @property (nonatomic, readonly) UIPickerView *picker;
+
+/**
+ Will return the label that is used as a title for the picker. You can use this property to set a title and to customize the appearance of the title.
+ 
+ If you want to set a title, be sure to set it before showing the picker view controller as otherwise the title will not be shown.
+ */
+@property (nonatomic, strong, readonly) UILabel *titleLabel;
 
 /**
  Used to set the delegate.
@@ -86,7 +93,7 @@ typedef void (^RMCancelBlock)(RMPickerViewController *vc);
 @property (nonatomic, weak) id<RMPickerViewControllerDelegate> delegate;
 
 /**
- Used to set the text color of the buttons but not the date picker.
+ Used to set the text color of the buttons (has no effect on picker view).
  */
 @property (strong, nonatomic) UIColor *tintColor;
 
@@ -101,7 +108,7 @@ typedef void (^RMCancelBlock)(RMPickerViewController *vc);
 @property (assign, nonatomic) BOOL disableMotionEffects;
 
 /**
- Used to enable or disable bouncing effects when sliding in the date selection view. Default value is NO.
+ Used to enable or disable bouncing effects when sliding in the picker view. Default value is NO.
  */
 @property (assign, nonatomic) BOOL disableBouncingWhenShowing;
 
@@ -127,48 +134,48 @@ typedef void (^RMCancelBlock)(RMPickerViewController *vc);
 /// @name Instance Methods
 
 /**
- This shows the date selection view controller as child view controller of the root view controller of the current key window.
+ This shows the picker view controller as child view controller of the root view controller of the current key window.
  
- The content of the rootview controller will be darkened and the date selection view controller will be shown on top.
+ The content of the rootview controller will be darkened and the picker view controller will be shown on top.
  
- Make sure the delegate property is assigned. Otherwise you will not get any calls when a date is selected or the selection has been canceled.
+ Make sure the delegate property is assigned. Otherwise you will not get any calls when a row is selected or the selection has been canceled.
  */
 - (void)show;
 
 /**
- This shows the date selection view controller as child view controller of the root view controller of the current key window.
+ This shows the picker view controller as child view controller of the root view controller of the current key window.
  
- The content of the rootview controller will be darkened and the date selection view controller will be shown on top.
+ The content of the rootview controller will be darkened and the picker view controller will be shown on top.
  
- After a date has been selected the selectionBlock will be called. If you assigned a delegate the corresponding delegate method will be called, too. Keep in mind that when the user cancels selection you will only get calls if you assigned a delegate.
+ After a row has been selected the selectionBlock will be called. If you assigned a delegate the corresponding delegate method will be called, too. Keep in mind that when the user cancels selection you will only get calls if you assigned a delegate.
  
- @param selectionBlock The block to call when the user selects a date.
+ @param selectionBlock The block to call when the user selects a row.
  */
 - (void)showWithSelectionHandler:(RMSelectionBlock)selectionBlock;
 
 /**
- This shows the date selection view controller as child view controller of the root view controller of the current key window.
+ This shows the picker view controller as child view controller of the root view controller of the current key window.
  
- The content of the rootview controller will be darkened and the date selection view controller will be shown on top.
+ The content of the root view controller will be darkened and the picker view controller will be shown on top.
  
- After a date has been selected the selectionBlock will be called. If the user choses to cancel the selection, the cancel block will be called. If you assigned a delegate the corresponding delegate methods will be called, too.
+ After a row has been selected the selectionBlock will be called. If the user choses to cancel the selection, the cancel block will be called. If you assigned a delegate the corresponding delegate methods will be called, too.
  
- @param selectionBlock The block to call when the user selects a date.
+ @param selectionBlock The block to call when the user selects a row.
  @param cancelBlock The block to call when the user cancels the selection.
  */
 - (void)showWithSelectionHandler:(RMSelectionBlock)selectionBlock andCancelHandler:(RMCancelBlock)cancelBlock;
 
 /**
- This shows the date selection view controller as child view controller of aViewController.
+ This shows the picker view controller as child view controller of aViewController.
  
- The content of aViewController will be darkened and the date selection view controller will be shown on top.
+ The content of aViewController will be darkened and the picker view controller will be shown on top.
  
- @param aViewController The date selection view controller will be displayed as a child view controller of this view controller.
+ @param aViewController The picker view controller will be displayed as a child view controller of this view controller.
  */
 - (void)showFromViewController:(UIViewController *)aViewController;
 
 /**
- This will remove the date selection view controller from whatever view controller it is currently shown in.
+ This will remove the picker view controller from whatever view controller it is currently shown in.
  */
 - (void)dismiss;
 
