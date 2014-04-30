@@ -212,8 +212,8 @@ static NSString *_localizedSelectTitle = @"Select";
     
     self.cancelAndSelectButtonContainer = [[UIView alloc] initWithFrame:CGRectZero];
     self.cancelAndSelectButtonSeperator = [[UIView alloc] initWithFrame:CGRectZero];
-    self.cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.selectButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.cancelButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    self.selectButton = [UIButton buttonWithType:UIButtonTypeSystem];
     
     //Add elements to their views
     [self.titleLabelContainer addSubview:self.titleLabel];
@@ -253,6 +253,7 @@ static NSString *_localizedSelectTitle = @"Select";
     [self.cancelButton setTitle:[RMPickerViewController localizedTitleForCancelButton] forState:UIControlStateNormal];
     [self.cancelButton setTitleColor:[UIColor colorWithRed:0 green:122./255. blue:1 alpha:1] forState:UIControlStateNormal];
     [self.cancelButton addTarget:self action:@selector(cancelButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    self.cancelButton.titleLabel.font = [UIFont systemFontOfSize:[UIFont buttonFontSize]];
     self.cancelButton.layer.cornerRadius = 5;
     self.cancelButton.translatesAutoresizingMaskIntoConstraints = NO;
     [self.cancelButton setContentHuggingPriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
