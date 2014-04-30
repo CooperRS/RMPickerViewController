@@ -288,12 +288,12 @@ static NSString *_localizedSelectTitle = @"Select";
     if(self.titleLabel.text && self.titleLabel.text.length != 0) {
         [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-(10)-[labelContainer]-(10)-|" options:0 metrics:nil views:bindingsDict]];
         
-        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[labelContainer]-(10)-[pickerContainer]" options:0 metrics:nil views:bindingsDict]];
+        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(0)-[labelContainer]-(10)-[pickerContainer]" options:0 metrics:nil views:bindingsDict]];
         
         [self.titleLabelContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-(10)-[label]-(10)-|" options:0 metrics:nil views:bindingsDict]];
         [self.titleLabelContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(10)-[label]-(10)-|" options:0 metrics:nil views:bindingsDict]];
     } else {
-        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[pickerContainer]" options:0 metrics:nil views:bindingsDict]];
+        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(0)-[pickerContainer]" options:0 metrics:nil views:bindingsDict]];
     }
     
     [self.pickerContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-(0)-[picker]-(0)-|" options:0 metrics:nil views:bindingsDict]];
@@ -422,6 +422,9 @@ static NSString *_localizedSelectTitle = @"Select";
         self.backgroundView = [[UIView alloc] initWithFrame:CGRectZero];
         _backgroundView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.4];
         _backgroundView.translatesAutoresizingMaskIntoConstraints = NO;
+        
+        UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundViewTapped:)];
+        [_backgroundView addGestureRecognizer:tapRecognizer];
     }
     
     return _backgroundView;
@@ -508,6 +511,16 @@ static NSString *_localizedSelectTitle = @"Select";
         self.cancelBlock(self);
     }
     [self performSelector:@selector(dismiss) withObject:nil afterDelay:0.1];
+}
+
+- (IBAction)backgroundViewTapped:(UIGestureRecognizer *)sender {
+    if(!self.backgroundTapsDisabled) {
+        [self.delegate pickerViewControllerDidCancel:self];
+        if (self.cancelBlock) {
+            self.cancelBlock(self);
+        }
+        [self performSelector:@selector(dismiss) withObject:nil afterDelay:0.1];
+    }
 }
 
 @end

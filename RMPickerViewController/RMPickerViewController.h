@@ -61,7 +61,7 @@ typedef void (^RMCancelBlock)(RMPickerViewController *vc);
 - (void)pickerViewController:(RMPickerViewController *)vc didSelectRows:(NSArray *)selectedRows;
 
 /**
- This delegate method is called when the user selects the cancel button.
+ This delegate method is called when the user selects the cancel button or taps the darkened background (if `backgroundTapsDisabled` is set to NO).
  
  @param vc The picker view controller that just canceled.
  */
@@ -111,6 +111,11 @@ typedef void (^RMCancelBlock)(RMPickerViewController *vc);
  Used to enable or disable bouncing effects when sliding in the picker view. Default value is NO.
  */
 @property (assign, nonatomic) BOOL disableBouncingWhenShowing;
+
+/**
+ *  When YES taps on the background view are ignored. Default value is NO.
+ */
+@property (assign, nonatomic) BOOL backgroundTapsDisabled;
 
 /// @name Class Methods
 
