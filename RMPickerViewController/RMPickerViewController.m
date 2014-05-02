@@ -84,6 +84,8 @@
 
 @implementation RMPickerViewController
 
+@synthesize selectedBackgroundColor = _selectedBackgroundColor;
+
 #pragma mark - Class
 + (instancetype)pickerController {
     return [[RMPickerViewController alloc] init];
@@ -245,6 +247,7 @@ static NSString *_localizedSelectTitle = @"Select";
     
     self.cancelAndSelectButtonContainer.backgroundColor = [UIColor whiteColor];
     self.cancelAndSelectButtonContainer.layer.cornerRadius = 5;
+    self.cancelAndSelectButtonContainer.clipsToBounds = YES;
     self.cancelAndSelectButtonContainer.translatesAutoresizingMaskIntoConstraints = NO;
     
     self.cancelAndSelectButtonSeperator.backgroundColor = [UIColor lightGrayColor];
@@ -332,6 +335,11 @@ static NSString *_localizedSelectTitle = @"Select";
         self.cancelAndSelectButtonContainer.backgroundColor = self.backgroundColor;
     }
     
+    if(self.selectedBackgroundColor) {
+        [self.cancelButton setBackgroundImage:[self imageWithColor:self.selectedBackgroundColor] forState:UIControlStateHighlighted];
+        [self.selectButton setBackgroundImage:[self imageWithColor:self.selectedBackgroundColor] forState:UIControlStateHighlighted];
+    }
+    
     if(!self.disableMotionEffects)
         [self addMotionEffects];
 }
@@ -376,6 +384,18 @@ static NSString *_localizedSelectTitle = @"Select";
 
 - (void)removeMotionEffects {
     [self.view removeMotionEffect:self.motionEffectGroup];
+}
+
+- (UIImage *)imageWithColor:(UIColor *)color {
+    CGRect rect = CGRectMake(0, 0, 1, 1);
+    
+    UIGraphicsBeginImageContextWithOptions(rect.size, NO, 0);
+    [color setFill];
+    UIRectFill(rect);
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
 }
 
 #pragma mark - Properties
@@ -446,6 +466,23 @@ static NSString *_localizedSelectTitle = @"Select";
         self.titleLabelContainer.backgroundColor = newBackgroundColor;
         self.pickerContainer.backgroundColor = newBackgroundColor;
         self.cancelAndSelectButtonContainer.backgroundColor = newBackgroundColor;
+    }
+}
+
+- (UIColor *)selectedBackgroundColor {
+    if(!_selectedBackgroundColor) {
+        self.selectedBackgroundColor = [UIColor colorWithWhite:230./255. alpha:1];
+    }
+    
+    return _selectedBackgroundColor;
+}
+
+- (void)setSelectedBackgroundColor:(UIColor *)newSelectedBackgroundColor {
+    if(_selectedBackgroundColor != newSelectedBackgroundColor) {
+        _selectedBackgroundColor = newSelectedBackgroundColor;
+        
+        [self.cancelButton setBackgroundImage:[self imageWithColor:newSelectedBackgroundColor] forState:UIControlStateHighlighted];
+        [self.selectButton setBackgroundImage:[self imageWithColor:newSelectedBackgroundColor] forState:UIControlStateHighlighted];
     }
 }
 
