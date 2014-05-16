@@ -73,6 +73,10 @@ Works with:
 May also work with previous Xcode and iOS SDK versions. But it will at least need a system capable of Autolayout (and I think it will look awful on iOS 6 ;)...)
 
 ##Credits
+Code contributions:
+* Denis Andrasec
+	* Bugfixes
+
 I want to thank everyone who has contributed code and/or time to this project!
 
 ## License (MIT License)
