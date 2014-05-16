@@ -80,6 +80,8 @@
 @property (nonatomic, copy) RMSelectionBlock selectedDateBlock;
 @property (nonatomic, copy) RMCancelBlock cancelBlock;
 
+@property (nonatomic, assign) BOOL hasBeenDismissed;
+
 @end
 
 @implementation RMPickerViewController
@@ -530,28 +532,38 @@ static NSString *_localizedSelectTitle = @"Select";
 
 #pragma mark - Actions
 - (IBAction)doneButtonPressed:(id)sender {
-    NSMutableArray *selectedRows = [NSMutableArray array];
-    for(NSInteger i=0 ; i<[self.picker numberOfComponents] ; i++) {
-        [selectedRows addObject:@([self.picker selectedRowInComponent:i])];
+    if(!self.hasBeenDismissed) {
+        self.hasBeenDismissed = YES;
+        
+        NSMutableArray *selectedRows = [NSMutableArray array];
+        for(NSInteger i=0 ; i<[self.picker numberOfComponents] ; i++) {
+            [selectedRows addObject:@([self.picker selectedRowInComponent:i])];
+        }
+        
+        [self.delegate pickerViewController:self didSelectRows:selectedRows];
+        if (self.selectedDateBlock) {
+            self.selectedDateBlock(self, selectedRows);
+        }
+        [self performSelector:@selector(dismiss) withObject:nil afterDelay:0.1];
     }
-    
-    [self.delegate pickerViewController:self didSelectRows:selectedRows];
-    if (self.selectedDateBlock) {
-        self.selectedDateBlock(self, selectedRows);
-    }
-    [self performSelector:@selector(dismiss) withObject:nil afterDelay:0.1];
 }
 
 - (IBAction)cancelButtonPressed:(id)sender {
-    [self.delegate pickerViewControllerDidCancel:self];
-    if (self.cancelBlock) {
-        self.cancelBlock(self);
+    if(!self.hasBeenDismissed) {
+        self.hasBeenDismissed = YES;
+        
+        [self.delegate pickerViewControllerDidCancel:self];
+        if (self.cancelBlock) {
+            self.cancelBlock(self);
+        }
+        [self performSelector:@selector(dismiss) withObject:nil afterDelay:0.1];
     }
-    [self performSelector:@selector(dismiss) withObject:nil afterDelay:0.1];
 }
 
 - (IBAction)backgroundViewTapped:(UIGestureRecognizer *)sender {
-    if(!self.backgroundTapsDisabled) {
+    if(!self.backgroundTapsDisabled && !self.hasBeenDismissed) {
+        self.hasBeenDismissed = YES;
+        
         [self.delegate pickerViewControllerDidCancel:self];
         if (self.cancelBlock) {
             self.cancelBlock(self);
