@@ -36,11 +36,11 @@ pod "RMPickerViewController", "~> 1.1.1"
 	
 	```objc
 	#pragma mark - RMPickerViewController Delegates
-	- (void)pickerViewController:(RMDateSelectionViewController *)vc didSelectRows:(NSArray  *)selectedRows {
+	- (void)pickerViewController:(RMPickerViewController *)vc didSelectRows:(NSArray  *)selectedRows {
 		//Do something
 	}
 
-	- (void)pickerViewControllerDidCancel:(RMDateSelectionViewController *)vc {
+	- (void)pickerViewControllerDidCancel:(RMPickerViewController *)vc {
 		//Do something else
 	}
 	```
