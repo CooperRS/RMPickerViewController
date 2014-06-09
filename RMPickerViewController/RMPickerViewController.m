@@ -206,15 +206,30 @@ static NSString *_localizedSelectTitle = @"Select";
 
 - (void)setupUIElements {
     //Instantiate elements
-    self.titleLabelContainer = [[UIView alloc] initWithFrame:CGRectZero];
+    if(NSClassFromString(@"UIBlurEffect") && NSClassFromString(@"UIVisualEffectView")) {
+        UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+        self.titleLabelContainer = [[UIVisualEffectView alloc] initWithEffect:blur];
+    } else {
+        self.titleLabelContainer = [[UIView alloc] initWithFrame:CGRectZero];
+    }
     self.titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     
-    self.pickerContainer = [[UIView alloc] initWithFrame:CGRectZero];
+    if(NSClassFromString(@"UIBlurEffect") && NSClassFromString(@"UIVisualEffectView")) {
+        UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+        self.pickerContainer = [[UIVisualEffectView alloc] initWithEffect:blur];
+    } else {
+        self.pickerContainer = [[UIView alloc] initWithFrame:CGRectZero];
+    }
     self.picker = [[UIPickerView alloc] initWithFrame:CGRectZero];
     self.picker.delegate = self.delegate;
     self.picker.dataSource = self.delegate;
     
-    self.cancelAndSelectButtonContainer = [[UIView alloc] initWithFrame:CGRectZero];
+    if(NSClassFromString(@"UIBlurEffect") && NSClassFromString(@"UIVisualEffectView")) {
+        UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+        self.cancelAndSelectButtonContainer = [[UIVisualEffectView alloc] initWithEffect:blur];
+    } else {
+        self.cancelAndSelectButtonContainer = [[UIView alloc] initWithFrame:CGRectZero];
+    }
     self.cancelAndSelectButtonSeperator = [[UIView alloc] initWithFrame:CGRectZero];
     self.cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.selectButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -231,6 +246,7 @@ static NSString *_localizedSelectTitle = @"Select";
     //Setup properties of elements
     self.titleLabelContainer.backgroundColor = [UIColor whiteColor];
     self.titleLabelContainer.layer.cornerRadius = 5;
+    self.titleLabelContainer.clipsToBounds = YES;
     self.titleLabelContainer.translatesAutoresizingMaskIntoConstraints = NO;
     
     self.titleLabel.backgroundColor = [UIColor clearColor];
@@ -242,6 +258,7 @@ static NSString *_localizedSelectTitle = @"Select";
     
     self.pickerContainer.backgroundColor = [UIColor whiteColor];
     self.pickerContainer.layer.cornerRadius = 5;
+    self.pickerContainer.clipsToBounds = YES;
     self.pickerContainer.translatesAutoresizingMaskIntoConstraints = NO;
     
     self.picker.layer.cornerRadius = 5;
