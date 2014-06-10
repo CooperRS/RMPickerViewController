@@ -41,6 +41,7 @@
     //You can enable or disable bouncing and motion effects
     //pickerVC.disableBouncingWhenShowing = YES;
     //pickerVC.disableMotionEffects = YES;
+    //pickerVC.disableBlurEffects = YES;
     
     [pickerVC show];
     
@@ -57,6 +58,7 @@
     //You can enable or disable bouncing and motion effects
     //pickerVC.disableBouncingWhenShowing = YES;
     //pickerVC.disableMotionEffects = YES;
+    //pickerVC.disableBlurEffects = YES;
     
     [pickerVC showWithSelectionHandler:^(RMPickerViewController *vc, NSArray *selectedRows) {
         NSLog(@"Successfully selected rows: %@ (With block)", selectedRows);

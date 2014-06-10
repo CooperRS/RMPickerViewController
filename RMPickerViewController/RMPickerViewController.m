@@ -206,49 +206,17 @@ static NSString *_localizedSelectTitle = @"Select";
 
 - (void)setupUIElements {
     //Instantiate elements
-    if(NSClassFromString(@"UIBlurEffect") && NSClassFromString(@"UIVisualEffectView")) {
-        UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-        self.titleLabelContainer = [[UIVisualEffectView alloc] initWithEffect:blur];
-    } else {
-        self.titleLabelContainer = [[UIView alloc] initWithFrame:CGRectZero];
-    }
     self.titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     
-    if(NSClassFromString(@"UIBlurEffect") && NSClassFromString(@"UIVisualEffectView")) {
-        UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-        self.pickerContainer = [[UIVisualEffectView alloc] initWithEffect:blur];
-    } else {
-        self.pickerContainer = [[UIView alloc] initWithFrame:CGRectZero];
-    }
     self.picker = [[UIPickerView alloc] initWithFrame:CGRectZero];
     self.picker.delegate = self.delegate;
     self.picker.dataSource = self.delegate;
     
-    if(NSClassFromString(@"UIBlurEffect") && NSClassFromString(@"UIVisualEffectView")) {
-        UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-        self.cancelAndSelectButtonContainer = [[UIVisualEffectView alloc] initWithEffect:blur];
-    } else {
-        self.cancelAndSelectButtonContainer = [[UIView alloc] initWithFrame:CGRectZero];
-    }
     self.cancelAndSelectButtonSeperator = [[UIView alloc] initWithFrame:CGRectZero];
     self.cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.selectButton = [UIButton buttonWithType:UIButtonTypeCustom];
     
-    //Add elements to their views
-    [self.titleLabelContainer addSubview:self.titleLabel];
-    
-    [self.pickerContainer addSubview:self.picker];
-    
-    [self.cancelAndSelectButtonContainer addSubview:self.cancelAndSelectButtonSeperator];
-    [self.cancelAndSelectButtonContainer addSubview:self.cancelButton];
-    [self.cancelAndSelectButtonContainer addSubview:self.selectButton];
-    
     //Setup properties of elements
-    self.titleLabelContainer.backgroundColor = [UIColor whiteColor];
-    self.titleLabelContainer.layer.cornerRadius = 5;
-    self.titleLabelContainer.clipsToBounds = YES;
-    self.titleLabelContainer.translatesAutoresizingMaskIntoConstraints = NO;
-    
     self.titleLabel.backgroundColor = [UIColor clearColor];
     self.titleLabel.textColor = [UIColor grayColor];
     self.titleLabel.font = [UIFont systemFontOfSize:12];
@@ -256,21 +224,8 @@ static NSString *_localizedSelectTitle = @"Select";
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.titleLabel.numberOfLines = 0;
     
-    self.pickerContainer.backgroundColor = [UIColor whiteColor];
-    self.pickerContainer.layer.cornerRadius = 5;
-    self.pickerContainer.clipsToBounds = YES;
-    self.pickerContainer.translatesAutoresizingMaskIntoConstraints = NO;
-    
     self.picker.layer.cornerRadius = 5;
     self.picker.translatesAutoresizingMaskIntoConstraints = NO;
-    
-    self.cancelAndSelectButtonContainer.backgroundColor = [UIColor whiteColor];
-    self.cancelAndSelectButtonContainer.layer.cornerRadius = 5;
-    self.cancelAndSelectButtonContainer.clipsToBounds = YES;
-    self.cancelAndSelectButtonContainer.translatesAutoresizingMaskIntoConstraints = NO;
-    
-    self.cancelAndSelectButtonSeperator.backgroundColor = [UIColor lightGrayColor];
-    self.cancelAndSelectButtonSeperator.translatesAutoresizingMaskIntoConstraints = NO;
     
     [self.cancelButton setTitle:[RMPickerViewController localizedTitleForCancelButton] forState:UIControlStateNormal];
     [self.cancelButton setTitleColor:[UIColor colorWithRed:0 green:122./255. blue:1 alpha:1] forState:UIControlStateNormal];
@@ -286,6 +241,54 @@ static NSString *_localizedSelectTitle = @"Select";
     self.selectButton.layer.cornerRadius = 5;
     self.selectButton.translatesAutoresizingMaskIntoConstraints = NO;
     [self.selectButton setContentHuggingPriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
+}
+
+- (void)setupContainerElements {
+    if(NSClassFromString(@"UIBlurEffect") && NSClassFromString(@"UIVisualEffectView") && !self.disableBlurEffects) {
+        UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+        self.titleLabelContainer = [[UIVisualEffectView alloc] initWithEffect:blur];
+    } else {
+        self.titleLabelContainer = [[UIView alloc] initWithFrame:CGRectZero];
+    }
+    
+    if(NSClassFromString(@"UIBlurEffect") && NSClassFromString(@"UIVisualEffectView") && !self.disableBlurEffects) {
+        UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+        self.pickerContainer = [[UIVisualEffectView alloc] initWithEffect:blur];
+    } else {
+        self.pickerContainer = [[UIView alloc] initWithFrame:CGRectZero];
+    }
+    
+    if(NSClassFromString(@"UIBlurEffect") && NSClassFromString(@"UIVisualEffectView") && !self.disableBlurEffects) {
+        UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+        self.cancelAndSelectButtonContainer = [[UIVisualEffectView alloc] initWithEffect:blur];
+    } else {
+        self.cancelAndSelectButtonContainer = [[UIView alloc] initWithFrame:CGRectZero];
+    }
+    
+    [self.titleLabelContainer addSubview:self.titleLabel];
+    [self.pickerContainer addSubview:self.picker];
+    
+    [self.cancelAndSelectButtonContainer addSubview:self.cancelAndSelectButtonSeperator];
+    [self.cancelAndSelectButtonContainer addSubview:self.cancelButton];
+    [self.cancelAndSelectButtonContainer addSubview:self.selectButton];
+    
+    self.titleLabelContainer.backgroundColor = [UIColor whiteColor];
+    self.titleLabelContainer.layer.cornerRadius = 5;
+    self.titleLabelContainer.clipsToBounds = YES;
+    self.titleLabelContainer.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    self.pickerContainer.backgroundColor = [UIColor whiteColor];
+    self.pickerContainer.layer.cornerRadius = 5;
+    self.pickerContainer.clipsToBounds = YES;
+    self.pickerContainer.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    self.cancelAndSelectButtonContainer.backgroundColor = [UIColor whiteColor];
+    self.cancelAndSelectButtonContainer.layer.cornerRadius = 5;
+    self.cancelAndSelectButtonContainer.clipsToBounds = YES;
+    self.cancelAndSelectButtonContainer.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    self.cancelAndSelectButtonSeperator.backgroundColor = [UIColor lightGrayColor];
+    self.cancelAndSelectButtonSeperator.translatesAutoresizingMaskIntoConstraints = NO;
 }
 
 - (void)setupConstraints {
@@ -334,6 +337,8 @@ static NSString *_localizedSelectTitle = @"Select";
     self.view.translatesAutoresizingMaskIntoConstraints = NO;
     self.view.backgroundColor = [UIColor clearColor];
     self.view.layer.masksToBounds = YES;
+    
+    [self setupContainerElements];
     
     if(self.titleLabel.text && self.titleLabel.text.length != 0)
         [self.view addSubview:self.titleLabelContainer];

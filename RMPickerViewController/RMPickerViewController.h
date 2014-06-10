@@ -118,6 +118,11 @@ typedef void (^RMCancelBlock)(RMPickerViewController *vc);
 @property (assign, nonatomic) BOOL disableBouncingWhenShowing;
 
 /**
+ Used to enable or disable blurring the date selection view. Default value is NO.
+ */
+@property (assign, nonatomic) BOOL disableBlurEffects;
+
+/**
  *  When YES taps on the background view are ignored. Default value is NO.
  */
 @property (assign, nonatomic) BOOL backgroundTapsDisabled;
