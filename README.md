@@ -36,11 +36,11 @@ pod "RMPickerViewController", "~> 1.1.1"
 	
 	```objc
 	#pragma mark - RMPickerViewController Delegates
-	- (void)pickerViewController:(RMDateSelectionViewController *)vc didSelectRows:(NSArray  *)selectedRows {
+	- (void)pickerViewController:(RMPickerViewController *)vc didSelectRows:(NSArray  *)selectedRows {
 		//Do something
 	}
 
-	- (void)pickerViewControllerDidCancel:(RMDateSelectionViewController *)vc {
+	- (void)pickerViewControllerDidCancel:(RMPickerViewController *)vc {
 		//Do something else
 	}
 	```
@@ -62,6 +62,9 @@ pod "RMPickerViewController", "~> 1.1.1"
 
 ###Limitations
 Due to some UIKit internals, it is not possible to show a picker view controller from an instance of UITableViewController. If the UITableViewController instance is wrapped into an UINavigationController instance the date selection view controller will be shown from the UINavigationController instance. If no UINavigationController can be used instead, an error will be logged and showing the date selection view controller will be canceled (to prevent your app from crashing).
+
+## Documentation
+There is an additional documentation available provided by the CocoaPods team. Take a look at [cocoadocs.org](http://cocoadocs.org/docsets/RMPickerViewController/).
 
 ## Requirements
 Works with:
