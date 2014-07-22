@@ -252,6 +252,7 @@ static NSString *_localizedSelectTitle = @"Select";
         [aViewController viewDidDisappear:YES];
         
         aViewController.window = nil;
+        aViewController.hasBeenDismissed = NO;
     }];
 }
 
