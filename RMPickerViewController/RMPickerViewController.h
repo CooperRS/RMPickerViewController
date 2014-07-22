@@ -181,15 +181,6 @@ typedef void (^RMCancelBlock)(RMPickerViewController *vc);
 - (void)showWithSelectionHandler:(RMSelectionBlock)selectionBlock andCancelHandler:(RMCancelBlock)cancelBlock;
 
 /**
- This shows the picker view controller as child view controller of aViewController.
- 
- The content of aViewController will be darkened and the picker view controller will be shown on top.
- 
- @param aViewController The picker view controller will be displayed as a child view controller of this view controller.
- */
-- (void)showFromViewController:(UIViewController *)aViewController;
-
-/**
  This will remove the picker view controller from whatever view controller it is currently shown in.
  */
 - (void)dismiss;
