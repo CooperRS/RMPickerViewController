@@ -114,6 +114,7 @@
 @interface RMPickerViewController ()
 
 @property (nonatomic, strong) UIWindow *window;
+@property (nonatomic, strong) UIViewController *rootViewController;
 @property (nonatomic, strong) UIView *backgroundView;
 
 @property (nonatomic, weak) NSLayoutConstraint *xConstraint;
@@ -169,90 +170,93 @@ static NSString *_localizedSelectTitle = @"Select";
     _localizedSelectTitle = newLocalizedTitle;
 }
 
-+ (void)showDateSelectionViewController:(RMPickerViewController *)aViewController {
-    [(RMNonRotatingPickerViewController *)aViewController.window.rootViewController updateUIForInterfaceOrientation:[UIApplication sharedApplication].statusBarOrientation animated:NO];
-    [aViewController.window makeKeyAndVisible];
++ (void)showDateSelectionViewController:(RMPickerViewController *)aPickerViewController usingWindow:(BOOL)extraWindow {
+    if(extraWindow) {
+        [(RMNonRotatingPickerViewController *)aPickerViewController.window.rootViewController updateUIForInterfaceOrientation:[UIApplication sharedApplication].statusBarOrientation animated:NO];
+        [aPickerViewController.window makeKeyAndVisible];
+    }
     
-    aViewController.backgroundView.alpha = 0;
-    [aViewController.window.rootViewController.view addSubview:aViewController.backgroundView];
+    aPickerViewController.backgroundView.alpha = 0;
+    [aPickerViewController.rootViewController.view addSubview:aPickerViewController.backgroundView];
     
-    [aViewController.window.rootViewController.view addConstraint:[NSLayoutConstraint constraintWithItem:aViewController.backgroundView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:aViewController.window.rootViewController.view attribute:NSLayoutAttributeTop multiplier:1 constant:0]];
-    [aViewController.window.rootViewController.view addConstraint:[NSLayoutConstraint constraintWithItem:aViewController.backgroundView attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:aViewController.window.rootViewController.view attribute:NSLayoutAttributeLeading multiplier:1 constant:0]];
-    [aViewController.window.rootViewController.view addConstraint:[NSLayoutConstraint constraintWithItem:aViewController.backgroundView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:aViewController.window.rootViewController.view attribute:NSLayoutAttributeWidth multiplier:1 constant:0]];
-    [aViewController.window.rootViewController.view addConstraint:[NSLayoutConstraint constraintWithItem:aViewController.backgroundView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:aViewController.window.rootViewController.view attribute:NSLayoutAttributeHeight multiplier:1 constant:0]];
+    [aPickerViewController.rootViewController.view addConstraint:[NSLayoutConstraint constraintWithItem:aPickerViewController.backgroundView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:aPickerViewController.rootViewController.view attribute:NSLayoutAttributeTop multiplier:1 constant:0]];
+    [aPickerViewController.rootViewController.view addConstraint:[NSLayoutConstraint constraintWithItem:aPickerViewController.backgroundView attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:aPickerViewController.rootViewController.view attribute:NSLayoutAttributeLeading multiplier:1 constant:0]];
+    [aPickerViewController.rootViewController.view addConstraint:[NSLayoutConstraint constraintWithItem:aPickerViewController.backgroundView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:aPickerViewController.rootViewController.view attribute:NSLayoutAttributeWidth multiplier:1 constant:0]];
+    [aPickerViewController.rootViewController.view addConstraint:[NSLayoutConstraint constraintWithItem:aPickerViewController.backgroundView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:aPickerViewController.rootViewController.view attribute:NSLayoutAttributeHeight multiplier:1 constant:0]];
     
-    [aViewController willMoveToParentViewController:aViewController.window.rootViewController];
-    [aViewController viewWillAppear:YES];
+    [aPickerViewController willMoveToParentViewController:aPickerViewController.rootViewController];
+    [aPickerViewController viewWillAppear:YES];
     
-    [aViewController.window.rootViewController addChildViewController:aViewController];
-    [aViewController.window.rootViewController.view addSubview:aViewController.view];
+    [aPickerViewController.rootViewController addChildViewController:aPickerViewController];
+    [aPickerViewController.rootViewController.view addSubview:aPickerViewController.view];
     
-    [aViewController viewDidAppear:YES];
-    [aViewController didMoveToParentViewController:aViewController.window.rootViewController];
+    [aPickerViewController viewDidAppear:YES];
+    [aPickerViewController didMoveToParentViewController:aPickerViewController.rootViewController];
     
     if([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
-        if(UIInterfaceOrientationIsLandscape(aViewController.window.rootViewController.interfaceOrientation)) {
-            aViewController.pickerHeightConstraint.constant = RM_DATE_PICKER_HEIGHT_LANDSCAPE;
+        if(UIInterfaceOrientationIsLandscape(aPickerViewController.rootViewController.interfaceOrientation)) {
+            aPickerViewController.pickerHeightConstraint.constant = RM_DATE_PICKER_HEIGHT_LANDSCAPE;
         } else {
-            aViewController.pickerHeightConstraint.constant = RM_DATE_PICKER_HEIGHT_PORTRAIT;
+            aPickerViewController.pickerHeightConstraint.constant = RM_DATE_PICKER_HEIGHT_PORTRAIT;
         }
     }
     
-    aViewController.xConstraint = [NSLayoutConstraint constraintWithItem:aViewController.view attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:aViewController.window.rootViewController.view attribute:NSLayoutAttributeCenterX multiplier:1 constant:0];
-    aViewController.yConstraint = [NSLayoutConstraint constraintWithItem:aViewController.view attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:aViewController.window.rootViewController.view attribute:NSLayoutAttributeBottom multiplier:1 constant:0];
-    aViewController.widthConstraint = [NSLayoutConstraint constraintWithItem:aViewController.view attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:aViewController.window.rootViewController.view attribute:NSLayoutAttributeWidth multiplier:1 constant:0];
+    aPickerViewController.xConstraint = [NSLayoutConstraint constraintWithItem:aPickerViewController.view attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:aPickerViewController.rootViewController.view attribute:NSLayoutAttributeCenterX multiplier:1 constant:0];
+    aPickerViewController.yConstraint = [NSLayoutConstraint constraintWithItem:aPickerViewController.view attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:aPickerViewController.rootViewController.view attribute:NSLayoutAttributeBottom multiplier:1 constant:0];
+    aPickerViewController.widthConstraint = [NSLayoutConstraint constraintWithItem:aPickerViewController.view attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:aPickerViewController.rootViewController.view attribute:NSLayoutAttributeWidth multiplier:1 constant:0];
     
-    [aViewController.window.rootViewController.view addConstraint:aViewController.xConstraint];
-    [aViewController.window.rootViewController.view addConstraint:aViewController.yConstraint];
-    [aViewController.window.rootViewController.view addConstraint:aViewController.widthConstraint];
+    [aPickerViewController.rootViewController.view addConstraint:aPickerViewController.xConstraint];
+    [aPickerViewController.rootViewController.view addConstraint:aPickerViewController.yConstraint];
+    [aPickerViewController.rootViewController.view addConstraint:aPickerViewController.widthConstraint];
     
-    [aViewController.window.rootViewController.view setNeedsUpdateConstraints];
-    [aViewController.window.rootViewController.view layoutIfNeeded];
+    [aPickerViewController.rootViewController.view setNeedsUpdateConstraints];
+    [aPickerViewController.rootViewController.view layoutIfNeeded];
     
-    [aViewController.window.rootViewController.view removeConstraint:aViewController.yConstraint];
-    aViewController.yConstraint = [NSLayoutConstraint constraintWithItem:aViewController.view attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:aViewController.window.rootViewController.view attribute:NSLayoutAttributeBottom multiplier:1 constant:-10];
-    [aViewController.window.rootViewController.view addConstraint:aViewController.yConstraint];
+    [aPickerViewController.rootViewController.view removeConstraint:aPickerViewController.yConstraint];
+    aPickerViewController.yConstraint = [NSLayoutConstraint constraintWithItem:aPickerViewController.view attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:aPickerViewController.rootViewController.view attribute:NSLayoutAttributeBottom multiplier:1 constant:-10];
+    [aPickerViewController.rootViewController.view addConstraint:aPickerViewController.yConstraint];
     
-    [aViewController.window.rootViewController.view setNeedsUpdateConstraints];
+    [aPickerViewController.rootViewController.view setNeedsUpdateConstraints];
     
     CGFloat damping = 1.0f;
     CGFloat duration = 0.3f;
-    if(!aViewController.disableBouncingWhenShowing) {
+    if(!aPickerViewController.disableBouncingWhenShowing) {
         damping = 0.6f;
         duration = 1.0f;
     }
     
     [UIView animateWithDuration:duration delay:0 usingSpringWithDamping:damping initialSpringVelocity:1 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowUserInteraction animations:^{
-        aViewController.backgroundView.alpha = 1;
+        aPickerViewController.backgroundView.alpha = 1;
         
-        [aViewController.window.rootViewController.view layoutIfNeeded];
+        [aPickerViewController.rootViewController.view layoutIfNeeded];
     } completion:^(BOOL finished) {
     }];
 }
 
-+ (void)dismissDateSelectionViewController:(RMPickerViewController *)aViewController {
-    [aViewController.window.rootViewController.view removeConstraint:aViewController.yConstraint];
-    aViewController.yConstraint = [NSLayoutConstraint constraintWithItem:aViewController.view attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:aViewController.window.rootViewController.view attribute:NSLayoutAttributeBottom multiplier:1 constant:0];
-    [aViewController.window.rootViewController.view addConstraint:aViewController.yConstraint];
++ (void)dismissDateSelectionViewController:(RMPickerViewController *)aPickerViewController {
+    [aPickerViewController.rootViewController.view removeConstraint:aPickerViewController.yConstraint];
+    aPickerViewController.yConstraint = [NSLayoutConstraint constraintWithItem:aPickerViewController.view attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:aPickerViewController.rootViewController.view attribute:NSLayoutAttributeBottom multiplier:1 constant:0];
+    [aPickerViewController.rootViewController.view addConstraint:aPickerViewController.yConstraint];
     
-    [aViewController.window.rootViewController.view setNeedsUpdateConstraints];
+    [aPickerViewController.rootViewController.view setNeedsUpdateConstraints];
     
     [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
-        aViewController.backgroundView.alpha = 0;
+        aPickerViewController.backgroundView.alpha = 0;
         
-        [aViewController.window.rootViewController.view layoutIfNeeded];
+        [aPickerViewController.rootViewController.view layoutIfNeeded];
     } completion:^(BOOL finished) {
-        [aViewController willMoveToParentViewController:nil];
-        [aViewController viewWillDisappear:YES];
+        [aPickerViewController willMoveToParentViewController:nil];
+        [aPickerViewController viewWillDisappear:YES];
         
-        [aViewController.view removeFromSuperview];
-        [aViewController removeFromParentViewController];
+        [aPickerViewController.view removeFromSuperview];
+        [aPickerViewController removeFromParentViewController];
         
-        [aViewController didMoveToParentViewController:nil];
-        [aViewController viewDidDisappear:YES];
+        [aPickerViewController didMoveToParentViewController:nil];
+        [aPickerViewController viewDidDisappear:YES];
         
-        aViewController.window = nil;
-        aViewController.hasBeenDismissed = NO;
+        [aPickerViewController.backgroundView removeFromSuperview];
+        aPickerViewController.window = nil;
+        aPickerViewController.hasBeenDismissed = NO;
     }];
 }
 
@@ -561,18 +565,37 @@ static NSString *_localizedSelectTitle = @"Select";
 
 #pragma mark - Presenting
 - (void)show {
-    [self showWithSelectionHandler:nil];
-}
-
-- (void)showWithSelectionHandler:(RMSelectionBlock)selectionBlock {
-    [self showWithSelectionHandler:selectionBlock andCancelHandler:nil];
+    [self showWithSelectionHandler:nil andCancelHandler:nil];
 }
 
 - (void)showWithSelectionHandler:(RMSelectionBlock)selectionBlock andCancelHandler:(RMCancelBlock)cancelBlock {
     self.selectedDateBlock = selectionBlock;
     self.cancelBlock = cancelBlock;
+    self.rootViewController = self.window.rootViewController;
     
-    [RMPickerViewController showDateSelectionViewController:self];
+    [RMPickerViewController showDateSelectionViewController:self usingWindow:YES];
+}
+
+- (void)showFromViewController:(UIViewController *)aViewController {
+    [self showFromViewController:aViewController withSelectionHandler:nil andCancelHandler:nil];
+}
+
+- (void)showFromViewController:(UIViewController *)aViewController withSelectionHandler:(RMSelectionBlock)selectionBlock andCancelHandler:(RMCancelBlock)cancelBlock {
+    if([aViewController isKindOfClass:[UITableViewController class]]) {
+        if(aViewController.navigationController) {
+            NSLog(@"Warning: -[RMDateSelectionViewController showFromViewController:] has been called with an instance of UITableViewController as argument. Trying to use the navigation controller of the UITableViewController instance instead.");
+            aViewController = aViewController.navigationController;
+        } else {
+            NSLog(@"Error: -[RMDateSelectionViewController showFromViewController:] has been called with an instance of UITableViewController as argument. Showing the date selection view controller from an instance of UITableViewController is not possible due to some internals of UIKit. To prevent your app from crashing, showing the date selection view controller will be canceled.");
+            return;
+        }
+    }
+    
+    self.selectedDateBlock = selectionBlock;
+    self.cancelBlock = cancelBlock;
+    self.rootViewController = aViewController;
+    
+    [RMPickerViewController showDateSelectionViewController:self usingWindow:NO];
 }
 
 - (void)dismiss {
