@@ -264,6 +264,8 @@ static NSString *_localizedSelectTitle = @"Select";
 - (id)init {
     self = [super init];
     if(self) {
+        self.blurEffectStyle = UIBlurEffectStyleExtraLight;
+        
         [self setupUIElements];
     }
     return self;
@@ -310,21 +312,21 @@ static NSString *_localizedSelectTitle = @"Select";
 
 - (void)setupContainerElements {
     if(NSClassFromString(@"UIBlurEffect") && NSClassFromString(@"UIVisualEffectView") && !self.disableBlurEffects) {
-        UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+        UIBlurEffect *blur = [UIBlurEffect effectWithStyle:self.blurEffectStyle];
         self.titleLabelContainer = [[UIVisualEffectView alloc] initWithEffect:blur];
     } else {
         self.titleLabelContainer = [[UIView alloc] initWithFrame:CGRectZero];
     }
     
     if(NSClassFromString(@"UIBlurEffect") && NSClassFromString(@"UIVisualEffectView") && !self.disableBlurEffects) {
-        UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+        UIBlurEffect *blur = [UIBlurEffect effectWithStyle:self.blurEffectStyle];
         self.pickerContainer = [[UIVisualEffectView alloc] initWithEffect:blur];
     } else {
         self.pickerContainer = [[UIView alloc] initWithFrame:CGRectZero];
     }
     
     if(NSClassFromString(@"UIBlurEffect") && NSClassFromString(@"UIVisualEffectView") && !self.disableBlurEffects) {
-        UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+        UIBlurEffect *blur = [UIBlurEffect effectWithStyle:self.blurEffectStyle];
         self.cancelAndSelectButtonContainer = [[UIVisualEffectView alloc] initWithEffect:blur];
     } else {
         self.cancelAndSelectButtonContainer = [[UIView alloc] initWithFrame:CGRectZero];
@@ -334,8 +336,8 @@ static NSString *_localizedSelectTitle = @"Select";
         [[(UIVisualEffectView *)self.titleLabelContainer contentView] addSubview:self.titleLabel];
         [[(UIVisualEffectView *)self.pickerContainer contentView] addSubview:self.picker];
         
-        self.titleLabelContainer.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.6];
-        self.pickerContainer.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.6];
+        self.titleLabelContainer.backgroundColor = [UIColor clearColor];
+        self.pickerContainer.backgroundColor = [UIColor clearColor];
     } else {
         [self.titleLabelContainer addSubview:self.titleLabel];
         [self.pickerContainer addSubview:self.picker];

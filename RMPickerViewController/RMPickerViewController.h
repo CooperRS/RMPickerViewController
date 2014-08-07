@@ -123,6 +123,11 @@ typedef void (^RMCancelBlock)(RMPickerViewController *vc);
 @property (assign, nonatomic) BOOL disableBlurEffects;
 
 /**
+ *  Used to choose a particular blur effect style (default value is UIBlurEffectStyleExtraLight). Ignored if blur effects are disabled.
+ */
+@property (assign, nonatomic) UIBlurEffectStyle blurEffectStyle;
+
+/**
  *  When YES taps on the background view are ignored. Default value is NO.
  */
 @property (assign, nonatomic) BOOL backgroundTapsDisabled;
