@@ -348,16 +348,16 @@ static NSString *_localizedSelectTitle = @"Select";
     [self.cancelAndSelectButtonContainer addSubview:self.cancelButton];
     [self.cancelAndSelectButtonContainer addSubview:self.selectButton];
     
-    self.titleLabelContainer.layer.cornerRadius = 5;
+    self.titleLabelContainer.layer.cornerRadius = 4;
     self.titleLabelContainer.clipsToBounds = YES;
     self.titleLabelContainer.translatesAutoresizingMaskIntoConstraints = NO;
     
-    self.pickerContainer.layer.cornerRadius = 5;
+    self.pickerContainer.layer.cornerRadius = 4;
     self.pickerContainer.clipsToBounds = YES;
     self.pickerContainer.translatesAutoresizingMaskIntoConstraints = NO;
     
     self.cancelAndSelectButtonContainer.backgroundColor = [UIColor whiteColor];
-    self.cancelAndSelectButtonContainer.layer.cornerRadius = 5;
+    self.cancelAndSelectButtonContainer.layer.cornerRadius = 4;
     self.cancelAndSelectButtonContainer.clipsToBounds = YES;
     self.cancelAndSelectButtonContainer.translatesAutoresizingMaskIntoConstraints = NO;
     
