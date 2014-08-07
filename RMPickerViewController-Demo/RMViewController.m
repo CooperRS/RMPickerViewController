@@ -43,12 +43,14 @@
     //pickerVC.disableMotionEffects = YES;
     //pickerVC.disableBlurEffects = YES;
     
-    [pickerVC show];
-    
-    //You can also adjust colors (enabling example will result in a black version)
+    //You can also adjust colors (enabling the following 2 lines of code will result in a black version of RMPickerViewController)
     //pickerVC.tintColor = [UIColor whiteColor];
+    //pickerVC.blurEffectStyle = UIBlurEffectStyleDark;
+    
+    //Enable the following line of code if you enabled the black version of RMPickerViewController but also disabled blur effects (or run on iOS 7)
     //pickerVC.backgroundColor = [UIColor colorWithWhite:0.25 alpha:1];
-    //pickerVC.titleLabel.textColor = [UIColor whiteColor];
+    
+    [pickerVC show];
 }
 
 - (IBAction)openPickerControllerWithBlock:(id)sender {
