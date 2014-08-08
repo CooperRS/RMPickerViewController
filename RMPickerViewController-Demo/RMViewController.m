@@ -43,12 +43,13 @@
     //pickerVC.disableMotionEffects = YES;
     //pickerVC.disableBlurEffects = YES;
     
-    //You can also adjust colors (enabling the following 2 lines of code will result in a black version of RMPickerViewController)
-    //pickerVC.tintColor = [UIColor whiteColor];
+    //You can also adjust colors (enabling the following line will result in a black version of RMDateSelectionViewController)
     //pickerVC.blurEffectStyle = UIBlurEffectStyleDark;
     
-    //Enable the following line of code if you enabled the black version of RMPickerViewController but also disabled blur effects (or run on iOS 7)
+    //Enable the following lines if you enabled the black version of RMDateSelectionViewController but also disabled blur effects (or run on iOS 7)
+    //pickerVC.tintColor = [UIColor whiteColor];
     //pickerVC.backgroundColor = [UIColor colorWithWhite:0.25 alpha:1];
+    //pickerVC.selectedBackgroundColor = [UIColor colorWithWhite:0.4 alpha:1];
     
     [pickerVC show];
 }
