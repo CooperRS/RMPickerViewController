@@ -311,44 +311,68 @@ static NSString *_localizedSelectTitle = @"Select";
 }
 
 - (void)setupContainerElements {
-    if(NSClassFromString(@"UIBlurEffect") && NSClassFromString(@"UIVisualEffectView") && !self.disableBlurEffects) {
+    if(NSClassFromString(@"UIBlurEffect") && NSClassFromString(@"UIVibrancyEffect") && NSClassFromString(@"UIVisualEffectView") && !self.disableBlurEffects) {
         UIBlurEffect *blur = [UIBlurEffect effectWithStyle:self.blurEffectStyle];
+        UIVibrancyEffect *vibrancy = [UIVibrancyEffect effectForBlurEffect:blur];
+        
+        UIVisualEffectView *vibrancyView = [[UIVisualEffectView alloc] initWithEffect:vibrancy];
+        vibrancyView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        
         self.titleLabelContainer = [[UIVisualEffectView alloc] initWithEffect:blur];
+        [((UIVisualEffectView *)self.titleLabelContainer).contentView addSubview:vibrancyView];
     } else {
         self.titleLabelContainer = [[UIView alloc] initWithFrame:CGRectZero];
     }
     
-    if(NSClassFromString(@"UIBlurEffect") && NSClassFromString(@"UIVisualEffectView") && !self.disableBlurEffects) {
+    if(NSClassFromString(@"UIBlurEffect") && NSClassFromString(@"UIVibrancyEffect") && NSClassFromString(@"UIVisualEffectView") && !self.disableBlurEffects) {
         UIBlurEffect *blur = [UIBlurEffect effectWithStyle:self.blurEffectStyle];
+        UIVibrancyEffect *vibrancy = [UIVibrancyEffect effectForBlurEffect:blur];
+        
+        UIVisualEffectView *vibrancyView = [[UIVisualEffectView alloc] initWithEffect:vibrancy];
+        vibrancyView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        
         self.pickerContainer = [[UIVisualEffectView alloc] initWithEffect:blur];
+        [((UIVisualEffectView *)self.pickerContainer).contentView addSubview:vibrancyView];
     } else {
         self.pickerContainer = [[UIView alloc] initWithFrame:CGRectZero];
     }
     
-    if(NSClassFromString(@"UIBlurEffect") && NSClassFromString(@"UIVisualEffectView") && !self.disableBlurEffects) {
+    if(NSClassFromString(@"UIBlurEffect") && NSClassFromString(@"UIVibrancyEffect") && NSClassFromString(@"UIVisualEffectView") && !self.disableBlurEffects) {
         UIBlurEffect *blur = [UIBlurEffect effectWithStyle:self.blurEffectStyle];
+        UIVibrancyEffect *vibrancy = [UIVibrancyEffect effectForBlurEffect:blur];
+        
+        UIVisualEffectView *vibrancyView = [[UIVisualEffectView alloc] initWithEffect:vibrancy];
+        vibrancyView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        
         self.cancelAndSelectButtonContainer = [[UIVisualEffectView alloc] initWithEffect:blur];
+        [((UIVisualEffectView *)self.cancelAndSelectButtonContainer).contentView addSubview:vibrancyView];
     } else {
         self.cancelAndSelectButtonContainer = [[UIView alloc] initWithFrame:CGRectZero];
     }
     
     if(NSClassFromString(@"UIVisualEffectView") && !self.disableBlurEffects) {
-        [[(UIVisualEffectView *)self.titleLabelContainer contentView] addSubview:self.titleLabel];
-        [[(UIVisualEffectView *)self.pickerContainer contentView] addSubview:self.picker];
+        [[[[[(UIVisualEffectView *)self.titleLabelContainer contentView] subviews] objectAtIndex:0] contentView] addSubview:self.titleLabel];
+        [[[[[(UIVisualEffectView *)self.pickerContainer contentView] subviews] objectAtIndex:0] contentView] addSubview:self.picker];
+        
+        [[[[[(UIVisualEffectView *)self.cancelAndSelectButtonContainer contentView] subviews] objectAtIndex:0] contentView] addSubview:self.cancelAndSelectButtonSeperator];
+        [[[[[(UIVisualEffectView *)self.cancelAndSelectButtonContainer contentView] subviews] objectAtIndex:0] contentView] addSubview:self.cancelButton];
+        [[[[[(UIVisualEffectView *)self.cancelAndSelectButtonContainer contentView] subviews] objectAtIndex:0] contentView] addSubview:self.selectButton];
         
         self.titleLabelContainer.backgroundColor = [UIColor clearColor];
         self.pickerContainer.backgroundColor = [UIColor clearColor];
+        self.cancelAndSelectButtonContainer.backgroundColor = [UIColor clearColor];
     } else {
         [self.titleLabelContainer addSubview:self.titleLabel];
         [self.pickerContainer addSubview:self.picker];
         
+        [self.cancelAndSelectButtonContainer addSubview:self.cancelAndSelectButtonSeperator];
+        [self.cancelAndSelectButtonContainer addSubview:self.cancelButton];
+        [self.cancelAndSelectButtonContainer addSubview:self.selectButton];
+        
         self.titleLabelContainer.backgroundColor = [UIColor whiteColor];
         self.pickerContainer.backgroundColor = [UIColor whiteColor];
+        self.cancelAndSelectButtonContainer.backgroundColor = [UIColor whiteColor];
     }
-    
-    [self.cancelAndSelectButtonContainer addSubview:self.cancelAndSelectButtonSeperator];
-    [self.cancelAndSelectButtonContainer addSubview:self.cancelButton];
-    [self.cancelAndSelectButtonContainer addSubview:self.selectButton];
     
     self.titleLabelContainer.layer.cornerRadius = 4;
     self.titleLabelContainer.clipsToBounds = YES;
@@ -358,7 +382,6 @@ static NSString *_localizedSelectTitle = @"Select";
     self.pickerContainer.clipsToBounds = YES;
     self.pickerContainer.translatesAutoresizingMaskIntoConstraints = NO;
     
-    self.cancelAndSelectButtonContainer.backgroundColor = [UIColor whiteColor];
     self.cancelAndSelectButtonContainer.layer.cornerRadius = 4;
     self.cancelAndSelectButtonContainer.clipsToBounds = YES;
     self.cancelAndSelectButtonContainer.translatesAutoresizingMaskIntoConstraints = NO;
@@ -436,8 +459,17 @@ static NSString *_localizedSelectTitle = @"Select";
     }
     
     if(self.selectedBackgroundColor) {
-        [self.cancelButton setBackgroundImage:[self imageWithColor:self.selectedBackgroundColor] forState:UIControlStateHighlighted];
-        [self.selectButton setBackgroundImage:[self imageWithColor:self.selectedBackgroundColor] forState:UIControlStateHighlighted];
+        if(!self.disableBlurEffects) {
+            [self.cancelButton setBackgroundImage:[self imageWithColor:[self.selectedBackgroundColor colorWithAlphaComponent:0.3]] forState:UIControlStateHighlighted];
+            [self.selectButton setBackgroundImage:[self imageWithColor:[self.selectedBackgroundColor colorWithAlphaComponent:0.3]] forState:UIControlStateHighlighted];
+        } else {
+            [self.cancelButton setBackgroundImage:[self imageWithColor:self.selectedBackgroundColor] forState:UIControlStateHighlighted];
+            [self.selectButton setBackgroundImage:[self imageWithColor:self.selectedBackgroundColor] forState:UIControlStateHighlighted];
+        }
+    }
+    
+    if(self.selectedBackgroundColor) {
+        
     }
     
     if(!self.disableMotionEffects)
@@ -591,8 +623,13 @@ static NSString *_localizedSelectTitle = @"Select";
     if(_selectedBackgroundColor != newSelectedBackgroundColor) {
         _selectedBackgroundColor = newSelectedBackgroundColor;
         
-        [self.cancelButton setBackgroundImage:[self imageWithColor:newSelectedBackgroundColor] forState:UIControlStateHighlighted];
-        [self.selectButton setBackgroundImage:[self imageWithColor:newSelectedBackgroundColor] forState:UIControlStateHighlighted];
+        if(!self.disableBlurEffects) {
+            [self.cancelButton setBackgroundImage:[self imageWithColor:[newSelectedBackgroundColor colorWithAlphaComponent:0.3]] forState:UIControlStateHighlighted];
+            [self.selectButton setBackgroundImage:[self imageWithColor:[newSelectedBackgroundColor colorWithAlphaComponent:0.3]] forState:UIControlStateHighlighted];
+        } else {
+            [self.cancelButton setBackgroundImage:[self imageWithColor:newSelectedBackgroundColor] forState:UIControlStateHighlighted];
+            [self.selectButton setBackgroundImage:[self imageWithColor:newSelectedBackgroundColor] forState:UIControlStateHighlighted];
+        }
     }
 }
 
