@@ -28,6 +28,11 @@
 
 @interface RMViewController () <RMPickerViewControllerDelegate>
 
+@property (nonatomic, weak) IBOutlet UISwitch *blackSwitch;
+@property (nonatomic, weak) IBOutlet UISwitch *blurSwitch;
+@property (nonatomic, weak) IBOutlet UISwitch *motionSwitch;
+@property (nonatomic, weak) IBOutlet UISwitch *bouncingSwitch;
+
 @end
 
 @implementation RMViewController
@@ -39,43 +44,35 @@
     pickerVC.titleLabel.text = @"This is an example title.\n\nPlease choose a row and press 'Select' or 'Cancel'.";
     
     //You can enable or disable bouncing and motion effects
-    //pickerVC.disableBouncingWhenShowing = YES;
-    //pickerVC.disableMotionEffects = YES;
-    //pickerVC.disableBlurEffects = YES;
+    pickerVC.disableBouncingWhenShowing = !self.bouncingSwitch.on;
+    pickerVC.disableMotionEffects = !self.motionSwitch.on;
+    pickerVC.disableBlurEffects = !self.blurSwitch.on;
     
-    //You can also adjust colors (enabling the following line will result in a black version of RMDateSelectionViewController)
-    //pickerVC.blurEffectStyle = UIBlurEffectStyleDark;
+    //You can also adjust colors (enabling the following line will result in a black version of RMPickerViewController)
+    if(self.blackSwitch.on)
+        pickerVC.blurEffectStyle = UIBlurEffectStyleDark;
     
-    //Enable the following lines if you enabled the black version of RMDateSelectionViewController but also disabled blur effects (or run on iOS 7)
+    //Enable the following lines if you enabled the black version of RMPickerViewController but also disabled blur effects (or run on iOS 7)
     //pickerVC.tintColor = [UIColor whiteColor];
     //pickerVC.backgroundColor = [UIColor colorWithWhite:0.25 alpha:1];
     //pickerVC.selectedBackgroundColor = [UIColor colorWithWhite:0.4 alpha:1];
     
+    //The following lines show two ways to show the picker view controller:
+    // 1. Just show the date selection view controller (make sure the delegate property is assigned)
     [pickerVC show];
-}
-
-- (IBAction)openPickerControllerWithBlock:(id)sender {
-    RMPickerViewController *pickerVC = [RMPickerViewController pickerController];
-    pickerVC.delegate = self;
     
-    //You can enable or disable bouncing and motion effects
-    //pickerVC.disableBouncingWhenShowing = YES;
-    //pickerVC.disableMotionEffects = YES;
-    //pickerVC.disableBlurEffects = YES;
-    
-    [pickerVC showWithSelectionHandler:^(RMPickerViewController *vc, NSArray *selectedRows) {
-        NSLog(@"Successfully selected rows: %@ (With block)", selectedRows);
-    } andCancelHandler:^(RMPickerViewController *vc) {
-        NSLog(@"Selection was canceled (with block)");
-    }];
+    // 2. Instead of using a delegate you can also pass blocks when showing the picker view controller
+    //[pickerVC showWithSelectionHandler:^(RMPickerViewController *vc, NSArray *selectedRows) {
+    //    NSLog(@"Successfully selected rows: %@ (With block)", selectedRows);
+    //} andCancelHandler:^(RMPickerViewController *vc) {
+    //    NSLog(@"Selection was canceled (with block)");
+    //}];
 }
 
 #pragma mark - UITableView Delegates
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if(indexPath.section == 0 && indexPath.row == 0) {
         [self openPickerController:self];
-    } else if (indexPath.section == 0 && indexPath.row == 1) {
-        [self openPickerControllerWithBlock:self];
     }
     
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];

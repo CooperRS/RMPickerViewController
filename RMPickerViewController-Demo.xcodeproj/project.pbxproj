@@ -19,7 +19,6 @@
 		CABBCD68189521190006213F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CABBCD2D189520D50006213F /* UIKit.framework */; };
 		CABBCD6E189521190006213F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CABBCD6C189521190006213F /* InfoPlist.strings */; };
 		CABBCD82189521D10006213F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CABBCD7B189521D10006213F /* Main.storyboard */; };
-		CABBCD84189521D10006213F /* RMModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CABBCD7F189521D10006213F /* RMModalViewController.m */; };
 		CABBCD85189521D10006213F /* RMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CABBCD81189521D10006213F /* RMViewController.m */; };
 		CABBCD861895351E0006213F /* RMPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CABBCD79189521C00006213F /* RMPickerViewController.m */; };
 /* End PBXBuildFile section */
@@ -54,8 +53,6 @@
 		CABBCD7B189521D10006213F /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		CABBCD7C189521D10006213F /* RMPickerViewController-Demo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "RMPickerViewController-Demo-Info.plist"; sourceTree = "<group>"; };
 		CABBCD7D189521D10006213F /* RMPickerViewController-Demo-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RMPickerViewController-Demo-Prefix.pch"; sourceTree = "<group>"; };
-		CABBCD7E189521D10006213F /* RMModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMModalViewController.h; sourceTree = "<group>"; };
-		CABBCD7F189521D10006213F /* RMModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMModalViewController.m; sourceTree = "<group>"; };
 		CABBCD80189521D10006213F /* RMViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMViewController.h; sourceTree = "<group>"; };
 		CABBCD81189521D10006213F /* RMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -123,8 +120,6 @@
 				CABBCD7B189521D10006213F /* Main.storyboard */,
 				CABBCD80189521D10006213F /* RMViewController.h */,
 				CABBCD81189521D10006213F /* RMViewController.m */,
-				CABBCD7E189521D10006213F /* RMModalViewController.h */,
-				CABBCD7F189521D10006213F /* RMModalViewController.m */,
 				CABBCD44189520D50006213F /* Images.xcassets */,
 				CABBCD30189520D50006213F /* Supporting Files */,
 			);
@@ -270,7 +265,6 @@
 				CABBCD36189520D50006213F /* main.m in Sources */,
 				CABBCD3A189520D50006213F /* RMAppDelegate.m in Sources */,
 				CABBCD861895351E0006213F /* RMPickerViewController.m in Sources */,
-				CABBCD84189521D10006213F /* RMModalViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
