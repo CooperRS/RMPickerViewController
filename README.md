@@ -4,10 +4,13 @@ RMPickerViewController
 This is an iOS control for selecting something using UIPickerView in a UIActionSheet like fashion
 
 ### Portrait
-![Portrait](http://cooperrs.github.io/RMPickerViewController/images/Screen1.png)
+![Portrait](http://cooperrs.github.io/RMPickerViewController/images/Blur-Screen1.png)
 
 ### Landscape
-![Landscape](http://cooperrs.github.com/RMPickerViewController/images/Screen2.png)
+![Landscape](http://cooperrs.github.com/RMPickerViewController/images/Blur-Screen2.png)
+
+### Black version
+![Black version](http://cooperrs.github.com/RMPickerViewController/images/Blur-Screen3.png)
 
 ##Installation
 ###CocoaPods
@@ -74,6 +77,8 @@ Works with:
 * ARC (You can turn it on and off on a per file basis)
 
 iOS 8 SDK is only needed for compiling (as it uses the blur feature provided by iOS 8 SDK). At runtime the control only needs iOS 7 or later.
+
+If you absolutely need to use iOS 7 SDK you can take a look at the iOS 7 branch called [1.2.x](https://github.com/CooperRS/RMPickerViewController/tree/1.2.x)
 
 ##Credits
 Code contributions:
