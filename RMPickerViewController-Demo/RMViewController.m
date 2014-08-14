@@ -41,13 +41,17 @@
     //You can enable or disable bouncing and motion effects
     //pickerVC.disableBouncingWhenShowing = YES;
     //pickerVC.disableMotionEffects = YES;
+    //pickerVC.disableBlurEffects = YES;
     
-    [pickerVC show];
+    //You can also adjust colors (enabling the following line will result in a black version of RMDateSelectionViewController)
+    //pickerVC.blurEffectStyle = UIBlurEffectStyleDark;
     
-    //You can also adjust colors (enabling example will result in a black version)
+    //Enable the following lines if you enabled the black version of RMDateSelectionViewController but also disabled blur effects (or run on iOS 7)
     //pickerVC.tintColor = [UIColor whiteColor];
     //pickerVC.backgroundColor = [UIColor colorWithWhite:0.25 alpha:1];
-    //pickerVC.titleLabel.textColor = [UIColor whiteColor];
+    //pickerVC.selectedBackgroundColor = [UIColor colorWithWhite:0.4 alpha:1];
+    
+    [pickerVC show];
 }
 
 - (IBAction)openPickerControllerWithBlock:(id)sender {
@@ -57,6 +61,7 @@
     //You can enable or disable bouncing and motion effects
     //pickerVC.disableBouncingWhenShowing = YES;
     //pickerVC.disableMotionEffects = YES;
+    //pickerVC.disableBlurEffects = YES;
     
     [pickerVC showWithSelectionHandler:^(RMPickerViewController *vc, NSArray *selectedRows) {
         NSLog(@"Successfully selected rows: %@ (With block)", selectedRows);
