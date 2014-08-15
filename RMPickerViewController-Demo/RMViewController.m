@@ -52,7 +52,7 @@
     if(self.blackSwitch.on)
         pickerVC.blurEffectStyle = UIBlurEffectStyleDark;
     
-    //Enable the following lines if you enabled the black version of RMPickerViewController but also disabled blur effects (or run on iOS 7)
+    //Enable the following lines if you want a black version of RMPickerViewController but also disabled blur effects (or run on iOS 7)
     //pickerVC.tintColor = [UIColor whiteColor];
     //pickerVC.backgroundColor = [UIColor colorWithWhite:0.25 alpha:1];
     //pickerVC.selectedBackgroundColor = [UIColor colorWithWhite:0.4 alpha:1];

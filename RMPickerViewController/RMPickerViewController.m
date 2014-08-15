@@ -453,9 +453,15 @@ static NSString *_localizedSelectTitle = @"Select";
     }
     
     if(self.backgroundColor) {
-        self.titleLabelContainer.backgroundColor = self.backgroundColor;
-        self.pickerContainer.backgroundColor = self.backgroundColor;
-        self.cancelAndSelectButtonContainer.backgroundColor = self.backgroundColor;
+        if(NSClassFromString(@"UIVisualEffectView") && !self.disableBlurEffects) {
+            [((UIVisualEffectView *)self.titleLabelContainer).contentView setBackgroundColor:self.backgroundColor];
+            [((UIVisualEffectView *)self.pickerContainer).contentView setBackgroundColor:self.backgroundColor];
+            [((UIVisualEffectView *)self.cancelAndSelectButtonContainer).contentView setBackgroundColor:self.backgroundColor];
+        } else {
+            self.titleLabelContainer.backgroundColor = self.backgroundColor;
+            self.pickerContainer.backgroundColor = self.backgroundColor;
+            self.cancelAndSelectButtonContainer.backgroundColor = self.backgroundColor;
+        }
     }
     
     if(self.selectedBackgroundColor) {
@@ -466,10 +472,6 @@ static NSString *_localizedSelectTitle = @"Select";
             [self.cancelButton setBackgroundImage:[self imageWithColor:self.selectedBackgroundColor] forState:UIControlStateHighlighted];
             [self.selectButton setBackgroundImage:[self imageWithColor:self.selectedBackgroundColor] forState:UIControlStateHighlighted];
         }
-    }
-    
-    if(self.selectedBackgroundColor) {
-        
     }
     
     if(!self.disableMotionEffects)
@@ -608,9 +610,18 @@ static NSString *_localizedSelectTitle = @"Select";
         _backgroundColor = newBackgroundColor;
         
         if([self isViewLoaded]) {
-            self.titleLabelContainer.backgroundColor = newBackgroundColor;
-            self.pickerContainer.backgroundColor = newBackgroundColor;
-            self.cancelAndSelectButtonContainer.backgroundColor = newBackgroundColor;
+            if(NSClassFromString(@"UIVisualEffectView") && !self.disableBlurEffects &&
+               [self.titleLabelContainer isKindOfClass:[UIVisualEffectView class]] &&
+               [self.pickerContainer isKindOfClass:[UIVisualEffectView class]] &&
+               [self.cancelAndSelectButtonContainer isKindOfClass:[UIVisualEffectView class]]) {
+                [((UIVisualEffectView *)self.titleLabelContainer).contentView setBackgroundColor:newBackgroundColor];
+                [((UIVisualEffectView *)self.pickerContainer).contentView setBackgroundColor:newBackgroundColor];
+                [((UIVisualEffectView *)self.cancelAndSelectButtonContainer).contentView setBackgroundColor:newBackgroundColor];
+            } else {
+                self.titleLabelContainer.backgroundColor = newBackgroundColor;
+                self.pickerContainer.backgroundColor = newBackgroundColor;
+                self.cancelAndSelectButtonContainer.backgroundColor = newBackgroundColor;
+            }
         }
     }
 }
