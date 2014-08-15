@@ -58,7 +58,7 @@
     //pickerVC.selectedBackgroundColor = [UIColor colorWithWhite:0.4 alpha:1];
     
     //The following lines show two ways to show the picker view controller:
-    // 1. Just show the date selection view controller (make sure the delegate property is assigned)
+    // 1. Just show the picker view controller (make sure the delegate property is assigned)
     [pickerVC show];
     
     // 2. Instead of using a delegate you can also pass blocks when showing the picker view controller
