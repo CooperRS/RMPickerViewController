@@ -3,7 +3,6 @@
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
-        <capability name="Constraints with attributes relative to the layout margin" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Demo-->
@@ -17,14 +16,14 @@
                         <sections>
                             <tableViewSection id="RpU-EU-7Kk">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="P5c-K8-PSR" detailTextLabel="jPP-2K-vHN" style="IBUITableViewCellStyleValue1" id="FPp-0L-HGH">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="P5c-K8-PSR" detailTextLabel="jPP-2K-vHN" style="IBUITableViewCellStyleValue1" id="FPp-0L-HGH">
                                         <rect key="frame" x="0.0" y="99" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FPp-0L-HGH" id="7yb-ll-4G7">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Open selection" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="P5c-K8-PSR">
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Show picker view controller…" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="P5c-K8-PSR">
                                                     <rect key="frame" x="15" y="11" width="116" height="21"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -43,7 +42,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Colors" id="5Y2-A3-xxj">
+                            <tableViewSection headerTitle="Colors" footerTitle="The black version only works if blur effects are enabled" id="5Y2-A3-xxj">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="a1V-UX-Xwn">
                                         <rect key="frame" x="0.0" y="207" width="320" height="44"/>
@@ -64,9 +63,9 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="centerY" secondItem="szT-2l-kBo" secondAttribute="centerY" id="Vpo-4T-sYR"/>
-                                                <constraint firstItem="szT-2l-kBo" firstAttribute="leading" secondItem="qWa-7k-hLt" secondAttribute="leadingMargin" constant="7" id="Wqb-tW-4Sz"/>
+                                                <constraint firstItem="szT-2l-kBo" firstAttribute="leading" secondItem="qWa-7k-hLt" secondAttribute="leading" constant="15" id="Wqb-tW-4Sz"/>
                                                 <constraint firstAttribute="centerY" secondItem="DrY-8g-Irc" secondAttribute="centerY" id="aIb-xG-ctj"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="DrY-8g-Irc" secondAttribute="trailing" constant="7" id="c2z-Ty-CEz"/>
+                                                <constraint firstAttribute="trailing" secondItem="DrY-8g-Irc" secondAttribute="trailing" constant="15" id="c2z-Ty-CEz"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -93,8 +92,8 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="centerY" secondItem="w1h-Oh-jiK" secondAttribute="centerY" id="O1r-Qs-FhV"/>
-                                                <constraint firstItem="w1h-Oh-jiK" firstAttribute="leading" secondItem="6yw-Dr-peK" secondAttribute="leadingMargin" constant="7" id="PEQ-sX-kVF"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="NkY-Wb-elX" secondAttribute="trailing" constant="7" id="pGA-Pi-XqU"/>
+                                                <constraint firstItem="w1h-Oh-jiK" firstAttribute="leading" secondItem="6yw-Dr-peK" secondAttribute="leading" constant="15" id="PEQ-sX-kVF"/>
+                                                <constraint firstAttribute="trailing" secondItem="NkY-Wb-elX" secondAttribute="trailing" constant="15" id="pGA-Pi-XqU"/>
                                                 <constraint firstAttribute="centerY" secondItem="NkY-Wb-elX" secondAttribute="centerY" id="pge-bQ-yku"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -119,8 +118,8 @@
                                             <constraints>
                                                 <constraint firstAttribute="centerY" secondItem="idC-O0-DcP" secondAttribute="centerY" id="5Mg-8B-la8"/>
                                                 <constraint firstAttribute="centerY" secondItem="ldS-Vs-qdP" secondAttribute="centerY" id="Hdo-Ta-SfO"/>
-                                                <constraint firstItem="ldS-Vs-qdP" firstAttribute="leading" secondItem="RW4-Au-UWY" secondAttribute="leadingMargin" constant="7" id="QDn-NW-uH1"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="idC-O0-DcP" secondAttribute="trailing" constant="7" id="VGu-Xk-Zsd"/>
+                                                <constraint firstItem="ldS-Vs-qdP" firstAttribute="leading" secondItem="RW4-Au-UWY" secondAttribute="leading" constant="15" id="QDn-NW-uH1"/>
+                                                <constraint firstAttribute="trailing" secondItem="idC-O0-DcP" secondAttribute="trailing" constant="15" id="VGu-Xk-Zsd"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -142,8 +141,8 @@
                                                 </switch>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="2Iw-j8-nzk" firstAttribute="leading" secondItem="Ivr-aX-YDu" secondAttribute="leadingMargin" constant="7" id="9A8-KF-ama"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="vaU-lb-FHs" secondAttribute="trailing" constant="7" id="Eq2-6D-fiF"/>
+                                                <constraint firstItem="2Iw-j8-nzk" firstAttribute="leading" secondItem="Ivr-aX-YDu" secondAttribute="leading" constant="15" id="9A8-KF-ama"/>
+                                                <constraint firstAttribute="trailing" secondItem="vaU-lb-FHs" secondAttribute="trailing" constant="15" id="Eq2-6D-fiF"/>
                                                 <constraint firstAttribute="centerY" secondItem="2Iw-j8-nzk" secondAttribute="centerY" id="kWw-VF-NXY"/>
                                                 <constraint firstAttribute="centerY" secondItem="vaU-lb-FHs" secondAttribute="centerY" id="lDB-ll-wZu"/>
                                             </constraints>
