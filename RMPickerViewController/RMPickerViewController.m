@@ -291,13 +291,13 @@ static NSString *_localizedSelectTitle = @"Select";
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.titleLabel.numberOfLines = 0;
     
-    self.picker.layer.cornerRadius = 5;
+    self.picker.layer.cornerRadius = 4;
     self.picker.translatesAutoresizingMaskIntoConstraints = NO;
     
     [self.cancelButton setTitle:[RMPickerViewController localizedTitleForCancelButton] forState:UIControlStateNormal];
     [self.cancelButton setTitleColor:[UIColor colorWithRed:0 green:122./255. blue:1 alpha:1] forState:UIControlStateNormal];
     [self.cancelButton addTarget:self action:@selector(cancelButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    self.cancelButton.layer.cornerRadius = 5;
+    self.cancelButton.layer.cornerRadius = 4;
     self.cancelButton.translatesAutoresizingMaskIntoConstraints = NO;
     [self.cancelButton setContentHuggingPriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
     
@@ -305,7 +305,7 @@ static NSString *_localizedSelectTitle = @"Select";
     [self.selectButton setTitleColor:[UIColor colorWithRed:0 green:122./255. blue:1 alpha:1] forState:UIControlStateNormal];
     [self.selectButton addTarget:self action:@selector(doneButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     self.selectButton.titleLabel.font = [UIFont boldSystemFontOfSize:[UIFont buttonFontSize]];
-    self.selectButton.layer.cornerRadius = 5;
+    self.selectButton.layer.cornerRadius = 4;
     self.selectButton.translatesAutoresizingMaskIntoConstraints = NO;
     [self.selectButton setContentHuggingPriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
 }
@@ -544,10 +544,12 @@ static NSString *_localizedSelectTitle = @"Select";
     if(_disableMotionEffects != newDisableMotionEffects) {
         _disableMotionEffects = newDisableMotionEffects;
         
-        if(newDisableMotionEffects) {
-            [self removeMotionEffects];
-        } else {
-            [self addMotionEffects];
+        if([self isViewLoaded]) {
+            if(newDisableMotionEffects) {
+                [self removeMotionEffects];
+            } else {
+                [self addMotionEffects];
+            }
         }
     }
 }
@@ -605,9 +607,11 @@ static NSString *_localizedSelectTitle = @"Select";
     if(_backgroundColor != newBackgroundColor) {
         _backgroundColor = newBackgroundColor;
         
-        self.titleLabelContainer.backgroundColor = newBackgroundColor;
-        self.pickerContainer.backgroundColor = newBackgroundColor;
-        self.cancelAndSelectButtonContainer.backgroundColor = newBackgroundColor;
+        if([self isViewLoaded]) {
+            self.titleLabelContainer.backgroundColor = newBackgroundColor;
+            self.pickerContainer.backgroundColor = newBackgroundColor;
+            self.cancelAndSelectButtonContainer.backgroundColor = newBackgroundColor;
+        }
     }
 }
 
