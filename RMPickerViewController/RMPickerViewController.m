@@ -105,8 +105,8 @@
 
 @end
 
-#define RM_DATE_PICKER_HEIGHT_PORTRAIT 216
-#define RM_DATE_PICKER_HEIGHT_LANDSCAPE 162
+#define RM_PICKER_HEIGHT_PORTRAIT 216
+#define RM_PICKER_HEIGHT_LANDSCAPE 162
 
 #import "RMPickerViewController.h"
 #import <QuartzCore/QuartzCore.h>
@@ -135,7 +135,7 @@
 
 @property (nonatomic, strong) UIMotionEffectGroup *motionEffectGroup;
 
-@property (nonatomic, copy) RMSelectionBlock selectedDateBlock;
+@property (nonatomic, copy) RMSelectionBlock selectedBlock;
 @property (nonatomic, copy) RMCancelBlock cancelBlock;
 
 @property (nonatomic, assign) BOOL hasBeenDismissed;
@@ -170,7 +170,7 @@ static NSString *_localizedSelectTitle = @"Select";
     _localizedSelectTitle = newLocalizedTitle;
 }
 
-+ (void)showDateSelectionViewController:(RMPickerViewController *)aPickerViewController usingWindow:(BOOL)extraWindow {
++ (void)showPickerViewController:(RMPickerViewController *)aPickerViewController usingWindow:(BOOL)extraWindow {
     if(extraWindow) {
         [(RMNonRotatingPickerViewController *)aPickerViewController.window.rootViewController updateUIForInterfaceOrientation:[UIApplication sharedApplication].statusBarOrientation animated:NO];
         [aPickerViewController.window makeKeyAndVisible];
@@ -195,9 +195,9 @@ static NSString *_localizedSelectTitle = @"Select";
     
     if([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
         if(UIInterfaceOrientationIsLandscape(aPickerViewController.rootViewController.interfaceOrientation)) {
-            aPickerViewController.pickerHeightConstraint.constant = RM_DATE_PICKER_HEIGHT_LANDSCAPE;
+            aPickerViewController.pickerHeightConstraint.constant = RM_PICKER_HEIGHT_LANDSCAPE;
         } else {
-            aPickerViewController.pickerHeightConstraint.constant = RM_DATE_PICKER_HEIGHT_PORTRAIT;
+            aPickerViewController.pickerHeightConstraint.constant = RM_PICKER_HEIGHT_PORTRAIT;
         }
     }
     
@@ -233,7 +233,7 @@ static NSString *_localizedSelectTitle = @"Select";
     }];
 }
 
-+ (void)dismissDateSelectionViewController:(RMPickerViewController *)aPickerViewController {
++ (void)dismissPickerViewController:(RMPickerViewController *)aPickerViewController {
     [aPickerViewController.rootViewController.view removeConstraint:aPickerViewController.yConstraint];
     aPickerViewController.yConstraint = [NSLayoutConstraint constraintWithItem:aPickerViewController.view attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:aPickerViewController.rootViewController.view attribute:NSLayoutAttributeBottom multiplier:1 constant:0];
     [aPickerViewController.rootViewController.view addConstraint:aPickerViewController.yConstraint];
@@ -406,7 +406,7 @@ static NSString *_localizedSelectTitle = @"Select";
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-(10)-[cancelSelectContainer]-(10)-|" options:0 metrics:nil views:bindingsDict]];
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[pickerContainer]-(10)-[cancelSelectContainer(44)]-(0)-|" options:0 metrics:nil views:bindingsDict]];
-    self.pickerHeightConstraint = [NSLayoutConstraint constraintWithItem:self.pickerContainer attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:0 constant:RM_DATE_PICKER_HEIGHT_PORTRAIT];
+    self.pickerHeightConstraint = [NSLayoutConstraint constraintWithItem:self.pickerContainer attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:0 constant:RM_PICKER_HEIGHT_PORTRAIT];
     [self.view addConstraint:self.pickerHeightConstraint];
     
     if(self.titleLabel.text && self.titleLabel.text.length != 0) {
@@ -492,9 +492,9 @@ static NSString *_localizedSelectTitle = @"Select";
 - (void)didRotate {
     if([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
         if(UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
-            self.pickerHeightConstraint.constant = RM_DATE_PICKER_HEIGHT_LANDSCAPE;
+            self.pickerHeightConstraint.constant = RM_PICKER_HEIGHT_LANDSCAPE;
         } else {
-            self.pickerHeightConstraint.constant = RM_DATE_PICKER_HEIGHT_PORTRAIT;
+            self.pickerHeightConstraint.constant = RM_PICKER_HEIGHT_PORTRAIT;
         }
         
         [self.picker setNeedsUpdateConstraints];
@@ -643,11 +643,11 @@ static NSString *_localizedSelectTitle = @"Select";
 }
 
 - (void)showWithSelectionHandler:(RMSelectionBlock)selectionBlock andCancelHandler:(RMCancelBlock)cancelBlock {
-    self.selectedDateBlock = selectionBlock;
+    self.selectedBlock = selectionBlock;
     self.cancelBlock = cancelBlock;
     self.rootViewController = self.window.rootViewController;
     
-    [RMPickerViewController showDateSelectionViewController:self usingWindow:YES];
+    [RMPickerViewController showPickerViewController:self usingWindow:YES];
 }
 
 - (void)showFromViewController:(UIViewController *)aViewController {
@@ -657,23 +657,23 @@ static NSString *_localizedSelectTitle = @"Select";
 - (void)showFromViewController:(UIViewController *)aViewController withSelectionHandler:(RMSelectionBlock)selectionBlock andCancelHandler:(RMCancelBlock)cancelBlock {
     if([aViewController isKindOfClass:[UITableViewController class]]) {
         if(aViewController.navigationController) {
-            NSLog(@"Warning: -[RMDateSelectionViewController showFromViewController:] has been called with an instance of UITableViewController as argument. Trying to use the navigation controller of the UITableViewController instance instead.");
+            NSLog(@"Warning: -[RMPickerViewController showFromViewController:] has been called with an instance of UITableViewController as argument. Trying to use the navigation controller of the UITableViewController instance instead.");
             aViewController = aViewController.navigationController;
         } else {
-            NSLog(@"Error: -[RMDateSelectionViewController showFromViewController:] has been called with an instance of UITableViewController as argument. Showing the date selection view controller from an instance of UITableViewController is not possible due to some internals of UIKit. To prevent your app from crashing, showing the date selection view controller will be canceled.");
+            NSLog(@"Error: -[RMPickerViewController showFromViewController:] has been called with an instance of UITableViewController as argument. Showing the picker view controller from an instance of UITableViewController is not possible due to some internals of UIKit. To prevent your app from crashing, showing the picker view controller will be canceled.");
             return;
         }
     }
     
-    self.selectedDateBlock = selectionBlock;
+    self.selectedBlock = selectionBlock;
     self.cancelBlock = cancelBlock;
     self.rootViewController = aViewController;
     
-    [RMPickerViewController showDateSelectionViewController:self usingWindow:NO];
+    [RMPickerViewController showPickerViewController:self usingWindow:NO];
 }
 
 - (void)dismiss {
-    [RMPickerViewController dismissDateSelectionViewController:self];
+    [RMPickerViewController dismissPickerViewController:self];
 }
 
 #pragma mark - Actions
@@ -687,8 +687,8 @@ static NSString *_localizedSelectTitle = @"Select";
         }
         
         [self.delegate pickerViewController:self didSelectRows:selectedRows];
-        if (self.selectedDateBlock) {
-            self.selectedDateBlock(self, selectedRows);
+        if (self.selectedBlock) {
+            self.selectedBlock(self, selectedRows);
         }
         [self performSelector:@selector(dismiss) withObject:nil afterDelay:0.1];
     }

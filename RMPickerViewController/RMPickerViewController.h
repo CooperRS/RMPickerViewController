@@ -118,7 +118,7 @@ typedef void (^RMCancelBlock)(RMPickerViewController *vc);
 @property (assign, nonatomic) BOOL disableBouncingWhenShowing;
 
 /**
- Used to enable or disable blurring the date selection view. Default value is NO.
+ Used to enable or disable blurring the picker view. Default value is NO.
  */
 @property (assign, nonatomic) BOOL disableBlurEffects;
 
@@ -158,7 +158,7 @@ typedef void (^RMCancelBlock)(RMPickerViewController *vc);
  *
  *  This method is the preferred method for showing a RMPickerViewController on iPhones and iPads. Nevertheless, there are situations where this method is not sufficient on iPads. An example for this is that the RMPickerViewController shall be shown within an UIPopover. This can be achieved by using -[RMPickerViewController showFromViewController:].
  *
- *  Make sure the delegate property is assigned. Otherwise you will not get any calls when a date is selected or the selection has been canceled.
+ *  Make sure the delegate property is assigned. Otherwise you will not get any calls when a row is selected or the selection has been canceled.
  */
 - (void)show;
 
@@ -169,31 +169,31 @@ typedef void (^RMCancelBlock)(RMPickerViewController *vc);
  *
  *  After a row has been selected the selectionBlock will be called. If the user choses to cancel the selection, the cancel block will be called. If you assigned a delegate the corresponding delegate methods will be called, too.
  *
- *  @param selectionBlock The block to call when the user selects a date.
+ *  @param selectionBlock The block to call when the user selects a row.
  *  @param cancelBlock    The block to call when the user cancels the selection.
  */
 - (void)showWithSelectionHandler:(RMSelectionBlock)selectionBlock andCancelHandler:(RMCancelBlock)cancelBlock;
 
 /**
- *  This shows the picker view controller as child view controller of `aViewController`. The content of `aViewController` will be darkened and the date selection view controller will be shown on top.
+ *  This shows the picker view controller as child view controller of `aViewController`. The content of `aViewController` will be darkened and the picker view controller will be shown on top.
  *
  *  This method should only be used on iPads in situations where -[RMPickerViewController show:] is not sufficient (for example, when the RMPickerViewController shoud be shown within an UIPopover). If -[RMPickerViewController show:] is sufficient, please use it!
  *
- *  Make sure the delegate property is assigned. Otherwise you will not get any calls when a date is selected or the selection has been canceled.
+ *  Make sure the delegate property is assigned. Otherwise you will not get any calls when a row is selected or the selection has been canceled.
  *
  *  @param aViewController The parent view controller of the RMPickerViewController.
  */
 - (void)showFromViewController:(UIViewController *)aViewController;
 
 /**
- *  This shows the picker view controller as child view controller of `aViewController`. The content of `aViewController` will be darkened and the date selection view controller will be shown on top.
+ *  This shows the picker view controller as child view controller of `aViewController`. The content of `aViewController` will be darkened and the picker view controller will be shown on top.
  *
  *  This method should only be used on iPads in situations where -[RMPickerViewController showWithSelectionHandler:andCancelHandler:] is not sufficient (for example, when the RMPickerViewController shoud be shown within an UIPopover). If -[RMPickerViewController showWithSelectionHandler:andCancelHandler:] is sufficient, please use it!
  *
  *  After a row has been selected the selectionBlock will be called. If the user choses to cancel the selection, the cancel block will be called. If you assigned a delegate the corresponding delegate methods will be called, too.
  *
  *  @param aViewController The parent view controller of the RMPickerViewController.
- *  @param selectionBlock  The block to call when the user selects a date.
+ *  @param selectionBlock  The block to call when the user selects a row.
  *  @param cancelBlock     The block to call when the user cancels the selection.
  */
 - (void)showFromViewController:(UIViewController *)aViewController withSelectionHandler:(RMSelectionBlock)selectionBlock andCancelHandler:(RMCancelBlock)cancelBlock;
