@@ -280,8 +280,8 @@ static NSString *_localizedSelectTitle = @"Select";
     self.picker.dataSource = self.delegate;
     
     self.cancelAndSelectButtonSeperator = [[UIView alloc] initWithFrame:CGRectZero];
-    self.cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.selectButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.cancelButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    self.selectButton = [UIButton buttonWithType:UIButtonTypeSystem];
     
     //Setup properties of elements
     self.titleLabel.backgroundColor = [UIColor clearColor];
@@ -295,14 +295,12 @@ static NSString *_localizedSelectTitle = @"Select";
     self.picker.translatesAutoresizingMaskIntoConstraints = NO;
     
     [self.cancelButton setTitle:[RMPickerViewController localizedTitleForCancelButton] forState:UIControlStateNormal];
-    [self.cancelButton setTitleColor:[UIColor colorWithRed:0 green:122./255. blue:1 alpha:1] forState:UIControlStateNormal];
     [self.cancelButton addTarget:self action:@selector(cancelButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     self.cancelButton.layer.cornerRadius = 4;
     self.cancelButton.translatesAutoresizingMaskIntoConstraints = NO;
     [self.cancelButton setContentHuggingPriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
     
     [self.selectButton setTitle:[RMPickerViewController localizedTitleForSelectButton] forState:UIControlStateNormal];
-    [self.selectButton setTitleColor:[UIColor colorWithRed:0 green:122./255. blue:1 alpha:1] forState:UIControlStateNormal];
     [self.selectButton addTarget:self action:@selector(doneButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     self.selectButton.titleLabel.font = [UIFont boldSystemFontOfSize:[UIFont buttonFontSize]];
     self.selectButton.layer.cornerRadius = 4;
@@ -447,9 +445,16 @@ static NSString *_localizedSelectTitle = @"Select";
     
     [self setupConstraints];
     
-    if(self.tintColor) {
-        [self.cancelButton setTitleColor:self.tintColor forState:UIControlStateNormal];
-        [self.selectButton setTitleColor:self.tintColor forState:UIControlStateNormal];
+    if(self.disableBlurEffects) {
+        if(self.tintColor) {
+            self.picker.tintColor = self.tintColor;
+            self.cancelButton.tintColor = self.tintColor;
+            self.selectButton.tintColor = self.tintColor;
+        } else {
+            self.picker.tintColor = nil;
+            self.cancelButton.tintColor = [UIColor colorWithRed:0 green:122./255. blue:1 alpha:1];
+            self.selectButton.tintColor = [UIColor colorWithRed:0 green:122./255. blue:1 alpha:1];
+        }
     }
     
     if(self.backgroundColor) {
@@ -600,8 +605,9 @@ static NSString *_localizedSelectTitle = @"Select";
     if(_tintColor != newTintColor) {
         _tintColor = newTintColor;
         
-        [self.cancelButton setTitleColor:newTintColor forState:UIControlStateNormal];
-        [self.selectButton setTitleColor:newTintColor forState:UIControlStateNormal];
+        self.picker.tintColor = newTintColor;
+        self.cancelButton.tintColor = newTintColor;
+        self.selectButton.tintColor = newTintColor;
     }
 }
 
