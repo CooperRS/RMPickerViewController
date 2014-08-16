@@ -164,6 +164,8 @@ typedef void (^RMCancelBlock)(RMPickerViewController *vc);
 
 /**
  *  Used to enable or disable blurring the picker view. Default value is NO.
+ *
+ *  @warning This property always returns NO if either UIBlurEffect, UIVibrancyEffect or UIVisualEffectView is not available on your system at runtime.
  */
 @property (assign, nonatomic) BOOL disableBlurEffects;
 

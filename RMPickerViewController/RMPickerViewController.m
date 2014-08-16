@@ -310,7 +310,7 @@ static NSString *_localizedSelectTitle = @"Select";
 }
 
 - (void)setupContainerElements {
-    if(NSClassFromString(@"UIBlurEffect") && NSClassFromString(@"UIVibrancyEffect") && NSClassFromString(@"UIVisualEffectView") && !self.disableBlurEffects) {
+    if(!self.disableBlurEffects) {
         UIBlurEffect *blur = [UIBlurEffect effectWithStyle:self.blurEffectStyle];
         UIVibrancyEffect *vibrancy = [UIVibrancyEffect effectForBlurEffect:blur];
         
@@ -323,7 +323,7 @@ static NSString *_localizedSelectTitle = @"Select";
         self.titleLabelContainer = [[UIView alloc] initWithFrame:CGRectZero];
     }
     
-    if(NSClassFromString(@"UIBlurEffect") && NSClassFromString(@"UIVibrancyEffect") && NSClassFromString(@"UIVisualEffectView") && !self.disableBlurEffects) {
+    if(!self.disableBlurEffects) {
         UIBlurEffect *blur = [UIBlurEffect effectWithStyle:self.blurEffectStyle];
         UIVibrancyEffect *vibrancy = [UIVibrancyEffect effectForBlurEffect:blur];
         
@@ -336,7 +336,7 @@ static NSString *_localizedSelectTitle = @"Select";
         self.pickerContainer = [[UIView alloc] initWithFrame:CGRectZero];
     }
     
-    if(NSClassFromString(@"UIBlurEffect") && NSClassFromString(@"UIVibrancyEffect") && NSClassFromString(@"UIVisualEffectView") && !self.disableBlurEffects) {
+    if(!self.disableBlurEffects) {
         UIBlurEffect *blur = [UIBlurEffect effectWithStyle:self.blurEffectStyle];
         UIVibrancyEffect *vibrancy = [UIVibrancyEffect effectForBlurEffect:blur];
         
@@ -349,7 +349,7 @@ static NSString *_localizedSelectTitle = @"Select";
         self.cancelAndSelectButtonContainer = [[UIView alloc] initWithFrame:CGRectZero];
     }
     
-    if(NSClassFromString(@"UIVisualEffectView") && !self.disableBlurEffects) {
+    if(!self.disableBlurEffects) {
         [[[[[(UIVisualEffectView *)self.titleLabelContainer contentView] subviews] objectAtIndex:0] contentView] addSubview:self.titleLabel];
         [[[[[(UIVisualEffectView *)self.pickerContainer contentView] subviews] objectAtIndex:0] contentView] addSubview:self.picker];
         
@@ -448,18 +448,16 @@ static NSString *_localizedSelectTitle = @"Select";
     
     if(self.disableBlurEffects) {
         if(self.tintColor) {
-            self.picker.tintColor = self.tintColor;
             self.cancelButton.tintColor = self.tintColor;
             self.selectButton.tintColor = self.tintColor;
         } else {
-            self.picker.tintColor = nil;
             self.cancelButton.tintColor = [UIColor colorWithRed:0 green:122./255. blue:1 alpha:1];
             self.selectButton.tintColor = [UIColor colorWithRed:0 green:122./255. blue:1 alpha:1];
         }
     }
     
     if(self.backgroundColor) {
-        if(NSClassFromString(@"UIVisualEffectView") && !self.disableBlurEffects) {
+        if(!self.disableBlurEffects) {
             [((UIVisualEffectView *)self.titleLabelContainer).contentView setBackgroundColor:self.backgroundColor];
             [((UIVisualEffectView *)self.pickerContainer).contentView setBackgroundColor:self.backgroundColor];
             [((UIVisualEffectView *)self.cancelAndSelectButtonContainer).contentView setBackgroundColor:self.backgroundColor];
@@ -548,6 +546,14 @@ static NSString *_localizedSelectTitle = @"Select";
     }
 }
 
+- (BOOL)disableBlurEffects {
+    if(NSClassFromString(@"UIBlurEffect") && NSClassFromString(@"UIVibrancyEffect") && NSClassFromString(@"UIVisualEffectView") && !_disableBlurEffects) {
+        return NO;
+    }
+    
+    return YES;
+}
+
 - (void)setDisableMotionEffects:(BOOL)newDisableMotionEffects {
     if(_disableMotionEffects != newDisableMotionEffects) {
         _disableMotionEffects = newDisableMotionEffects;
@@ -606,7 +612,10 @@ static NSString *_localizedSelectTitle = @"Select";
     if(_tintColor != newTintColor) {
         _tintColor = newTintColor;
         
-        self.picker.tintColor = newTintColor;
+        if(!self.disableBlurEffects) {
+            self.picker.tintColor = newTintColor;
+        }
+        
         self.cancelButton.tintColor = newTintColor;
         self.selectButton.tintColor = newTintColor;
     }
@@ -617,7 +626,7 @@ static NSString *_localizedSelectTitle = @"Select";
         _backgroundColor = newBackgroundColor;
         
         if([self isViewLoaded]) {
-            if(NSClassFromString(@"UIVisualEffectView") && !self.disableBlurEffects &&
+            if(!self.disableBlurEffects &&
                [self.titleLabelContainer isKindOfClass:[UIVisualEffectView class]] &&
                [self.pickerContainer isKindOfClass:[UIVisualEffectView class]] &&
                [self.cancelAndSelectButtonContainer isKindOfClass:[UIVisualEffectView class]]) {
