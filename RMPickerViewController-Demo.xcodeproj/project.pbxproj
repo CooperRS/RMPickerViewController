@@ -21,6 +21,7 @@
 		CABBCD82189521D10006213F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CABBCD7B189521D10006213F /* Main.storyboard */; };
 		CABBCD85189521D10006213F /* RMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CABBCD81189521D10006213F /* RMViewController.m */; };
 		CABBCD861895351E0006213F /* RMPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CABBCD79189521C00006213F /* RMPickerViewController.m */; };
+		CAFFF2C219A739E100432B37 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAFFF2C119A739E100432B37 /* Main_iPad.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		CABBCD7D189521D10006213F /* RMPickerViewController-Demo-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RMPickerViewController-Demo-Prefix.pch"; sourceTree = "<group>"; };
 		CABBCD80189521D10006213F /* RMViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMViewController.h; sourceTree = "<group>"; };
 		CABBCD81189521D10006213F /* RMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMViewController.m; sourceTree = "<group>"; };
+		CAFFF2C119A739E100432B37 /* Main_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPad.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 				CABBCD38189520D50006213F /* RMAppDelegate.h */,
 				CABBCD39189520D50006213F /* RMAppDelegate.m */,
 				CABBCD7B189521D10006213F /* Main.storyboard */,
+				CAFFF2C119A739E100432B37 /* Main_iPad.storyboard */,
 				CABBCD80189521D10006213F /* RMViewController.h */,
 				CABBCD81189521D10006213F /* RMViewController.m */,
 				CABBCD44189520D50006213F /* Images.xcassets */,
@@ -241,6 +244,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAFFF2C219A739E100432B37 /* Main_iPad.storyboard in Resources */,
 				CABBCD45189520D50006213F /* Images.xcassets in Resources */,
 				CABBCD82189521D10006213F /* Main.storyboard in Resources */,
 			);
@@ -377,6 +381,7 @@
 				GCC_PREFIX_HEADER = "RMPickerViewController-Demo/RMPickerViewController-Demo-Prefix.pch";
 				INFOPLIST_FILE = "RMPickerViewController-Demo/RMPickerViewController-Demo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -390,6 +395,7 @@
 				GCC_PREFIX_HEADER = "RMPickerViewController-Demo/RMPickerViewController-Demo-Prefix.pch";
 				INFOPLIST_FILE = "RMPickerViewController-Demo/RMPickerViewController-Demo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
