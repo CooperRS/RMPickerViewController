@@ -111,11 +111,19 @@
 #import "RMPickerViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
-@interface RMPickerViewController ()
+typedef enum {
+    RMPickerViewControllerPresentationTypeWindow,
+    RMPickerViewControllerPresentationTypeViewController,
+    RMPickerViewControllerPresentationTypePopover
+} RMPickerViewControllerPresentationType;
 
+@interface RMPickerViewController () <UIPopoverControllerDelegate>
+
+@property (nonatomic, assign) RMPickerViewControllerPresentationType presentationType;
 @property (nonatomic, strong) UIWindow *window;
 @property (nonatomic, strong) UIViewController *rootViewController;
 @property (nonatomic, strong) UIView *backgroundView;
+@property (nonatomic, strong) UIPopoverController *popover;
 
 @property (nonatomic, weak) NSLayoutConstraint *xConstraint;
 @property (nonatomic, weak) NSLayoutConstraint *yConstraint;
@@ -170,8 +178,8 @@ static NSString *_localizedSelectTitle = @"Select";
     _localizedSelectTitle = newLocalizedTitle;
 }
 
-+ (void)showPickerViewController:(RMPickerViewController *)aPickerViewController usingWindow:(BOOL)extraWindow {
-    if(extraWindow) {
++ (void)showPickerViewController:(RMPickerViewController *)aPickerViewController animated:(BOOL)animated {
+    if(aPickerViewController.presentationType == RMPickerViewControllerPresentationTypeWindow) {
         [(RMNonRotatingPickerViewController *)aPickerViewController.window.rootViewController updateUIForInterfaceOrientation:[UIApplication sharedApplication].statusBarOrientation animated:NO];
         [aPickerViewController.window makeKeyAndVisible];
         
@@ -181,13 +189,15 @@ static NSString *_localizedSelectTitle = @"Select";
         }
     }
     
-    aPickerViewController.backgroundView.alpha = 0;
-    [aPickerViewController.rootViewController.view addSubview:aPickerViewController.backgroundView];
-    
-    [aPickerViewController.rootViewController.view addConstraint:[NSLayoutConstraint constraintWithItem:aPickerViewController.backgroundView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:aPickerViewController.rootViewController.view attribute:NSLayoutAttributeTop multiplier:1 constant:0]];
-    [aPickerViewController.rootViewController.view addConstraint:[NSLayoutConstraint constraintWithItem:aPickerViewController.backgroundView attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:aPickerViewController.rootViewController.view attribute:NSLayoutAttributeLeading multiplier:1 constant:0]];
-    [aPickerViewController.rootViewController.view addConstraint:[NSLayoutConstraint constraintWithItem:aPickerViewController.backgroundView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:aPickerViewController.rootViewController.view attribute:NSLayoutAttributeWidth multiplier:1 constant:0]];
-    [aPickerViewController.rootViewController.view addConstraint:[NSLayoutConstraint constraintWithItem:aPickerViewController.backgroundView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:aPickerViewController.rootViewController.view attribute:NSLayoutAttributeHeight multiplier:1 constant:0]];
+    if(aPickerViewController.presentationType != RMPickerViewControllerPresentationTypePopover) {
+        aPickerViewController.backgroundView.alpha = 0;
+        [aPickerViewController.rootViewController.view addSubview:aPickerViewController.backgroundView];
+        
+        [aPickerViewController.rootViewController.view addConstraint:[NSLayoutConstraint constraintWithItem:aPickerViewController.backgroundView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:aPickerViewController.rootViewController.view attribute:NSLayoutAttributeTop multiplier:1 constant:0]];
+        [aPickerViewController.rootViewController.view addConstraint:[NSLayoutConstraint constraintWithItem:aPickerViewController.backgroundView attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:aPickerViewController.rootViewController.view attribute:NSLayoutAttributeLeading multiplier:1 constant:0]];
+        [aPickerViewController.rootViewController.view addConstraint:[NSLayoutConstraint constraintWithItem:aPickerViewController.backgroundView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:aPickerViewController.rootViewController.view attribute:NSLayoutAttributeWidth multiplier:1 constant:0]];
+        [aPickerViewController.rootViewController.view addConstraint:[NSLayoutConstraint constraintWithItem:aPickerViewController.backgroundView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:aPickerViewController.rootViewController.view attribute:NSLayoutAttributeHeight multiplier:1 constant:0]];
+    }
     
     [aPickerViewController willMoveToParentViewController:aPickerViewController.rootViewController];
     [aPickerViewController viewWillAppear:YES];
@@ -223,19 +233,25 @@ static NSString *_localizedSelectTitle = @"Select";
     
     [aPickerViewController.rootViewController.view setNeedsUpdateConstraints];
     
-    CGFloat damping = 1.0f;
-    CGFloat duration = 0.3f;
-    if(!aPickerViewController.disableBouncingWhenShowing) {
-        damping = 0.6f;
-        duration = 1.0f;
-    }
-    
-    [UIView animateWithDuration:duration delay:0 usingSpringWithDamping:damping initialSpringVelocity:1 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowUserInteraction animations:^{
-        aPickerViewController.backgroundView.alpha = 1;
+    if(animated) {
+        CGFloat damping = 1.0f;
+        CGFloat duration = 0.3f;
+        if(!aPickerViewController.disableBouncingWhenShowing) {
+            damping = 0.6f;
+            duration = 1.0f;
+        }
+        
+        [UIView animateWithDuration:duration delay:0 usingSpringWithDamping:damping initialSpringVelocity:1 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowUserInteraction animations:^{
+            aPickerViewController.backgroundView.alpha = 1;
+            
+            [aPickerViewController.rootViewController.view layoutIfNeeded];
+        } completion:^(BOOL finished) {
+        }];
+    } else {
+        aPickerViewController.backgroundView.alpha = 0;
         
         [aPickerViewController.rootViewController.view layoutIfNeeded];
-    } completion:^(BOOL finished) {
-    }];
+    }
 }
 
 + (void)dismissPickerViewController:(RMPickerViewController *)aPickerViewController {
@@ -413,17 +429,6 @@ static NSString *_localizedSelectTitle = @"Select";
     self.pickerHeightConstraint = [NSLayoutConstraint constraintWithItem:self.pickerContainer attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:0 constant:RM_PICKER_HEIGHT_PORTRAIT];
     [self.view addConstraint:self.pickerHeightConstraint];
     
-    if(self.titleLabel.text && self.titleLabel.text.length != 0) {
-        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-(10)-[labelContainer]-(10)-|" options:0 metrics:nil views:bindingsDict]];
-        
-        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(0)-[labelContainer]-(10)-[pickerContainer]" options:0 metrics:nil views:bindingsDict]];
-        
-        [self.titleLabelContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-(10)-[label]-(10)-|" options:0 metrics:nil views:bindingsDict]];
-        [self.titleLabelContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(10)-[label]-(10)-|" options:0 metrics:nil views:bindingsDict]];
-    } else {
-        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(0)-[pickerContainer]" options:0 metrics:nil views:bindingsDict]];
-    }
-    
     [self.pickerContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-(0)-[picker]-(0)-|" options:0 metrics:nil views:bindingsDict]];
     [self.cancelAndSelectButtonContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-(0)-[cancel]-(0)-[seperator(1)]-(0)-[select]-(0)-|" options:0 metrics:nil views:bindingsDict]];
     [self.cancelAndSelectButtonContainer addConstraint:[NSLayoutConstraint constraintWithItem:self.cancelAndSelectButtonSeperator attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.cancelAndSelectButtonContainer attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
@@ -432,6 +437,19 @@ static NSString *_localizedSelectTitle = @"Select";
     [self.cancelAndSelectButtonContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(0)-[cancel]-(0)-|" options:0 metrics:nil views:bindingsDict]];
     [self.cancelAndSelectButtonContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(0)-[seperator]-(0)-|" options:0 metrics:nil views:bindingsDict]];
     [self.cancelAndSelectButtonContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(0)-[select]-(0)-|" options:0 metrics:nil views:bindingsDict]];
+    
+    NSDictionary *metricsDict = @{@"TopMargin": @(self.presentationType == RMPickerViewControllerPresentationTypePopover ? 10 : 0)};
+    
+    if(self.titleLabel.text && self.titleLabel.text.length != 0) {
+        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-(10)-[labelContainer]-(10)-|" options:0 metrics:nil views:bindingsDict]];
+        
+        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(TopMargin)-[labelContainer]-(10)-[pickerContainer]" options:0 metrics:metricsDict views:bindingsDict]];
+        
+        [self.titleLabelContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|-(10)-[label]-(10)-|" options:0 metrics:nil views:bindingsDict]];
+        [self.titleLabelContainer addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(10)-[label]-(10)-|" options:0 metrics:nil views:bindingsDict]];
+    } else {
+        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(TopMargin)-[pickerContainer]" options:0 metrics:metricsDict views:bindingsDict]];
+    }
 }
 
 - (void)viewDidLoad {
@@ -677,9 +695,11 @@ static NSString *_localizedSelectTitle = @"Select";
 - (void)showWithSelectionHandler:(RMSelectionBlock)selectionBlock andCancelHandler:(RMCancelBlock)cancelBlock {
     self.selectedBlock = selectionBlock;
     self.cancelBlock = cancelBlock;
+    
+    self.presentationType = RMPickerViewControllerPresentationTypeWindow;
     self.rootViewController = self.window.rootViewController;
     
-    [RMPickerViewController showPickerViewController:self usingWindow:YES];
+    [RMPickerViewController showPickerViewController:self animated:YES];
 }
 
 - (void)showFromViewController:(UIViewController *)aViewController {
@@ -687,25 +707,63 @@ static NSString *_localizedSelectTitle = @"Select";
 }
 
 - (void)showFromViewController:(UIViewController *)aViewController withSelectionHandler:(RMSelectionBlock)selectionBlock andCancelHandler:(RMCancelBlock)cancelBlock {
-    if([aViewController isKindOfClass:[UITableViewController class]]) {
-        if(aViewController.navigationController) {
-            NSLog(@"Warning: -[RMPickerViewController showFromViewController:] has been called with an instance of UITableViewController as argument. Trying to use the navigation controller of the UITableViewController instance instead.");
-            aViewController = aViewController.navigationController;
-        } else {
-            NSLog(@"Error: -[RMPickerViewController showFromViewController:] has been called with an instance of UITableViewController as argument. Showing the picker view controller from an instance of UITableViewController is not possible due to some internals of UIKit. To prevent your app from crashing, showing the picker view controller will be canceled.");
-            return;
+    if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        if([aViewController isKindOfClass:[UITableViewController class]]) {
+            if(aViewController.navigationController) {
+                NSLog(@"Warning: -[RMPickerViewController showFromViewController:] has been called with an instance of UITableViewController as argument. Trying to use the navigation controller of the UITableViewController instance instead.");
+                aViewController = aViewController.navigationController;
+            } else {
+                NSLog(@"Error: -[RMPickerViewController showFromViewController:] has been called with an instance of UITableViewController as argument. Showing the picker view controller from an instance of UITableViewController is not possible due to some internals of UIKit. To prevent your app from crashing, showing the picker view controller will be canceled.");
+                return;
+            }
         }
+        
+        self.selectedBlock = selectionBlock;
+        self.cancelBlock = cancelBlock;
+        
+        self.presentationType = RMPickerViewControllerPresentationTypeViewController;
+        self.rootViewController = aViewController;
+        
+        [RMPickerViewController showPickerViewController:self animated:YES];
+    } else {
+        NSLog(@"Warning: -[RMPickerViewController %@] has been called on an iPhone. This method is iPad only so we will use -[RMPickerViewController %@] instead.", NSStringFromSelector(_cmd), NSStringFromSelector(@selector(showWithSelectionHandler:andCancelHandler:)));
+        [self showWithSelectionHandler:selectionBlock andCancelHandler:cancelBlock];
     }
-    
-    self.selectedBlock = selectionBlock;
-    self.cancelBlock = cancelBlock;
-    self.rootViewController = aViewController;
-    
-    [RMPickerViewController showPickerViewController:self usingWindow:NO];
+}
+
+- (void)showFromRect:(CGRect)aRect inView:(UIView *)aView {
+    [self showFromRect:aRect inView:aView withSelectionHandler:nil andCancelHandler:nil];
+}
+
+- (void)showFromRect:(CGRect)aRect inView:(UIView *)aView withSelectionHandler:(RMSelectionBlock)selectionBlock andCancelHandler:(RMCancelBlock)cancelBlock {
+    if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        self.selectedBlock = selectionBlock;
+        self.cancelBlock = cancelBlock;
+        
+        self.presentationType = RMPickerViewControllerPresentationTypePopover;
+        CGSize fittingSize = [self.view systemLayoutSizeFittingSize:CGSizeMake(0, 0)];
+        
+        self.popover = [[UIPopoverController alloc] initWithContentViewController:self];
+        self.popover.delegate = self;
+        self.popover.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.4];
+        self.popover.popoverContentSize = CGSizeMake(fittingSize.width, fittingSize.height+10);
+        
+        [self.popover presentPopoverFromRect:aRect inView:aView permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    } else {
+        NSLog(@"Warning: -[RMPickerViewController %@] has been called on an iPhone. This method is iPad only so we will use -[RMPickerViewController %@] instead.", NSStringFromSelector(_cmd), NSStringFromSelector(@selector(showWithSelectionHandler:andCancelHandler:)));
+        [self showWithSelectionHandler:selectionBlock andCancelHandler:cancelBlock];
+    }
 }
 
 - (void)dismiss {
-    [RMPickerViewController dismissPickerViewController:self];
+    if(self.presentationType == RMPickerViewControllerPresentationTypePopover && [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        self.popover.delegate = nil;
+        
+        [self.popover dismissPopoverAnimated:YES];
+        self.popover = nil;
+    } else {
+        [RMPickerViewController dismissPickerViewController:self];
+    }
 }
 
 #pragma mark - Actions
@@ -748,6 +806,21 @@ static NSString *_localizedSelectTitle = @"Select";
         }
         [self performSelector:@selector(dismiss) withObject:nil afterDelay:0.1];
     }
+}
+
+#pragma mark - UIPopoverController Delegates
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController {
+    if(!self.hasBeenDismissed) {
+        self.hasBeenDismissed = YES;
+        
+        [self.delegate pickerViewControllerDidCancel:self];
+        if (self.cancelBlock) {
+            self.cancelBlock(self);
+        }
+        [self performSelector:@selector(dismiss) withObject:nil afterDelay:0.1];
+    }
+    
+    self.popover = nil;
 }
 
 @end

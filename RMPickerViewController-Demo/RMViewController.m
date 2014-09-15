@@ -78,10 +78,21 @@
         //    This method can be used to show the picker view controller within popovers.
         //    (Note: We do not use self as the view controller, as showing a picker view controller from a table view controller
         //           is not supported due to UIKit limitations.)
-        [pickerVC showFromViewController:self.navigationController];
+        //[pickerVC showFromViewController:self.navigationController];
         
         // 2. As with the two ways of showing the picker view controller on iPhones, we can also use a blocks based API.
         //[pickerVC showFromViewController:self.navigationController withSelectionHandler:^(RMDateSelectionViewController *vc, NSDate *aDate) {
+        //    NSLog(@"Successfully selected date: %@ (With block)", aDate);
+        //} andCancelHandler:^(RMDateSelectionViewController *vc) {
+        //    NSLog(@"Date selection was canceled (with block)");
+        //}];
+        
+        // 3. Show the date selection view controller using a UIPopoverController. The rect and the view are used to tell the
+        //    UIPopoverController where to show up.
+        [pickerVC showFromRect:[self.tableView rectForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]] inView:self.view];
+        
+        // 4. The date selectionview controller can also be shown within a popover while also using blocks based API.
+        //[dateSelectionVC showFromRect:[self.tableView rectForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]] inView:self.view withSelectionHandler:^(RMDateSelectionViewController *vc, NSDate *aDate) {
         //    NSLog(@"Successfully selected date: %@ (With block)", aDate);
         //} andCancelHandler:^(RMDateSelectionViewController *vc) {
         //    NSLog(@"Date selection was canceled (with block)");

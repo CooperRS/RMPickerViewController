@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.8" systemVersion="14A329f" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="OrS-fX-uvC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A343f" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="Lcu-AB-Z8e">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
-        <capability name="Constraints with attributes relative to the layout margin" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
         <!--Demo-->
@@ -11,7 +10,7 @@
             <objects>
                 <tableViewController id="Lcu-AB-Z8e" customClass="RMViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="IuU-lD-54H">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
@@ -61,7 +60,7 @@ If your need a black version on iOS 7, take a look at the demo code.</string>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="DrY-8g-Irc">
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="DrY-8g-Irc">
                                                     <rect key="frame" x="256" y="6" width="51" height="31"/>
                                                 </switch>
                                             </subviews>
@@ -90,7 +89,7 @@ If your need a black version on iOS 7, take a look at the demo code.</string>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NkY-Wb-elX">
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NkY-Wb-elX">
                                                     <rect key="frame" x="256" y="6" width="51" height="31"/>
                                                 </switch>
                                             </subviews>
@@ -115,7 +114,7 @@ If your need a black version on iOS 7, take a look at the demo code.</string>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="idC-O0-DcP">
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="idC-O0-DcP">
                                                     <rect key="frame" x="256" y="6" width="51" height="31"/>
                                                 </switch>
                                             </subviews>
@@ -140,7 +139,7 @@ If your need a black version on iOS 7, take a look at the demo code.</string>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vaU-lb-FHs">
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vaU-lb-FHs">
                                                     <rect key="frame" x="256" y="6" width="51" height="31"/>
                                                 </switch>
                                             </subviews>
@@ -168,101 +167,10 @@ If your need a black version on iOS 7, take a look at the demo code.</string>
             </objects>
             <point key="canvasLocation" x="159" y="116"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="bzE-R2-2tY">
-            <objects>
-                <navigationController definesPresentationContext="YES" id="79U-h7-59M" sceneMemberID="viewController">
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="568"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="66i-Uc-wzS">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="Lcu-AB-Z8e" kind="relationship" relationship="rootViewController" id="gle-uf-r3b"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="YIy-Jw-jpG" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-375" y="116"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="2xF-BM-n2Z">
-            <objects>
-                <viewController id="OrS-fX-uvC" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="tvj-5A-rlQ"/>
-                        <viewControllerLayoutGuide type="bottom" id="CZy-uN-lI0"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="lEs-Qf-AFU">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6rE-Wj-2KY">
-                                <rect key="frame" x="20" y="428" width="728" height="169"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z1a-8I-lyZ">
-                                        <rect key="frame" x="0.0" y="29" width="728" height="102"/>
-                                        <string key="text">In general, RMPickerViewController works on the iPad just like on the iPhone. But RMPickerViewController has some special features when it comes to show the date selection view controller within popovers.
-
-To check it out, open a new popover using the button below.</string>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to RMPickerViewController Demo on the iPad!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jr0-iN-OOW">
-                                        <rect key="frame" x="0.0" y="0.0" width="728" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HlI-gk-DyQ">
-                                        <rect key="frame" x="309" y="139" width="111" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="2k0-3B-lkJ"/>
-                                        </constraints>
-                                        <state key="normal" title="Open Popover...">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="79U-h7-59M" kind="popover" popoverAnchorView="HlI-gk-DyQ" id="utd-ET-gWm">
-                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                            </segue>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="HlI-gk-DyQ" secondAttribute="bottom" id="0oG-Tw-7Bp"/>
-                                    <constraint firstItem="HlI-gk-DyQ" firstAttribute="top" secondItem="z1a-8I-lyZ" secondAttribute="bottom" constant="8" id="2Js-PS-rgn"/>
-                                    <constraint firstAttribute="trailing" secondItem="jr0-iN-OOW" secondAttribute="trailing" id="HJs-Cr-kjt"/>
-                                    <constraint firstItem="jr0-iN-OOW" firstAttribute="top" secondItem="6rE-Wj-2KY" secondAttribute="top" id="U6H-mV-I8g"/>
-                                    <constraint firstAttribute="trailing" secondItem="z1a-8I-lyZ" secondAttribute="trailing" id="k5C-fa-Gle"/>
-                                    <constraint firstItem="z1a-8I-lyZ" firstAttribute="leading" secondItem="6rE-Wj-2KY" secondAttribute="leading" id="kjG-gl-165"/>
-                                    <constraint firstAttribute="centerX" secondItem="HlI-gk-DyQ" secondAttribute="centerX" id="oEx-50-JQ3"/>
-                                    <constraint firstItem="jr0-iN-OOW" firstAttribute="leading" secondItem="6rE-Wj-2KY" secondAttribute="leading" id="qp6-LR-dJX"/>
-                                    <constraint firstItem="z1a-8I-lyZ" firstAttribute="top" secondItem="jr0-iN-OOW" secondAttribute="bottom" constant="8" id="uOu-Ry-iEj"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="6rE-Wj-2KY" firstAttribute="trailing" secondItem="lEs-Qf-AFU" secondAttribute="trailingMargin" id="0pp-61-QjK"/>
-                            <constraint firstAttribute="centerY" secondItem="6rE-Wj-2KY" secondAttribute="centerY" id="JDH-KT-mff"/>
-                            <constraint firstItem="6rE-Wj-2KY" firstAttribute="leading" secondItem="lEs-Qf-AFU" secondAttribute="leadingMargin" id="dw1-EG-2Dy"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Vlx-B9-7NH" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1154" y="116"/>
-        </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination">
-            <size key="portraitSize" width="768" height="1024"/>
-            <size key="landscapeSize" width="1024" height="768"/>
-        </simulatedScreenMetrics>
+        <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
 </document>
