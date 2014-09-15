@@ -209,7 +209,7 @@ static NSString *_localizedSelectTitle = @"Select";
     [aPickerViewController didMoveToParentViewController:aPickerViewController.rootViewController];
     
     if([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
-        if(UIInterfaceOrientationIsLandscape(aPickerViewController.rootViewController.interfaceOrientation)) {
+        if(UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
             aPickerViewController.pickerHeightConstraint.constant = RM_PICKER_HEIGHT_LANDSCAPE;
         } else {
             aPickerViewController.pickerHeightConstraint.constant = RM_PICKER_HEIGHT_PORTRAIT;
