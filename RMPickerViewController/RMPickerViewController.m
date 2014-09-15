@@ -92,9 +92,10 @@
     }
     
     if(animated) {
+        __weak RMNonRotatingPickerViewController *blockself = self;
         [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
-            self.view.transform = CGAffineTransformMakeRotation(angle);
-            self.view.frame = screenBounds;
+            blockself.view.transform = CGAffineTransformMakeRotation(angle);
+            blockself.view.frame = screenBounds;
         } completion:^(BOOL finished) {
         }];
     } else {
