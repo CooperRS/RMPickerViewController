@@ -60,6 +60,8 @@
 
 - (void)didRotate {
     [self updateUIForInterfaceOrientation:[UIApplication sharedApplication].statusBarOrientation animated:YES];
+    
+    [self setNeedsStatusBarAppearanceUpdate];
 }
 
 - (void)updateUIForInterfaceOrientation:(UIInterfaceOrientation)newOrientation animated:(BOOL)animated {
@@ -101,6 +103,18 @@
     }
     
     self.mutableInterfaceOrientation = [UIApplication sharedApplication].statusBarOrientation;
+}
+
+#pragma mark - Status Bar
+- (BOOL)prefersStatusBarHidden {
+    if([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
+        if(UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation))
+            return YES;
+        
+        return NO;
+    }
+    
+    return [super prefersStatusBarHidden];
 }
 
 @end
@@ -209,7 +223,7 @@ static NSString *_localizedSelectTitle = @"Select";
     [aPickerViewController didMoveToParentViewController:aPickerViewController.rootViewController];
     
     if([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
-        if(UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
+        if(UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
             aPickerViewController.pickerHeightConstraint.constant = RM_PICKER_HEIGHT_LANDSCAPE;
         } else {
             aPickerViewController.pickerHeightConstraint.constant = RM_PICKER_HEIGHT_PORTRAIT;
