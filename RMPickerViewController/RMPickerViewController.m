@@ -65,26 +65,28 @@
 }
 
 - (void)updateUIForInterfaceOrientation:(UIInterfaceOrientation)newOrientation animated:(BOOL)animated {
-    CGFloat duration = 0.3f;
+    CGFloat duration = ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad ? 0.4f : 0.3f);
+    BOOL doubleDuration = NO;
+    
     CGFloat angle = 0.f;
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
     
     if(newOrientation == UIInterfaceOrientationPortrait) {
         angle = 0;
         if(self.mutableInterfaceOrientation == UIInterfaceOrientationPortraitUpsideDown)
-            duration = 0.6f;
+            doubleDuration = YES;
     } else if(newOrientation == UIInterfaceOrientationPortraitUpsideDown) {
         angle = M_PI;
         if(self.mutableInterfaceOrientation == UIInterfaceOrientationPortrait)
-            duration = 0.6f;
+            doubleDuration = YES;
     } else if(newOrientation == UIInterfaceOrientationLandscapeLeft) {
         angle = -M_PI_2;
         if(self.mutableInterfaceOrientation == UIInterfaceOrientationLandscapeRight)
-            duration = 0.6f;
+            doubleDuration = YES;
     } else if(newOrientation == UIInterfaceOrientationLandscapeRight) {
         angle = M_PI_2;
         if(self.mutableInterfaceOrientation == UIInterfaceOrientationLandscapeLeft)
-            duration = 0.6f;
+            doubleDuration = YES;
     }
     
     if([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0 && UIInterfaceOrientationIsLandscape(newOrientation) && animated) {
@@ -93,7 +95,7 @@
     
     if(animated) {
         __weak RMNonRotatingPickerViewController *blockself = self;
-        [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+        [UIView animateWithDuration:(doubleDuration ? duration*2 : duration) delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
             blockself.view.transform = CGAffineTransformMakeRotation(angle);
             blockself.view.frame = screenBounds;
         } completion:^(BOOL finished) {
@@ -108,7 +110,7 @@
 
 #pragma mark - Status Bar
 - (BOOL)prefersStatusBarHidden {
-    if([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
+    if([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0 && [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
         if(UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation))
             return YES;
         
@@ -534,7 +536,11 @@ static NSString *_localizedSelectTitle = @"Select";
 
 #pragma mark - Orientation
 - (void)didRotate {
+    NSTimeInterval duration = 0.4;
+    
     if([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+        duration = 0.3;
+        
         if(UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
             self.pickerHeightConstraint.constant = RM_PICKER_HEIGHT_LANDSCAPE;
         } else {
@@ -543,14 +549,14 @@ static NSString *_localizedSelectTitle = @"Select";
         
         [self.picker setNeedsUpdateConstraints];
         [self.picker layoutIfNeeded];
-        
-        [self.window.rootViewController.view setNeedsUpdateConstraints];
-        __weak RMPickerViewController *blockself = self;
-        [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
-            [blockself.window.rootViewController.view layoutIfNeeded];
-        } completion:^(BOOL finished) {
-        }];
     }
+    
+    [self.rootViewController.view setNeedsUpdateConstraints];
+    __weak RMPickerViewController *blockself = self;
+    [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+        [blockself.rootViewController.view layoutIfNeeded];
+    } completion:^(BOOL finished) {
+    }];
 }
 
 #pragma mark - Helper
