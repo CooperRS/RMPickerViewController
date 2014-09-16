@@ -66,10 +66,10 @@
         [pickerVC show];
         
         // 2. Instead of using a delegate you can also pass blocks when showing the picker view controller
-        //[pickerVC showWithSelectionHandler:^(RMDateSelectionViewController *vc, NSDate *aDate) {
-        //    NSLog(@"Successfully selected date: %@ (With block)", aDate);
-        //} andCancelHandler:^(RMDateSelectionViewController *vc) {
-        //    NSLog(@"Date selection was canceled (with block)");
+        //[pickerVC showWithSelectionHandler:^(RMPickerViewController *vc, NSArray *selectedRows) {
+        //    NSLog(@"Successfully selected rows: %@", selectedRows);
+        //} andCancelHandler:^(RMPickerViewController *vc) {
+        //    NSLog(@"Row selection was canceled (with block)");
         //}];
     } else if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         //OK, running on an iPad. The following lines demonstrate the two special ways of showing the picker view controller on iPads:
@@ -81,10 +81,10 @@
         //[pickerVC showFromViewController:self.navigationController];
         
         // 2. As with the two ways of showing the picker view controller on iPhones, we can also use a blocks based API.
-        //[pickerVC showFromViewController:self.navigationController withSelectionHandler:^(RMDateSelectionViewController *vc, NSDate *aDate) {
-        //    NSLog(@"Successfully selected date: %@ (With block)", aDate);
-        //} andCancelHandler:^(RMDateSelectionViewController *vc) {
-        //    NSLog(@"Date selection was canceled (with block)");
+        //[pickerVC showFromViewController:self.navigationController withSelectionHandler:^(RMPickerViewController *vc, NSArray *selectedRows) {
+        //    NSLog(@"Successfully selected rows: %@", selectedRows);
+        //} andCancelHandler:^(RMPickerViewController *vc) {
+        //    NSLog(@"Row selection was canceled (with block)");
         //}];
         
         // 3. Show the date selection view controller using a UIPopoverController. The rect and the view are used to tell the
@@ -92,10 +92,10 @@
         [pickerVC showFromRect:[self.tableView rectForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]] inView:self.view];
         
         // 4. The date selectionview controller can also be shown within a popover while also using blocks based API.
-        //[dateSelectionVC showFromRect:[self.tableView rectForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]] inView:self.view withSelectionHandler:^(RMDateSelectionViewController *vc, NSDate *aDate) {
-        //    NSLog(@"Successfully selected date: %@ (With block)", aDate);
-        //} andCancelHandler:^(RMDateSelectionViewController *vc) {
-        //    NSLog(@"Date selection was canceled (with block)");
+        //[pickerVC showFromRect:[self.tableView rectForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]] inView:self.tableView withSelectionHandler:^(RMPickerViewController *vc, NSArray *selectedRows) {
+        //    NSLog(@"Successfully selected rows: %@", selectedRows);
+        //} andCancelHandler:^(RMPickerViewController *vc) {
+        //    NSLog(@"Row selection was canceled (with block)");
         //}];
     }
 }
