@@ -242,7 +242,7 @@ typedef void (^RMCancelBlock)(RMPickerViewController *vc);
  *
  *  @param aRect The rect in the given view the popover should be presented from.
  *  @param aView The view the popover should be presented from.
- *  @param selectionBlock The block to call when the user selects a date.
+ *  @param selectionBlock The block to call when the user selects a row.
  *  @param cancelBlock    The block to call when the user cancels the selection.
  */
 - (void)showFromRect:(CGRect)aRect inView:(UIView *)aView withSelectionHandler:(RMSelectionBlock)selectionBlock andCancelHandler:(RMCancelBlock)cancelBlock;
