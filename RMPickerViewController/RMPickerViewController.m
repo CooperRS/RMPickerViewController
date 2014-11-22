@@ -809,7 +809,10 @@ static NSString *_localizedSelectTitle = @"Select";
     if(!self.hasBeenDismissed) {
         self.hasBeenDismissed = YES;
         
-        [self.delegate pickerViewControllerDidCancel:self];
+        if([self.delegate respondsToSelector:@selector(pickerViewControllerDidCancel:)]) {
+            [self.delegate pickerViewControllerDidCancel:self];
+        }
+        
         if (self.cancelBlock) {
             self.cancelBlock(self);
         }
@@ -821,7 +824,10 @@ static NSString *_localizedSelectTitle = @"Select";
     if(!self.backgroundTapsDisabled && !self.hasBeenDismissed) {
         self.hasBeenDismissed = YES;
         
-        [self.delegate pickerViewControllerDidCancel:self];
+        if([self.delegate respondsToSelector:@selector(pickerViewControllerDidCancel:)]) {
+            [self.delegate pickerViewControllerDidCancel:self];
+        }
+        
         if (self.cancelBlock) {
             self.cancelBlock(self);
         }
@@ -834,7 +840,10 @@ static NSString *_localizedSelectTitle = @"Select";
     if(!self.hasBeenDismissed) {
         self.hasBeenDismissed = YES;
         
-        [self.delegate pickerViewControllerDidCancel:self];
+        if([self.delegate respondsToSelector:@selector(pickerViewControllerDidCancel:)]) {
+            [self.delegate pickerViewControllerDidCancel:self];
+        }
+        
         if (self.cancelBlock) {
             self.cancelBlock(self);
         }

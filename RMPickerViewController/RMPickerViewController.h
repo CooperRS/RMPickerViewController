@@ -58,10 +58,14 @@ typedef void (^RMCancelBlock)(RMPickerViewController *vc);
  */
 - (void)pickerViewController:(RMPickerViewController *)vc didSelectRows:(NSArray *)selectedRows;
 
+@optional
+
 /**
  *  This delegate method is called when the user selects the cancel button or taps the darkened background (if [backgroundTapsDisabled]([RMPickerViewController backgroundTapsDisabled]) of RMPickerViewController returns NO).
  *
- *  @param vc @param vc The picker view controller that just canceled.
+ *  @discussion Implementation of this method is optional. When the cancel button is pressed, the picker view controller will be dismissed. This method can be implemented to do anything additional to the dismissal.
+ *
+ *  @param vc The picker view controller that just canceled.
  */
 - (void)pickerViewControllerDidCancel:(RMPickerViewController *)vc;
 

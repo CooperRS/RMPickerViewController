@@ -14,7 +14,7 @@
 		<string>ssh://cooperrs.de:222/home/git/rmpickerviewcontroller</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>RMPickerViewController-Demo.xcodeproj/project.xcworkspace</string>
+	<string>RMPickerViewController-Demo.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>F13EA91197178158C39D998EC71C1E2FAFF4B15F</key>
