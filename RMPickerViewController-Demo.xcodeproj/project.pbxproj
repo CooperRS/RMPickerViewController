@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CA04D6AE18990BBF00A5E59B /* RMPickerViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA04D6AD18990BBF00A5E59B /* RMPickerViewControllerTests.m */; };
+		CA1E624B1A24D6840025A6A6 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1E624A1A24D6840025A6A6 /* Launch Screen.xib */; };
 		CABBCD2A189520D50006213F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CABBCD29189520D50006213F /* Foundation.framework */; };
 		CABBCD2C189520D50006213F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CABBCD2B189520D50006213F /* CoreGraphics.framework */; };
 		CABBCD2E189520D50006213F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CABBCD2D189520D50006213F /* UIKit.framework */; };
@@ -36,6 +37,7 @@
 
 /* Begin PBXFileReference section */
 		CA04D6AD18990BBF00A5E59B /* RMPickerViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMPickerViewControllerTests.m; sourceTree = "<group>"; };
+		CA1E624A1A24D6840025A6A6 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "Launch Screen.xib"; path = "../Launch Screen.xib"; sourceTree = "<group>"; };
 		CABBCD26189520D50006213F /* RMPickerViewController-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RMPickerViewController-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CABBCD29189520D50006213F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CABBCD2B189520D50006213F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -117,6 +119,7 @@
 		CABBCD2F189520D50006213F /* RMPickerViewController-Demo */ = {
 			isa = PBXGroup;
 			children = (
+				CA1E624A1A24D6840025A6A6 /* Launch Screen.xib */,
 				CABBCD38189520D50006213F /* RMAppDelegate.h */,
 				CABBCD39189520D50006213F /* RMAppDelegate.m */,
 				CABBCD7B189521D10006213F /* Main.storyboard */,
@@ -245,6 +248,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CAFFF2C219A739E100432B37 /* Main_iPad.storyboard in Resources */,
+				CA1E624B1A24D6840025A6A6 /* Launch Screen.xib in Resources */,
 				CABBCD45189520D50006213F /* Images.xcassets in Resources */,
 				CABBCD82189521D10006213F /* Main.storyboard in Resources */,
 			);
