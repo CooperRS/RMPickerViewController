@@ -57,6 +57,7 @@ pod "RMPickerViewController", "~> 1.3.0"
     	
    		[pickerVC show];
 	}
+	```
 	
 4. Do not forget to implement `UIPickerViewDelegate` and `UIPickerViewDataSource` methods.
 
@@ -80,6 +81,8 @@ If you absolutely need to use iOS 7 SDK you can take a look at the iOS 7 branch 
 ##Credits
 Code contributions:
 * Denis Andrasec
+	* Bugfixes
+* steveoleary
 	* Bugfixes
 
 I want to thank everyone who has contributed code and/or time to this project!
