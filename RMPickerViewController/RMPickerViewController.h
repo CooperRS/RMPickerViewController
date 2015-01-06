@@ -140,6 +140,11 @@ typedef void (^RMCancelBlock)(RMPickerViewController *vc);
 /// @name Appearance
 
 /**
+ *  Used to set the preferred status bar style.
+ */
+@property (nonatomic, assign, readwrite) UIStatusBarStyle preferredStatusBarStyle;
+
+/**
  *  Used to set the text color of the buttons (has no effect on picker view).
  */
 @property (strong, nonatomic) UIColor *tintColor;
