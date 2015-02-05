@@ -152,6 +152,7 @@ typedef enum {
 
 @property (nonatomic, strong) UIView *pickerContainer;
 @property (nonatomic, readwrite, strong) UIPickerView *picker;
+@property (nonatomic, readwrite, strong) UIDatePicker *datePicker;
 @property (nonatomic, strong) NSLayoutConstraint *pickerHeightConstraint;
 
 @property (nonatomic, strong) UIView *cancelAndSelectButtonContainer;
@@ -161,7 +162,10 @@ typedef enum {
 
 @property (nonatomic, strong) UIMotionEffectGroup *motionEffectGroup;
 
+@property (nonatomic, assign) RMPickerType type;
+
 @property (nonatomic, copy) RMSelectionBlock selectedBlock;
+@property (nonatomic, copy) RMDateSelectionBlock dateSelectedBlock;
 @property (nonatomic, copy) RMCancelBlock cancelBlock;
 
 @property (nonatomic, assign) BOOL hasBeenDismissed;
@@ -174,7 +178,14 @@ typedef enum {
 
 #pragma mark - Class
 + (instancetype)pickerController {
-    return [[RMPickerViewController alloc] init];
+    return [RMPickerViewController pickerControllerWithType:RMPickerTypeNormal];
+}
+
++ (instancetype)pickerControllerWithType:(RMPickerType)type {
+    RMPickerViewController *vc = [RMPickerViewController new];
+    vc.type = type;
+    
+    return vc;
 }
 
 static NSString *_localizedCancelTitle = @"Cancel";
@@ -314,9 +325,13 @@ static NSString *_localizedSelectTitle = @"Select";
     //Instantiate elements
     self.titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     
-    self.picker = [[UIPickerView alloc] initWithFrame:CGRectZero];
-    self.picker.delegate = self.delegate;
-    self.picker.dataSource = self.delegate;
+    if (self.type == RMPickerTypeNormal) {
+        self.picker = [[UIPickerView alloc] initWithFrame:CGRectZero];
+        self.picker.delegate = self.delegate;
+        self.picker.dataSource = self.delegate;
+    } else {
+        self.datePicker = [[UIDatePicker alloc] initWithFrame:CGRectZero];
+    }
     
     self.cancelAndSelectButtonSeperator = [[UIView alloc] initWithFrame:CGRectZero];
     self.cancelButton = [UIButton buttonWithType:UIButtonTypeSystem];
@@ -330,8 +345,8 @@ static NSString *_localizedSelectTitle = @"Select";
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.titleLabel.numberOfLines = 0;
     
-    self.picker.layer.cornerRadius = 4;
-    self.picker.translatesAutoresizingMaskIntoConstraints = NO;
+    self.picker.layer.cornerRadius = self.datePicker.layer.cornerRadius = 4;
+    self.picker.translatesAutoresizingMaskIntoConstraints = self.datePicker.translatesAutoresizingMaskIntoConstraints = NO;
     
     [self.cancelButton setTitle:[RMPickerViewController localizedTitleForCancelButton] forState:UIControlStateNormal];
     [self.cancelButton addTarget:self action:@selector(cancelButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
@@ -390,7 +405,9 @@ static NSString *_localizedSelectTitle = @"Select";
     
     if(!self.disableBlurEffects) {
         [[[[[(UIVisualEffectView *)self.titleLabelContainer contentView] subviews] objectAtIndex:0] contentView] addSubview:self.titleLabel];
-        [[[[[(UIVisualEffectView *)self.pickerContainer contentView] subviews] objectAtIndex:0] contentView] addSubview:self.picker];
+        
+        UIView *picker = self.type == RMPickerTypeNormal ? self.picker : self.datePicker;
+        [[[[[(UIVisualEffectView *)self.pickerContainer contentView] subviews] objectAtIndex:0] contentView] addSubview:picker];
         
         [[[[[(UIVisualEffectView *)self.cancelAndSelectButtonContainer contentView] subviews] objectAtIndex:0] contentView] addSubview:self.cancelAndSelectButtonSeperator];
         [[[[[(UIVisualEffectView *)self.cancelAndSelectButtonContainer contentView] subviews] objectAtIndex:0] contentView] addSubview:self.cancelButton];
@@ -401,7 +418,9 @@ static NSString *_localizedSelectTitle = @"Select";
         self.cancelAndSelectButtonContainer.backgroundColor = [UIColor clearColor];
     } else {
         [self.titleLabelContainer addSubview:self.titleLabel];
-        [self.pickerContainer addSubview:self.picker];
+        
+        UIView *picker = self.type == RMPickerTypeNormal ? self.picker : self.datePicker;
+        [self.pickerContainer addSubview:picker];
         
         [self.cancelAndSelectButtonContainer addSubview:self.cancelAndSelectButtonSeperator];
         [self.cancelAndSelectButtonContainer addSubview:self.cancelButton];
@@ -434,7 +453,7 @@ static NSString *_localizedSelectTitle = @"Select";
     UIView *seperator = self.cancelAndSelectButtonSeperator;
     UIButton *cancel = self.cancelButton;
     UIButton *select = self.selectButton;
-    UIPickerView *picker = self.picker;
+    UIView *picker = self.type == RMPickerTypeNormal ? self.picker : self.datePicker;
     UIView *labelContainer = self.titleLabelContainer;
     UILabel *label = self.titleLabel;
     
@@ -548,8 +567,10 @@ static NSString *_localizedSelectTitle = @"Select";
             self.pickerHeightConstraint.constant = RM_PICKER_HEIGHT_PORTRAIT;
         }
         
-        [self.picker setNeedsUpdateConstraints];
-        [self.picker layoutIfNeeded];
+        UIView *picker = self.type == RMPickerTypeNormal ? self.picker : self.datePicker;
+        
+        [picker setNeedsUpdateConstraints];
+        [picker layoutIfNeeded];
     }
     
     [self.rootViewController.view setNeedsUpdateConstraints];
@@ -583,6 +604,8 @@ static NSString *_localizedSelectTitle = @"Select";
 
 #pragma mark - Properties
 - (void)setDelegate:(id<RMPickerViewControllerDelegate>)newDelegate {
+    NSAssert(self.type == RMPickerTypeDate, @"Setting the delegate is not allowed with RMPickerTypeDate. Use block based APIs to present the picker.");
+    
     if(newDelegate != _delegate) {
         _delegate = newDelegate;
         
@@ -661,7 +684,8 @@ static NSString *_localizedSelectTitle = @"Select";
         _tintColor = newTintColor;
         
         if(!self.disableBlurEffects) {
-            self.picker.tintColor = newTintColor;
+            UIView *picker = self.type == RMPickerTypeNormal ? self.picker : self.datePicker;
+            picker.tintColor = newTintColor;
         }
         
         self.cancelButton.tintColor = newTintColor;
@@ -727,6 +751,16 @@ static NSString *_localizedSelectTitle = @"Select";
     [RMPickerViewController showPickerViewController:self animated:YES];
 }
 
+- (void)showWithDateSelectionHandler:(RMDateSelectionBlock)dateSelectionBlock andCancelHandler:(RMCancelBlock)cancelBlock {
+    self.dateSelectedBlock = dateSelectionBlock;
+    self.cancelBlock = cancelBlock;
+    
+    self.presentationType = RMPickerViewControllerPresentationTypeWindow;
+    self.rootViewController = self.window.rootViewController;
+    
+    [RMPickerViewController showPickerViewController:self animated:YES];
+}
+
 - (void)showFromViewController:(UIViewController *)aViewController {
     [self showFromViewController:aViewController withSelectionHandler:nil andCancelHandler:nil];
 }
@@ -756,6 +790,31 @@ static NSString *_localizedSelectTitle = @"Select";
     }
 }
 
+- (void)showFromViewController:(UIViewController *)aViewController withDateSelectionHandler:(RMDateSelectionBlock)dateSelectionBlock andCancelHandler:(RMCancelBlock)cancelBlock {
+    if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        if([aViewController isKindOfClass:[UITableViewController class]]) {
+            if(aViewController.navigationController) {
+                NSLog(@"Warning: -[RMPickerViewController showFromViewController:] has been called with an instance of UITableViewController as argument. Trying to use the navigation controller of the UITableViewController instance instead.");
+                aViewController = aViewController.navigationController;
+            } else {
+                NSLog(@"Error: -[RMPickerViewController showFromViewController:] has been called with an instance of UITableViewController as argument. Showing the picker view controller from an instance of UITableViewController is not possible due to some internals of UIKit. To prevent your app from crashing, showing the picker view controller will be canceled.");
+                return;
+            }
+        }
+        
+        self.dateSelectedBlock = dateSelectionBlock;
+        self.cancelBlock = cancelBlock;
+        
+        self.presentationType = RMPickerViewControllerPresentationTypeViewController;
+        self.rootViewController = aViewController;
+        
+        [RMPickerViewController showPickerViewController:self animated:YES];
+    } else {
+        NSLog(@"Warning: -[RMPickerViewController %@] has been called on an iPhone. This method is iPad only so we will use -[RMPickerViewController %@] instead.", NSStringFromSelector(_cmd), NSStringFromSelector(@selector(showWithDateSelectionHandler:andCancelHandler:)));
+        [self showWithDateSelectionHandler:dateSelectionBlock andCancelHandler:cancelBlock];
+    }
+}
+
 - (void)showFromRect:(CGRect)aRect inView:(UIView *)aView {
     [self showFromRect:aRect inView:aView withSelectionHandler:nil andCancelHandler:nil];
 }
@@ -780,6 +839,26 @@ static NSString *_localizedSelectTitle = @"Select";
     }
 }
 
+- (void)showFromRect:(CGRect)aRect inView:(UIView *)aView withDateSelectionHandler:(RMDateSelectionBlock)dateSelectionBlock andCancelHandler:(RMCancelBlock)cancelBlock {
+    if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        self.dateSelectedBlock = dateSelectionBlock;
+        self.cancelBlock = cancelBlock;
+        
+        self.presentationType = RMPickerViewControllerPresentationTypePopover;
+        CGSize fittingSize = [self.view systemLayoutSizeFittingSize:CGSizeMake(0, 0)];
+        
+        self.popover = [[UIPopoverController alloc] initWithContentViewController:self];
+        self.popover.delegate = self;
+        self.popover.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.4];
+        self.popover.popoverContentSize = CGSizeMake(fittingSize.width, fittingSize.height+10);
+        
+        [self.popover presentPopoverFromRect:aRect inView:aView permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    } else {
+        NSLog(@"Warning: -[RMPickerViewController %@] has been called on an iPhone. This method is iPad only so we will use -[RMPickerViewController %@] instead.", NSStringFromSelector(_cmd), NSStringFromSelector(@selector(showWithDateSelectionHandler:andCancelHandler:)));
+        [self showWithDateSelectionHandler:dateSelectionBlock andCancelHandler:cancelBlock];
+    }
+}
+
 - (void)dismiss {
     if(self.presentationType == RMPickerViewControllerPresentationTypePopover && [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         self.popover.delegate = nil;
@@ -796,15 +875,26 @@ static NSString *_localizedSelectTitle = @"Select";
     if(!self.hasBeenDismissed) {
         self.hasBeenDismissed = YES;
         
-        NSMutableArray *selectedRows = [NSMutableArray array];
-        for(NSInteger i=0 ; i<[self.picker numberOfComponents] ; i++) {
-            [selectedRows addObject:@([self.picker selectedRowInComponent:i])];
+        if (self.type == RMPickerTypeNormal) {
+            NSMutableArray *selectedRows = [NSMutableArray array];
+            for(NSInteger i=0 ; i<[self.picker numberOfComponents] ; i++) {
+                [selectedRows addObject:@([self.picker selectedRowInComponent:i])];
+            }
+            
+            if ([self.delegate respondsToSelector:@selector(pickerViewController:didSelectRows:)]) {
+                [self.delegate pickerViewController:self didSelectRows:selectedRows];
+            }
+            if (self.selectedBlock) {
+                self.selectedBlock(self, selectedRows);
+            }
+        } else { // self.type == RMPickerTypeDate
+            NSDate *date = self.datePicker.date;
+            
+            if (self.dateSelectedBlock) {
+                self.dateSelectedBlock(self, date);
+            }
         }
         
-        [self.delegate pickerViewController:self didSelectRows:selectedRows];
-        if (self.selectedBlock) {
-            self.selectedBlock(self, selectedRows);
-        }
         [self performSelector:@selector(dismiss) withObject:nil afterDelay:0.1];
     }
 }
