@@ -37,6 +37,14 @@
 typedef void (^RMSelectionBlock)(RMPickerViewController *vc, NSArray *selectedRows);
 
 /**
+ *  This block is called when the user selects a date if blocks are used.
+ *
+ *  @param vc           The picker view controller that just finished selecting a row.
+ *  @param date         The date that is selected.
+ */
+typedef void (^RMDateSelectionBlock)(RMPickerViewController *vc, NSDate *date);
+
+/**
  *  This block is called when the user cancels if blocks are used.
  *
  *  @param vc The picker view controller that just got canceled.
@@ -72,7 +80,7 @@ typedef void (^RMCancelBlock)(RMPickerViewController *vc);
 @end
 
 /**
- *  RMPickerViewController is an iOS control for selecting a row using UIPickerView in a UIActionSheet like fashion. When a RMPickerViewController is shown the user gets the opportunity to select some rows using a UIPickerView.
+ *  RMPickerViewController is an iOS control for selecting a row using UIPickerView or a date using UIDatePicker in a UIActionSheet like fashion. When a RMPickerViewController is shown the user gets the opportunity to select some rows using a UIPickerView or a date using UIDatePicker.
  *  
  *  RMPickerViewController supports bouncing effects when animating the picker view controller. In addition, motion effects are supported while showing the picker view controller. Both effects can be disabled by using the properties called disableBouncingWhenShowing and disableMotionEffects.
  *
@@ -80,6 +88,16 @@ typedef void (^RMCancelBlock)(RMPickerViewController *vc);
  *
  *  @warning RMPickerViewController is not designed to be reused. Each time you want to display a RMPickerViewController a new instance should be created. If you want to select a specific row before displaying, you can do so by using the picker property.
  */
+
+/**
+ *  Use one of these types with `+pickerControllerWithType:` to get the appropriate picker.
+ *  Using `+pickerController` defaults to `RMPickerTypeNormal`.
+ */
+typedef NS_ENUM(NSUInteger, RMPickerType) {
+    RMPickerTypeNormal = 1,
+    RMPickerTypeDate
+};
+
 @interface RMPickerViewController : UIViewController
 
 /// @name Getting an Instance
@@ -92,6 +110,15 @@ typedef void (^RMCancelBlock)(RMPickerViewController *vc);
  *  @return Returns a new instance of RMPickerViewController.
  */
 + (instancetype)pickerController;
+
+/**
+ *  This returns a new instance of RMPickerViewController for the given type.
+ *
+ *  @warning Always use this class method to get an instance. Do not initialize an instance yourself.
+ *
+ *  @return Returns a new instance of RMPickerViewController for the given type.
+ */
++ (instancetype)pickerControllerWithType:(RMPickerType)type;
 
 /// @name Localization
 
@@ -115,15 +142,22 @@ typedef void (^RMCancelBlock)(RMPickerViewController *vc);
  *  Used to set the delegate.
  *
  *  The delegate must conform to the RMPickerViewControllerDelegate protocol.
+ * 
+ *  @warning If `type` is `RMPickerTypeDate`, `delegate` should not be assigned.
  */
 @property (nonatomic, weak) id<RMPickerViewControllerDelegate> delegate;
 
 /// @name User Interface
 
 /**
- *  Will return the instance of UIPickerView that is used.
+ *  Will return the instance of UIPickerView that is used or `nil` if the type is `RMPickerTypeDate`.
  */
 @property (nonatomic, readonly) UIPickerView *picker;
+
+/**
+ *  Will return the instance of UIDatePicker that is used or `nil` if the type is `RMPickerTypeNormal`.
+ */
+@property (nonatomic, readonly) UIDatePicker *datePicker;
 
 /**
  *  Will return the label that is used as a title for the picker. You can use this property to set a title and to customize the appearance of the title.
@@ -197,7 +231,7 @@ typedef void (^RMCancelBlock)(RMPickerViewController *vc);
 /**
  *  This shows the picker view controller on top of every other view controller using a new UIWindow. The RMPickerViewController will be added as a child view controller of the UIWindows root view controller. The background of the root view controller is used to darken the views behind the RMPickerViewController.
  *
- *  After a row has been selected the selection block will be called. If the user choses to cancel the selection, the cancel block will be called. If you assigned a delegate the corresponding delegate methods will be called, too.
+ *  After a row has been selected the selection block will be called. If the user chooses to cancel the selection, the cancel block will be called. If you assigned a delegate the corresponding delegate methods will be called, too.
  *
  *  This method is the preferred method for showing a RMPickerViewController on iPhones and iPads when a block based API is preferred. Nevertheless, there are situations where this method is not sufficient on iPads. An example for this is that the RMPickerViewController shall be shown within an UIPopover. This can be achieved by using [showFromViewController:withSelectionHandler:andCancelHandler:]([RMPickerViewController showFromViewController:withSelectionHandler:andCancelHandler:]).
  *
@@ -207,9 +241,21 @@ typedef void (^RMCancelBlock)(RMPickerViewController *vc);
 - (void)showWithSelectionHandler:(RMSelectionBlock)selectionBlock andCancelHandler:(RMCancelBlock)cancelBlock;
 
 /**
+ *  This shows the picker view controller on top of every other view controller using a new UIWindow. The RMPickerViewController will be added as a child view controller of the UIWindows root view controller. The background of the root view controller is used to darken the views behind the RMPickerViewController.
+ *
+ *  After a date has been selected the date selection block will be called. If the user chooses to cancel the selection, the cancel block will be called. If you assigned a delegate the corresponding delegate methods will be called, too.
+ *
+ *  This method is the preferred method for showing a RMPickerViewController on iPhones and iPads when a block based API is preferred. Nevertheless, there are situations where this method is not sufficient on iPads. An example for this is that the RMPickerViewController shall be shown within an UIPopover. This can be achieved by using [showFromViewController:withDateSelectionHandler:andCancelHandler:]([RMPickerViewController showFromViewController:withDateSelectionHandler:andCancelHandler:]).
+ *
+ *  @param selectionBlock The block to call when the user selects a row.
+ *  @param cancelBlock    The block to call when the user cancels the selection.
+ */
+- (void)showWithDateSelectionHandler:(RMDateSelectionBlock)dateSelectionBlock andCancelHandler:(RMCancelBlock)cancelBlock;
+
+/**
  *  This shows the picker view controller as child view controller of the view controller you passed in as parameter. The content of this view controller will be darkened and the picker view controller will be shown on top.
  *
- *  @warning This method should only be used on iPads in situations where [show]([RMPickerViewController show]) is not sufficient (for example, when the RMPickerViewController shoud be shown within an UIPopover). If [show]([RMPickerViewController show]) is sufficient, please use it!
+ *  @warning This method should only be used on iPads in situations where [show]([RMPickerViewController show]) is not sufficient (for example, when the RMPickerViewController should be shown within an UIPopover). If [show]([RMPickerViewController show]) is sufficient, please use it!
  *
  *  @warning Make sure the delegate property is assigned. Otherwise you will not get any calls when a row is selected or the selection has been canceled.
  *
@@ -220,15 +266,28 @@ typedef void (^RMCancelBlock)(RMPickerViewController *vc);
 /**
  *  This shows the picker view controller as child view controller of the view controller you passed in as parameter. The content of this view controller will be darkened and the picker view controller will be shown on top.
  *
- *  After a row has been selected the selection block will be called. If the user choses to cancel the selection, the cancel block will be called. If you assigned a delegate the corresponding delegate methods will be called, too.
+ *  After a row has been selected the selection block will be called. If the user chooses to cancel the selection, the cancel block will be called. If you assigned a delegate the corresponding delegate methods will be called, too.
  *
- *  @warning This method should only be used on iPads in situations where [showWithSelectionHandler:andCancelHandler:]([RMPickerViewController showWithSelectionHandler:andCancelHandler:]) is not sufficient (for example, when the RMPickerViewController shoud be shown within an UIPopover). If [showWithSelectionHandler:andCancelHandler:]([RMPickerViewController showWithSelectionHandler:andCancelHandler:]) is sufficient, please use it!
+ *  @warning This method should only be used on iPads in situations where [showWithSelectionHandler:andCancelHandler:]([RMPickerViewController showWithSelectionHandler:andCancelHandler:]) is not sufficient (for example, when the RMPickerViewController should be shown within an UIPopover). If [showWithSelectionHandler:andCancelHandler:]([RMPickerViewController showWithSelectionHandler:andCancelHandler:]) is sufficient, please use it!
  *
  *  @param aViewController The parent view controller of the RMPickerViewController.
  *  @param selectionBlock  The block to call when the user selects a row.
  *  @param cancelBlock     The block to call when the user cancels the selection.
  */
 - (void)showFromViewController:(UIViewController *)aViewController withSelectionHandler:(RMSelectionBlock)selectionBlock andCancelHandler:(RMCancelBlock)cancelBlock;
+
+/**
+ *  This shows the picker view controller as child view controller of the view controller you passed in as parameter. The content of this view controller will be darkened and the picker view controller will be shown on top.
+ *
+ *  After a date has been selected the date selection block will be called. If the user chooses to cancel the selection, the cancel block will be called. If you assigned a delegate the corresponding delegate methods will be called, too.
+ *
+ *  @warning This method should only be used on iPads in situations where [showWithDateSelectionHandler:andCancelHandler:]([RMPickerViewController showWithDateSelectionHandler:andCancelHandler:]) is not sufficient (for example, when the RMPickerViewController should be shown within an UIPopover). If [showWithDateSelectionHandler:andCancelHandler:]([RMPickerViewController showWithDateSelectionHandler:andCancelHandler:]) is sufficient, please use it!
+ *
+ *  @param aViewController      The parent view controller of the RMPickerViewController.
+ *  @param dateSelectionBlock   The block to call when the user selects a date.
+ *  @param cancelBlock          The block to call when the user cancels the selection.
+ */
+- (void)showFromViewController:(UIViewController *)aViewController withDateSelectionHandler:(RMDateSelectionBlock)dateSelectionBlock andCancelHandler:(RMCancelBlock)cancelBlock;
 
 /**
  *  This shows the picker view controller within a popover. The popover is initialized with the picker view controller as content view controller and then presented from the rect in the view given as parameters.
@@ -245,7 +304,7 @@ typedef void (^RMCancelBlock)(RMPickerViewController *vc);
 /**
  *  This shows the picker view controller within a popover. The popover is initialized with the picker view controller as content view controller and then presented from the rect in the view given as parameters.
  *
- *  After a row has been selected the selection block will be called. If the user choses to cancel the selection, the cancel block will be called. If you assigned a delegate the corresponding methods will be called, too.
+ *  After a row has been selected the selection block will be called. If the user chooses to cancel the selection, the cancel block will be called. If you assigned a delegate the corresponding methods will be called, too.
  *
  *  @warning This method should only be used on iPads. On iPhones please use [show]([RMPickerViewController show]) or [showWithSelectionHandler:andCancelHandler:]([RMPickerViewController showWithSelectionHandler:andCancelHandler:]) instead.
  *
@@ -255,6 +314,20 @@ typedef void (^RMCancelBlock)(RMPickerViewController *vc);
  *  @param cancelBlock    The block to call when the user cancels the selection.
  */
 - (void)showFromRect:(CGRect)aRect inView:(UIView *)aView withSelectionHandler:(RMSelectionBlock)selectionBlock andCancelHandler:(RMCancelBlock)cancelBlock;
+
+/**
+ *  This shows the picker view controller within a popover. The popover is initialized with the picker view controller as content view controller and then presented from the rect in the view given as parameters.
+ *
+ *  After a date has been selected the date selection block will be called. If the user chooses to cancel the selection, the cancel block will be called. If you assigned a delegate the corresponding methods will be called, too.
+ *
+ *  @warning This method should only be used on iPads. On iPhones please use [show]([RMPickerViewController show]) or [showWithDateSelectionHandler:andCancelHandler:]([RMPickerViewController showWithDateSelectionHandler:andCancelHandler:]) instead.
+ *
+ *  @param aRect The rect in the given view the popover should be presented from.
+ *  @param aView The view the popover should be presented from.
+ *  @param dateSelectionBlock The block to call when the user selects a date.
+ *  @param cancelBlock    The block to call when the user cancels the selection.
+ */
+- (void)showFromRect:(CGRect)aRect inView:(UIView *)aView withDateSelectionHandler:(RMDateSelectionBlock)dateSelectionBlock andCancelHandler:(RMCancelBlock)cancelBlock;
 
 /// @name Dismissing
 
