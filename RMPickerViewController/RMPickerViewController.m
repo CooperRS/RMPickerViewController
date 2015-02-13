@@ -24,6 +24,9 @@
 //  THE SOFTWARE.
 //
 
+#import "RMPickerViewController.h"
+#import <QuartzCore/QuartzCore.h>
+
 /*
  * We need RMNonRotatingViewController because Apple decided that a UIWindow adds a black background while rotating.
  * ( http://stackoverflow.com/questions/19782944/blacked-out-interface-rotation-when-using-second-uiwindow-with-rootviewcontrolle )
@@ -36,6 +39,8 @@
 
 @property (nonatomic, assign) UIInterfaceOrientation mutableInterfaceOrientation;
 @property (nonatomic, assign, readwrite) UIStatusBarStyle preferredStatusBarStyle;
+@property (nonatomic, assign) RMPickerViewControllerStatusBarHiddenMode statusBarHiddenMode;
+
 
 @end
 
@@ -111,23 +116,26 @@
 
 #pragma mark - Status Bar
 - (BOOL)prefersStatusBarHidden {
-    if([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0 && [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
-        if(UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation))
-            return YES;
-        
+    if(self.statusBarHiddenMode == RMPickerViewControllerStatusBarHiddenModeNever) {
         return NO;
+    } else if(self.statusBarHiddenMode == RMPickerViewControllerStatusBarHiddenModeAlways) {
+        return YES;
+    } else {
+        if([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0 && [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+            if(UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation))
+                return YES;
+            
+            return NO;
+        } else {
+            return NO;
+        }
     }
-    
-    return [super prefersStatusBarHidden];
 }
 
 @end
 
 #define RM_PICKER_HEIGHT_PORTRAIT 216
 #define RM_PICKER_HEIGHT_LANDSCAPE 162
-
-#import "RMPickerViewController.h"
-#import <QuartzCore/QuartzCore.h>
 
 typedef enum {
     RMPickerViewControllerPresentationTypeWindow,
@@ -637,6 +645,7 @@ static NSString *_localizedSelectTitle = @"Select";
         
         RMNonRotatingPickerViewController *rootViewController = [[RMNonRotatingPickerViewController alloc] init];
         rootViewController.preferredStatusBarStyle = self.preferredStatusBarStyle;
+        rootViewController.statusBarHiddenMode = self.statusBarHiddenMode;
         _window.rootViewController = rootViewController;
     }
     

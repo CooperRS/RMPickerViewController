@@ -26,6 +26,15 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSInteger, RMPickerViewControllerStatusBarHiddenMode) {
+    /** On iOS 7, the status bar is not hidden in any orientation. On iOS 8, the status is not hidden in portrait mode and hidden in landscape mode. */
+    RMPickerViewControllerStatusBarHiddenModeDefault,
+    /** The status bar is always hidden, regardless of orientation and iOS version. */
+    RMPickerViewControllerStatusBarHiddenModeAlways,
+    /** The status bar is never hidden, regardless of orientation and iOS version. */
+    RMPickerViewControllerStatusBarHiddenModeNever
+};
+
 @class RMPickerViewController;
 
 /**
@@ -143,6 +152,11 @@ typedef void (^RMCancelBlock)(RMPickerViewController *vc);
  *  Used to set the preferred status bar style.
  */
 @property (nonatomic, assign, readwrite) UIStatusBarStyle preferredStatusBarStyle;
+
+/**
+ *  Used to hide the status bar.
+ */
+@property (nonatomic, assign) RMPickerViewControllerStatusBarHiddenMode statusBarHiddenMode;
 
 /**
  *  Used to set the text color of the buttons (has no effect on picker view).
