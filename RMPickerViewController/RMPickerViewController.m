@@ -179,6 +179,7 @@ typedef enum {
 @implementation RMPickerViewController
 
 @synthesize selectedBackgroundColor = _selectedBackgroundColor;
+@synthesize disableMotionEffects = _disableMotionEffects;
 
 #pragma mark - Class
 + (instancetype)pickerController {
@@ -600,11 +601,21 @@ static NSString *_localizedSelectTitle = @"Select";
 }
 
 - (BOOL)disableBlurEffects {
-    if(NSClassFromString(@"UIBlurEffect") && NSClassFromString(@"UIVibrancyEffect") && NSClassFromString(@"UIVisualEffectView") && !_disableBlurEffects) {
-        return NO;
+    if(!NSClassFromString(@"UIBlurEffect") || !NSClassFromString(@"UIVibrancyEffect") || !NSClassFromString(@"UIVisualEffectView")) {
+        return YES;
+    } else if(UIAccessibilityIsReduceTransparencyEnabled()) {
+        return YES;
     }
     
-    return YES;
+    return _disableBlurEffects;
+}
+
+- (BOOL)disableMotionEffects {
+    if(UIAccessibilityIsReduceMotionEnabled()) {
+        return YES;
+    }
+    
+    return _disableMotionEffects;
 }
 
 - (void)setDisableMotionEffects:(BOOL)newDisableMotionEffects {
@@ -619,6 +630,14 @@ static NSString *_localizedSelectTitle = @"Select";
             }
         }
     }
+}
+
+- (BOOL)disableBouncingWhenShowing {
+    if(UIAccessibilityIsReduceMotionEnabled()) {
+        return YES;
+    }
+    
+    return _disableBouncingWhenShowing;
 }
 
 - (UIMotionEffectGroup *)motionEffectGroup {

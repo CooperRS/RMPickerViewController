@@ -177,18 +177,22 @@ typedef void (^RMCancelBlock)(RMPickerViewController *vc);
 
 /**
  *  Used to enable or disable motion effects. Default value is NO.
+ *
+ *  @warning This property always returns YES, if motion is reduced via accessibilty options.
  */
 @property (assign, nonatomic) BOOL disableMotionEffects;
 
 /**
  *  Used to enable or disable bouncing effects when sliding in the picker view. Default value is NO.
+ *
+ *  @warning This property always returns YES, if motion is reduced via accessibilty options.
  */
 @property (assign, nonatomic) BOOL disableBouncingWhenShowing;
 
 /**
  *  Used to enable or disable blurring the picker view. Default value is NO.
  *
- *  @warning This property always returns NO if either UIBlurEffect, UIVibrancyEffect or UIVisualEffectView is not available on your system at runtime.
+ *  @warning This property always returns YES if either UIBlurEffect, UIVibrancyEffect or UIVisualEffectView is not available on your system at runtime or transparency is reduced via accessibility options.
  */
 @property (assign, nonatomic) BOOL disableBlurEffects;
 
