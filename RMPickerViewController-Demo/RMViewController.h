@@ -28,6 +28,6 @@
 
 #import "RMPickerViewController.h"
 
-@interface RMViewController : UITableViewController <RMPickerViewControllerDelegate>
+@interface RMViewController : UITableViewController
 
 @end

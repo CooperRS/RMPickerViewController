@@ -22,7 +22,6 @@
 		CABBCD82189521D10006213F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CABBCD7B189521D10006213F /* Main.storyboard */; };
 		CABBCD85189521D10006213F /* RMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CABBCD81189521D10006213F /* RMViewController.m */; };
 		CABBCD861895351E0006213F /* RMPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CABBCD79189521C00006213F /* RMPickerViewController.m */; };
-		CAFFF2C219A739E100432B37 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAFFF2C119A739E100432B37 /* Main_iPad.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +36,7 @@
 
 /* Begin PBXFileReference section */
 		CA04D6AD18990BBF00A5E59B /* RMPickerViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMPickerViewControllerTests.m; sourceTree = "<group>"; };
-		CA1E624A1A24D6840025A6A6 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "Launch Screen.xib"; path = "../Launch Screen.xib"; sourceTree = "<group>"; };
+		CA1E624A1A24D6840025A6A6 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		CABBCD26189520D50006213F /* RMPickerViewController-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RMPickerViewController-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CABBCD29189520D50006213F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CABBCD2B189520D50006213F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -58,7 +57,6 @@
 		CABBCD7D189521D10006213F /* RMPickerViewController-Demo-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RMPickerViewController-Demo-Prefix.pch"; sourceTree = "<group>"; };
 		CABBCD80189521D10006213F /* RMViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMViewController.h; sourceTree = "<group>"; };
 		CABBCD81189521D10006213F /* RMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMViewController.m; sourceTree = "<group>"; };
-		CAFFF2C119A739E100432B37 /* Main_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPad.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,7 +121,6 @@
 				CABBCD38189520D50006213F /* RMAppDelegate.h */,
 				CABBCD39189520D50006213F /* RMAppDelegate.m */,
 				CABBCD7B189521D10006213F /* Main.storyboard */,
-				CAFFF2C119A739E100432B37 /* Main_iPad.storyboard */,
 				CABBCD80189521D10006213F /* RMViewController.h */,
 				CABBCD81189521D10006213F /* RMViewController.m */,
 				CABBCD44189520D50006213F /* Images.xcassets */,
@@ -247,7 +244,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CAFFF2C219A739E100432B37 /* Main_iPad.storyboard in Resources */,
 				CA1E624B1A24D6840025A6A6 /* Launch Screen.xib in Resources */,
 				CABBCD45189520D50006213F /* Images.xcassets in Resources */,
 				CABBCD82189521D10006213F /* Main.storyboard in Resources */,
@@ -338,7 +334,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -370,7 +366,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

@@ -26,7 +26,7 @@
 
 #import "RMViewController.h"
 
-@interface RMViewController () <RMPickerViewControllerDelegate>
+@interface RMViewController () <UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (nonatomic, weak) IBOutlet UISwitch *blackSwitch;
 @property (nonatomic, weak) IBOutlet UISwitch *blurSwitch;
@@ -40,8 +40,20 @@
 #pragma mark - Actions
 - (IBAction)openPickerController:(id)sender {
     RMPickerViewController *pickerVC = [RMPickerViewController pickerController];
-    pickerVC.delegate = self;
+    pickerVC.picker.delegate = self;
+    pickerVC.picker.dataSource = self;
+    
+    //Set a title for the date selection
     pickerVC.titleLabel.text = @"This is an example title.\n\nPlease choose a row and press 'Select' or 'Cancel'.";
+    
+    //Set select and (optional) cancel blocks
+    [pickerVC setSelectButtonAction:^(RMPickerViewController *controller, NSArray *rows) {
+        NSLog(@"Successfully selected rows: %@", rows);
+    }];
+    
+    [pickerVC setCancelButtonAction:^(RMPickerViewController *controller) {
+        NSLog(@"Row selection was canceled");
+    }];
     
     //You can enable or disable bouncing and motion effects
     pickerVC.disableBouncingWhenShowing = !self.bouncingSwitch.on;
@@ -57,47 +69,19 @@
     //pickerVC.backgroundColor = [UIColor colorWithWhite:0.25 alpha:1];
     //pickerVC.selectedBackgroundColor = [UIColor colorWithWhite:0.4 alpha:1];
     
-    //The example project is universal. So we first need to check whether we run on an iPhone or an iPad.
-    if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        //OK, running on an iPhone. The following lines demonstrate the two ways to show the picker view controller on iPhones:
-        //(Note: These two methods also work an iPads.)
+    //On the iPad we want to show the date selection view controller within a popover. Fortunately, we can use iOS 8 API for this! :)
+    //(Of course only if we are running on iOS 8 or later)
+    if([pickerVC respondsToSelector:@selector(popoverPresentationController)] && [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        //First we set the modal presentation style to the popover style
+        pickerVC.modalPresentationStyle = UIModalPresentationPopover;
         
-        // 1. Just show the picker view controller (make sure the delegate property is assigned)
-        [pickerVC show];
-        
-        // 2. Instead of using a delegate you can also pass blocks when showing the picker view controller
-        //[pickerVC showWithSelectionHandler:^(RMPickerViewController *vc, NSArray *selectedRows) {
-        //    NSLog(@"Successfully selected rows: %@", selectedRows);
-        //} andCancelHandler:^(RMPickerViewController *vc) {
-        //    NSLog(@"Row selection was canceled (with block)");
-        //}];
-    } else if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        //OK, running on an iPad. The following lines demonstrate the two special ways of showing the picker view controller on iPads:
-        
-        // 1. Show the picker view controller from a particular view controller (make sure the delegate property is assigned).
-        //    This method can be used to show the picker view controller within popovers.
-        //    (Note: We do not use self as the view controller, as showing a picker view controller from a table view controller
-        //           is not supported due to UIKit limitations.)
-        //[pickerVC showFromViewController:self.navigationController];
-        
-        // 2. As with the two ways of showing the picker view controller on iPhones, we can also use a blocks based API.
-        //[pickerVC showFromViewController:self.navigationController withSelectionHandler:^(RMPickerViewController *vc, NSArray *selectedRows) {
-        //    NSLog(@"Successfully selected rows: %@", selectedRows);
-        //} andCancelHandler:^(RMPickerViewController *vc) {
-        //    NSLog(@"Row selection was canceled (with block)");
-        //}];
-        
-        // 3. Show the date selection view controller using a UIPopoverController. The rect and the view are used to tell the
-        //    UIPopoverController where to show up.
-        [pickerVC showFromRect:[self.tableView rectForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]] inView:self.view];
-        
-        // 4. The date selectionview controller can also be shown within a popover while also using blocks based API.
-        //[pickerVC showFromRect:[self.tableView rectForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]] inView:self.tableView withSelectionHandler:^(RMPickerViewController *vc, NSArray *selectedRows) {
-        //    NSLog(@"Successfully selected rows: %@", selectedRows);
-        //} andCancelHandler:^(RMPickerViewController *vc) {
-        //    NSLog(@"Row selection was canceled (with block)");
-        //}];
+        //Then we tell the popover presentation controller, where the popover should appear
+        pickerVC.popoverPresentationController.sourceView = self.tableView;
+        pickerVC.popoverPresentationController.sourceRect = [self.tableView rectForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     }
+    
+    //Now just present the date selection controller using the standard iOS presentation method
+    [self presentViewController:pickerVC animated:YES completion:nil];
 }
 
 #pragma mark - UITableView Delegates

@@ -26,60 +26,6 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSInteger, RMPickerViewControllerStatusBarHiddenMode) {
-    /** On iOS 7, the status bar is not hidden in any orientation. On iOS 8, the status is not hidden in portrait mode and hidden in landscape mode. */
-    RMPickerViewControllerStatusBarHiddenModeDefault,
-    /** The status bar is always hidden, regardless of orientation and iOS version. */
-    RMPickerViewControllerStatusBarHiddenModeAlways,
-    /** The status bar is never hidden, regardless of orientation and iOS version. */
-    RMPickerViewControllerStatusBarHiddenModeNever
-};
-
-@class RMPickerViewController;
-
-/**
- *  This block is called when the user selects a certain row if blocks are used.
- *
- *  @param vc           The picker view controller that just finished selecting a row.
- *  @param selectedRows An array of selected rows (one entry per component).
- */
-typedef void (^RMSelectionBlock)(RMPickerViewController *vc, NSArray *selectedRows);
-
-/**
- *  This block is called when the user cancels if blocks are used.
- *
- *  @param vc The picker view controller that just got canceled.
- */
-typedef void (^RMCancelBlock)(RMPickerViewController *vc);
-
-/**
- *  On the one hand, these methods are used to inform the [delegate]([RMPickerViewController delegate]) of an instance of RMPickerViewController about the status of the picker view controller. On the other hand, they are also used to control what content the picker view controller displays. For this purpose this protocol conforms to UIPickerViewDataSource and UIPickerViewDelegate.
- */
-@protocol RMPickerViewControllerDelegate <UIPickerViewDelegate, UIPickerViewDataSource>
-
-/// @name Select and Cancel
-
-/**
- *  This delegate method is called when the user selects a certain row.
- *
- *  @param vc           The picker view controller that just finished selecting a row.
- *  @param selectedRows An array of selected rows (one entry per component).
- */
-- (void)pickerViewController:(RMPickerViewController *)vc didSelectRows:(NSArray *)selectedRows;
-
-@optional
-
-/**
- *  This delegate method is called when the user selects the cancel button or taps the darkened background (if [backgroundTapsDisabled]([RMPickerViewController backgroundTapsDisabled]) of RMPickerViewController returns NO).
- *
- *  @discussion Implementation of this method is optional. When the cancel button is pressed, the picker view controller will be dismissed. This method can be implemented to do anything additional to the dismissal.
- *
- *  @param vc The picker view controller that just canceled.
- */
-- (void)pickerViewControllerDidCancel:(RMPickerViewController *)vc;
-
-@end
-
 /**
  *  RMPickerViewController is an iOS control for selecting a row using UIPickerView in a UIActionSheet like fashion. When a RMPickerViewController is shown the user gets the opportunity to select some rows using a UIPickerView.
  *  
@@ -132,14 +78,21 @@ typedef void (^RMCancelBlock)(RMPickerViewController *vc);
  */
 + (void)setImageForCancelButton:(UIImage *)newImage;
 
-/// @name Delegate
+/// @name Block Support
 
 /**
- *  Used to set the delegate.
+ *  The block that is executed when the select button is tapped.
  *
- *  The delegate must conform to the RMPickerViewControllerDelegate protocol.
+ *  @warning Although your app won't crash when presenting a RMPickerViewController without a select block, setting this block is not really optional. You will need this block to get the row selected by the user.
  */
-@property (nonatomic, weak) id<RMPickerViewControllerDelegate> delegate;
+@property (nonatomic, copy) void (^selectButtonAction)(RMPickerViewController *controller, NSArray *selectedRows);
+
+/**
+ *  The block that is executed when the cancel button or the background view is tapped.
+ *
+ *  @warning Setting this block is optional. the default behavior of RMPickerViewController already dismisses the view controller when select or cancel is tapped.
+ */
+@property (nonatomic, copy) void (^cancelButtonAction)(RMPickerViewController *controller);
 
 /// @name User Interface
 
@@ -161,16 +114,6 @@ typedef void (^RMCancelBlock)(RMPickerViewController *vc);
 @property (assign, nonatomic) BOOL backgroundTapsDisabled;
 
 /// @name Appearance
-
-/**
- *  Used to set the preferred status bar style.
- */
-@property (nonatomic, assign, readwrite) UIStatusBarStyle preferredStatusBarStyle;
-
-/**
- *  Used to hide the status bar.
- */
-@property (nonatomic, assign) RMPickerViewControllerStatusBarHiddenMode statusBarHiddenMode;
 
 /**
  *  Used to set the text color of the buttons (has no effect on picker view).
@@ -214,85 +157,5 @@ typedef void (^RMCancelBlock)(RMPickerViewController *vc);
  *  Used to choose a particular blur effect style (default value is UIBlurEffectStyleExtraLight). Ignored if blur effects are disabled.
  */
 @property (assign, nonatomic) UIBlurEffectStyle blurEffectStyle;
-
-/// @name Showing
-
-/**
- *  This shows the picker view controller on top of every other view controller using a new UIWindow. The RMPickerViewController will be added as a child view controller of the UIWindows root view controller. The background of the root view controller is used to darken the views behind the RMPickerViewController.
- *
- *  This method is the preferred method for showing a RMPickerViewController on iPhones and iPads. Nevertheless, there are situations where this method is not sufficient on iPads. An example for this is that the RMPickerViewController shall be shown within an UIPopover. This can be achieved by using [showFromViewController:]([RMPickerViewController showFromViewController:]).
- *
- *  @warning Make sure the delegate property is assigned. Otherwise you will not get any calls when a row is selected or the selection has been canceled.
- */
-- (void)show;
-
-/**
- *  This shows the picker view controller on top of every other view controller using a new UIWindow. The RMPickerViewController will be added as a child view controller of the UIWindows root view controller. The background of the root view controller is used to darken the views behind the RMPickerViewController.
- *
- *  After a row has been selected the selection block will be called. If the user choses to cancel the selection, the cancel block will be called. If you assigned a delegate the corresponding delegate methods will be called, too.
- *
- *  This method is the preferred method for showing a RMPickerViewController on iPhones and iPads when a block based API is preferred. Nevertheless, there are situations where this method is not sufficient on iPads. An example for this is that the RMPickerViewController shall be shown within an UIPopover. This can be achieved by using [showFromViewController:withSelectionHandler:andCancelHandler:]([RMPickerViewController showFromViewController:withSelectionHandler:andCancelHandler:]).
- *
- *  @param selectionBlock The block to call when the user selects a row.
- *  @param cancelBlock    The block to call when the user cancels the selection.
- */
-- (void)showWithSelectionHandler:(RMSelectionBlock)selectionBlock andCancelHandler:(RMCancelBlock)cancelBlock;
-
-/**
- *  This shows the picker view controller as child view controller of the view controller you passed in as parameter. The content of this view controller will be darkened and the picker view controller will be shown on top.
- *
- *  @warning This method should only be used on iPads in situations where [show]([RMPickerViewController show]) is not sufficient (for example, when the RMPickerViewController shoud be shown within an UIPopover). If [show]([RMPickerViewController show]) is sufficient, please use it!
- *
- *  @warning Make sure the delegate property is assigned. Otherwise you will not get any calls when a row is selected or the selection has been canceled.
- *
- *  @param aViewController The parent view controller of the RMPickerViewController.
- */
-- (void)showFromViewController:(UIViewController *)aViewController;
-
-/**
- *  This shows the picker view controller as child view controller of the view controller you passed in as parameter. The content of this view controller will be darkened and the picker view controller will be shown on top.
- *
- *  After a row has been selected the selection block will be called. If the user choses to cancel the selection, the cancel block will be called. If you assigned a delegate the corresponding delegate methods will be called, too.
- *
- *  @warning This method should only be used on iPads in situations where [showWithSelectionHandler:andCancelHandler:]([RMPickerViewController showWithSelectionHandler:andCancelHandler:]) is not sufficient (for example, when the RMPickerViewController shoud be shown within an UIPopover). If [showWithSelectionHandler:andCancelHandler:]([RMPickerViewController showWithSelectionHandler:andCancelHandler:]) is sufficient, please use it!
- *
- *  @param aViewController The parent view controller of the RMPickerViewController.
- *  @param selectionBlock  The block to call when the user selects a row.
- *  @param cancelBlock     The block to call when the user cancels the selection.
- */
-- (void)showFromViewController:(UIViewController *)aViewController withSelectionHandler:(RMSelectionBlock)selectionBlock andCancelHandler:(RMCancelBlock)cancelBlock;
-
-/**
- *  This shows the picker view controller within a popover. The popover is initialized with the picker view controller as content view controller and then presented from the rect in the view given as parameters.
- *
- *  @warning Make sure the delegate property is assigned. Otherwise you will not get any calls when a row is selected or the selection has been canceled.
- *
- *  @warning This method should only be used on iPads. On iPhones please use [show]([RMPickerViewController show]) or [showWithSelectionHandler:andCancelHandler:]([RMPickerViewController showWithSelectionHandler:andCancelHandler:]) instead.
- *
- *  @param aRect The rect in the given view the popover should be presented from.
- *  @param aView The view the popover should be presented from.
- */
-- (void)showFromRect:(CGRect)aRect inView:(UIView *)aView;
-
-/**
- *  This shows the picker view controller within a popover. The popover is initialized with the picker view controller as content view controller and then presented from the rect in the view given as parameters.
- *
- *  After a row has been selected the selection block will be called. If the user choses to cancel the selection, the cancel block will be called. If you assigned a delegate the corresponding methods will be called, too.
- *
- *  @warning This method should only be used on iPads. On iPhones please use [show]([RMPickerViewController show]) or [showWithSelectionHandler:andCancelHandler:]([RMPickerViewController showWithSelectionHandler:andCancelHandler:]) instead.
- *
- *  @param aRect The rect in the given view the popover should be presented from.
- *  @param aView The view the popover should be presented from.
- *  @param selectionBlock The block to call when the user selects a row.
- *  @param cancelBlock    The block to call when the user cancels the selection.
- */
-- (void)showFromRect:(CGRect)aRect inView:(UIView *)aView withSelectionHandler:(RMSelectionBlock)selectionBlock andCancelHandler:(RMCancelBlock)cancelBlock;
-
-/// @name Dismissing
-
-/**
- *  This will dismiss the picker view controller and remove it from the view hierarchy.
- */
-- (void)dismiss;
 
 @end
