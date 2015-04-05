@@ -38,7 +38,7 @@
 #define RM_CURRENT_ORIENTATION_IS_LANDSCAPE_PREDICATE [UIScreen mainScreen].bounds.size.height < [UIScreen mainScreen].bounds.size.width
 #endif
 
-@interface RMPickerViewController () <UIPopoverControllerDelegate>
+@interface RMPickerViewController () <UIViewControllerTransitioningDelegate>
 
 @property (nonatomic, strong) UIView *backgroundView;
 
