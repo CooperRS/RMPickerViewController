@@ -15,8 +15,8 @@ This is an iOS control for selecting something using UIPickerView in a UIActionS
 ##Installation
 ###CocoaPods
 ```ruby
-platform :ios, '7.0'
-pod "RMPickerViewController", "~> 1.3.3"
+platform :ios, '8.0'
+pod "RMPickerViewController", "~> 1.4.0"
 ```
 
 ###Manual
@@ -30,36 +30,60 @@ pod "RMPickerViewController", "~> 1.3.3"
 	```objc
 	#import "RMPickerViewController.h"
 	```
-2. Implement the `RMPickerViewControllerDelegate` protocol
+2. Create a picker view controller, set select and cancel block and present the view controller
 	
 	```objc
-	@interface YourViewController () <RMPickerViewControllerDelegate>
-	@end
+    - (IBAction)openDateSelectionController:(id)sender {
+        RMPickerViewController *pickerVC = [RMPickerViewController pickerController];
+        pickerVC.picker.delegate = self;
+        pickerVC.picker.dataSource = self;
+        
+        //Set select and (optional) cancel blocks
+        [pickerVC setSelectButtonAction:^(RMPickerViewController *controller, NSArray *rows) {
+            NSLog(@"Successfully selected rows: %@", rows);
+        }];
+        
+        [pickerVC setCancelButtonAction:^(RMPickerViewController *controller) {
+            NSLog(@"Row selection was canceled");
+        }];
+        
+        //Now just present the date selection controller using the standard iOS presentation method
+        [self presentViewController:pickerVC animated:YES completion:nil];
+    }
 	```
 	
-	```objc
-	#pragma mark - RMPickerViewController Delegates
-	- (void)pickerViewController:(RMPickerViewController *)vc didSelectRows:(NSArray  *)selectedRows {
-		//Do something
-	}
+3. Do not forget to implement `UIPickerViewDelegate` and `UIPickerViewDataSource` methods.
 
-	- (void)pickerViewControllerDidCancel:(RMPickerViewController *)vc {
-		//Do something else
-	}
-	```
-	
-3. Open date selection view controller
-	
-	```objc
-	- (IBAction)openSelectionController:(id)sender {
-    	RMPickerViewController *pickerVC = [RMPickerViewController pickerController];
-    	pickerVC.delegate = self;
-    	
-   		[pickerVC show];
-	}
-	```
-	
-4. Do not forget to implement `UIPickerViewDelegate` and `UIPickerViewDataSource` methods.
+###Advanced
+Every RMPickerViewController has a property `picker`. With this property you have total control over the UIPickerView that is shown on the screen.
+
+Additionally, you can use the property `modalPresentationStyle` to control how the picker view controller is shown. By default, it is set to `UIModalPresentationOverCurrentContext`. But on the iPad you could use `UIModalPresentationPopover` to present the picker view controller within a popover. See the following example on how this works:
+
+```objc
+- (IBAction)openDateSelectionController:(id)sender {
+    RMPickerViewController *pickerVC = [RMPickerViewController pickerController];
+    pickerVC.picker.delegate = self;
+    pickerVC.picker.dataSource = self;
+
+    //Set select and (optional) cancel blocks
+    ...
+
+    //On the iPad we want to show the date selection view controller within a popover.
+    if([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        //First we set the modal presentation style to the popover style
+        pickerVC.modalPresentationStyle = UIModalPresentationPopover;
+
+        //Then we tell the popover presentation controller, where the popover should appear
+        pickerVC.popoverPresentationController.sourceView = self.tableView;
+        pickerVC.popoverPresentationController.sourceRect = [self.tableView rectForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    }
+    
+    //Now just present the date selection controller using the standard iOS presentation method
+    [self presentViewController:pickerVC animated:YES completion:nil];
+}
+```
+
+Finially, RMPickerViewController can be used in both your main application and an action extension showing UI.
 
 ###How to localize the buttons? 
 [Localization](https://github.com/CooperRS/RMPickerViewController/wiki/Localization)
@@ -68,15 +92,16 @@ pod "RMPickerViewController", "~> 1.3.3"
 There is an additional documentation available provided by the CocoaPods team. Take a look at [cocoadocs.org](http://cocoadocs.org/docsets/RMPickerViewController/).
 
 ## Requirements
-Works with:
 
-* Xcode 6
-* iOS 8 SDK
-* ARC (You can turn it on and off on a per file basis)
+| Compile Time  | Runtime       |
+| :------------ | :------------ |
+| Xcode 6       | iOS 8         |
+| iOS 8 SDK     |               |
+| ARC           |               |
 
-iOS 8 SDK is only needed for compiling (as it uses the blur feature provided by iOS 8 SDK). At runtime the control only needs iOS 7 or later.
+Note: ARC can be turned on and off on a per file basis.
 
-If you absolutely need to use iOS 7 SDK you can take a look at the iOS 7 branch called [1.2.x](https://github.com/CooperRS/RMPickerViewController/tree/1.2.x)
+Version 1.4.0 and above of RMPickerViewController use custom transitions for presenting the picker view controller. Custom transitions are a new feature introduced by Apple in iOS 7. Unfortunately, custom transitions are totally broken in landscape mode on iOS 7. This issue has been fixed with iOS 8. So if your application supports landscape mode (even on iPad), version 1.4.0 and above of this control require iOS 8. Otherwise, iOS 7 should be fine. In particular, iOS 7 is fine for version 1.3.3 and below.
 
 ##Credits
 Code contributions:
@@ -88,7 +113,7 @@ Code contributions:
 I want to thank everyone who has contributed code and/or time to this project!
 
 ## License (MIT License)
-Copyright (c) 2013 Roland Moers
+Copyright (c) 2013-2015 Roland Moers
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
