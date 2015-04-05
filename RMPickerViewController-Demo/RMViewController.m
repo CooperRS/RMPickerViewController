@@ -43,7 +43,7 @@
     pickerVC.picker.delegate = self;
     pickerVC.picker.dataSource = self;
     
-    //Set a title for the date selection
+    //Set a title for the picker
     pickerVC.titleLabel.text = @"This is an example title.\n\nPlease choose a row and press 'Select' or 'Cancel'.";
     
     //Set select and (optional) cancel blocks
@@ -69,7 +69,7 @@
     //pickerVC.backgroundColor = [UIColor colorWithWhite:0.25 alpha:1];
     //pickerVC.selectedBackgroundColor = [UIColor colorWithWhite:0.4 alpha:1];
     
-    //On the iPad we want to show the date selection view controller within a popover. Fortunately, we can use iOS 8 API for this! :)
+    //On the iPad we want to show the picker view controller within a popover. Fortunately, we can use iOS 8 API for this! :)
     //(Of course only if we are running on iOS 8 or later)
     if([pickerVC respondsToSelector:@selector(popoverPresentationController)] && [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         //First we set the modal presentation style to the popover style
@@ -80,7 +80,7 @@
         pickerVC.popoverPresentationController.sourceRect = [self.tableView rectForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     }
     
-    //Now just present the date selection controller using the standard iOS presentation method
+    //Now just present the picker view controller using the standard iOS presentation method
     [self presentViewController:pickerVC animated:YES completion:nil];
 }
 
