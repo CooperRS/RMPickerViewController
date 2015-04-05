@@ -498,7 +498,7 @@ static UIImage *_cancelImage;
     if([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
         duration = 0.3;
         
-        if(UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
+        if(RM_CURRENT_ORIENTATION_IS_LANDSCAPE_PREDICATE) {
             self.pickerHeightConstraint.constant = RM_PICKER_HEIGHT_LANDSCAPE;
         } else {
             self.pickerHeightConstraint.constant = RM_PICKER_HEIGHT_PORTRAIT;
