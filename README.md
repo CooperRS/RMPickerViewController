@@ -16,7 +16,7 @@ This is an iOS control for selecting something using UIPickerView in a UIActionS
 ###CocoaPods
 ```ruby
 platform :ios, '8.0'
-pod "RMPickerViewController", "~> 1.4.0"
+pod "RMPickerViewController", "~> 1.4.1"
 ```
 
 ###Manual
@@ -102,6 +102,9 @@ There is an additional documentation available provided by the CocoaPods team. T
 Note: ARC can be turned on and off on a per file basis.
 
 Version 1.4.0 and above of RMPickerViewController use custom transitions for presenting the picker view controller. Custom transitions are a new feature introduced by Apple in iOS 7. Unfortunately, custom transitions are totally broken in landscape mode on iOS 7. This issue has been fixed with iOS 8. So if your application supports landscape mode (even on iPad), version 1.4.0 and above of this control require iOS 8. Otherwise, iOS 7 should be fine. In particular, iOS 7 is fine for version 1.3.3 and below.
+
+## Further Info
+If you want to show an UIDatePicker instead of an UIPickerView, you may take a look at my other control called [RMDateSelectionViewController](https://github.com/CooperRS/RMDateSelectionViewController).
 
 ##Credits
 Code contributions:

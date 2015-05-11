@@ -235,7 +235,12 @@ static UIImage *_cancelImage;
     if(self) {
         self.blurEffectStyle = UIBlurEffectStyleExtraLight;
         
-        self.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+        if([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
+            self.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+        } else {
+            self.modalPresentationStyle = UIModalPresentationCustom;
+        }
+        
         self.transitioningDelegate = self;
         
         [self setupUIElements];
@@ -541,7 +546,7 @@ static UIImage *_cancelImage;
 - (BOOL)disableBlurEffects {
     if(!NSClassFromString(@"UIBlurEffect") || !NSClassFromString(@"UIVibrancyEffect") || !NSClassFromString(@"UIVisualEffectView")) {
         return YES;
-    } else if(UIAccessibilityIsReduceTransparencyEnabled()) {
+    } else if(&UIAccessibilityIsReduceTransparencyEnabled != nil && UIAccessibilityIsReduceTransparencyEnabled()) {
         return YES;
     }
     
@@ -549,7 +554,7 @@ static UIImage *_cancelImage;
 }
 
 - (BOOL)disableMotionEffects {
-    if(UIAccessibilityIsReduceMotionEnabled()) {
+    if(&UIAccessibilityIsReduceMotionEnabled != nil && UIAccessibilityIsReduceMotionEnabled()) {
         return YES;
     }
     
@@ -571,7 +576,7 @@ static UIImage *_cancelImage;
 }
 
 - (BOOL)disableBouncingWhenShowing {
-    if(UIAccessibilityIsReduceMotionEnabled()) {
+    if(&UIAccessibilityIsReduceMotionEnabled != nil && UIAccessibilityIsReduceMotionEnabled()) {
         return YES;
     }
     
