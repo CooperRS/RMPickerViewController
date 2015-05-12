@@ -28,7 +28,7 @@
 
 /**
  *  RMPickerViewController is an iOS control for selecting a row using UIPickerView in a UIActionSheet like fashion. When a RMPickerViewController is shown the user gets the opportunity to select some rows using a UIPickerView.
- *  
+ *
  *  RMPickerViewController supports bouncing effects when animating the picker view controller. In addition, motion effects are supported while showing the picker view controller. Both effects can be disabled by using the properties called disableBouncingWhenShowing and disableMotionEffects.
  *
  *  On iOS 8 and later Apple opened up their API for blurring the background of UIViews. RMPickerViewController makes use of this API. The type of the blur effect can be changed by using the blurEffectStyle property. If you want to disable the blur effect you can do so by using the disableBlurEffects property.
@@ -129,6 +129,21 @@
  *  Used to set the background color when the user selets a button.
  */
 @property (strong, nonatomic) UIColor *selectedBackgroundColor;
+
+/**
+ * Used to set select button background color
+ */
+@property (strong, nonatomic) UIColor *selectButtonBackgroundColor;
+
+/**
+ * Used to set cancel button background color
+ */
+@property (strong, nonatomic) UIColor *cancelButtonBackgroundColor;
+
+/**
+ * Font used for buttons
+ */
+@property (strong, nonatomic) UIFont *buttonFont;
 
 /// @name Effects
 

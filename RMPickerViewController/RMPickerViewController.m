@@ -466,7 +466,29 @@ static UIImage *_cancelImage;
             [self.selectButton setBackgroundImage:[self imageWithColor:self.selectedBackgroundColor] forState:UIControlStateHighlighted];
         }
     }
-    
+
+    if(self.buttonFont) {
+        self.cancelButton.titleLabel.font = self.buttonFont;
+        self.selectButton.titleLabel.font = self.buttonFont;
+    }
+
+    if(self.disableBlurEffects) {
+        if(self.cancelButtonBackgroundColor) {
+            self.cancelButton.backgroundColor = self.cancelButtonBackgroundColor;
+
+            // Set the container to clear
+            self.cancelAndSelectButtonSeperator.alpha = 0.0f;
+            self.cancelAndSelectButtonContainer.backgroundColor = [UIColor clearColor];
+        }
+        if(self.selectButtonBackgroundColor) {
+            self.selectButton.backgroundColor = self.selectButtonBackgroundColor;
+
+            // Set the container to clear
+            self.cancelAndSelectButtonSeperator.alpha = 0.0f;
+            self.cancelAndSelectButtonContainer.backgroundColor = [UIColor clearColor];
+        }
+    }
+
     if(!self.disableMotionEffects)
         [self addMotionEffects];
     
