@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		572C917B75677F242C85035C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B6007F06A3E88CCAEDED369 /* libPods.a */; };
 		CA04D6AE18990BBF00A5E59B /* RMPickerViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA04D6AD18990BBF00A5E59B /* RMPickerViewControllerTests.m */; };
 		CA1E624B1A24D6840025A6A6 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1E624A1A24D6840025A6A6 /* Launch Screen.xib */; };
 		CABBCD2A189520D50006213F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CABBCD29189520D50006213F /* Foundation.framework */; };
@@ -26,6 +27,7 @@
 		CACEDE471AD15C7500A49ECF /* RMPickerViewController-DemoExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CACEDE3C1AD15C7500A49ECF /* RMPickerViewController-DemoExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		CACEDE4C1AD15C8200A49ECF /* RMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CABBCD81189521D10006213F /* RMViewController.m */; };
 		CACEDE4D1AD15C8400A49ECF /* RMPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CABBCD79189521C00006213F /* RMPickerViewController.m */; };
+		F562FC195B2EFBDB0B0B0B2E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B6007F06A3E88CCAEDED369 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +62,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0B6007F06A3E88CCAEDED369 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		379C4BE9D5C0080CB2E1D517 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		CA04D6AD18990BBF00A5E59B /* RMPickerViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMPickerViewControllerTests.m; sourceTree = "<group>"; };
 		CA1E624A1A24D6840025A6A6 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		CABBCD26189520D50006213F /* RMPickerViewController-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RMPickerViewController-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,6 +89,7 @@
 		CACEDE3C1AD15C7500A49ECF /* RMPickerViewController-DemoExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "RMPickerViewController-DemoExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CACEDE3F1AD15C7500A49ECF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CACEDE431AD15C7500A49ECF /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
+		F9C0951546FA61A4F6301D66 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +100,7 @@
 				CABBCD2C189520D50006213F /* CoreGraphics.framework in Frameworks */,
 				CABBCD2E189520D50006213F /* UIKit.framework in Frameworks */,
 				CABBCD2A189520D50006213F /* Foundation.framework in Frameworks */,
+				F562FC195B2EFBDB0B0B0B2E /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,12 +118,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				572C917B75677F242C85035C /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CA17B2C4B4306E1A50D53B69 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F9C0951546FA61A4F6301D66 /* Pods.debug.xcconfig */,
+				379C4BE9D5C0080CB2E1D517 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		CABBCD1D189520D50006213F = {
 			isa = PBXGroup;
 			children = (
@@ -127,6 +143,7 @@
 				CACEDE3D1AD15C7500A49ECF /* RMPickerViewController-DemoExtension */,
 				CABBCD28189520D50006213F /* Frameworks */,
 				CABBCD27189520D50006213F /* Products */,
+				CA17B2C4B4306E1A50D53B69 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -147,6 +164,7 @@
 				CABBCD2B189520D50006213F /* CoreGraphics.framework */,
 				CABBCD2D189520D50006213F /* UIKit.framework */,
 				CABBCD4B189520D60006213F /* XCTest.framework */,
+				0B6007F06A3E88CCAEDED369 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -228,10 +246,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CABBCD5B189520D60006213F /* Build configuration list for PBXNativeTarget "RMPickerViewController-Demo" */;
 			buildPhases = (
+				9300F802147223541A43F5FA /* Check Pods Manifest.lock */,
 				CABBCD22189520D50006213F /* Sources */,
 				CABBCD23189520D50006213F /* Frameworks */,
 				CABBCD24189520D50006213F /* Resources */,
 				CACEDE4B1AD15C7500A49ECF /* Embed App Extensions */,
+				815C28B2A0C747311FFEF8C3 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -265,9 +285,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CACEDE481AD15C7500A49ECF /* Build configuration list for PBXNativeTarget "RMPickerViewController-DemoExtension" */;
 			buildPhases = (
+				8A0C384BBDEDDC027130EB18 /* Check Pods Manifest.lock */,
 				CACEDE381AD15C7500A49ECF /* Sources */,
 				CACEDE391AD15C7500A49ECF /* Frameworks */,
 				CACEDE3A1AD15C7500A49ECF /* Resources */,
+				01E6F9A575BA0C2E557682C3 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -344,6 +366,69 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		01E6F9A575BA0C2E557682C3 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		815C28B2A0C747311FFEF8C3 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8A0C384BBDEDDC027130EB18 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		9300F802147223541A43F5FA /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		CABBCD22189520D50006213F /* Sources */ = {
@@ -473,6 +558,7 @@
 		};
 		CABBCD5C189520D60006213F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F9C0951546FA61A4F6301D66 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -487,6 +573,7 @@
 		};
 		CABBCD5D189520D60006213F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 379C4BE9D5C0080CB2E1D517 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -541,6 +628,7 @@
 		};
 		CACEDE491AD15C7500A49ECF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F9C0951546FA61A4F6301D66 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -559,6 +647,7 @@
 		};
 		CACEDE4A1AD15C7500A49ECF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 379C4BE9D5C0080CB2E1D517 /* Pods.release.xcconfig */;
 			buildSettings = {
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				COPY_PHASE_STRIP = NO;
