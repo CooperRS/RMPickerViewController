@@ -1,5 +1,5 @@
 language: objective-c
 xcode_sdk: iphonesimulator
-xcode_project: RMPickerViewController-Demo.xcodeproj
+xcode_workspace: RMPickerViewController-Demo.xcworkspace
 xcode_scheme: RMPickerViewController-Demo
 
