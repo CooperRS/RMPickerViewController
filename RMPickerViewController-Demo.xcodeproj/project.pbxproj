@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		572C917B75677F242C85035C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B6007F06A3E88CCAEDED369 /* libPods.a */; };
-		CA04D6AE18990BBF00A5E59B /* RMPickerViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA04D6AD18990BBF00A5E59B /* RMPickerViewControllerTests.m */; };
 		CA1E624B1A24D6840025A6A6 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1E624A1A24D6840025A6A6 /* Launch Screen.xib */; };
 		CABBCD2A189520D50006213F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CABBCD29189520D50006213F /* Foundation.framework */; };
 		CABBCD2C189520D50006213F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CABBCD2B189520D50006213F /* CoreGraphics.framework */; };
@@ -16,10 +15,6 @@
 		CABBCD36189520D50006213F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CABBCD35189520D50006213F /* main.m */; };
 		CABBCD3A189520D50006213F /* RMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CABBCD39189520D50006213F /* RMAppDelegate.m */; };
 		CABBCD45189520D50006213F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CABBCD44189520D50006213F /* Images.xcassets */; };
-		CABBCD66189521190006213F /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CABBCD4B189520D60006213F /* XCTest.framework */; };
-		CABBCD67189521190006213F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CABBCD29189520D50006213F /* Foundation.framework */; };
-		CABBCD68189521190006213F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CABBCD2D189520D50006213F /* UIKit.framework */; };
-		CABBCD6E189521190006213F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CABBCD6C189521190006213F /* InfoPlist.strings */; };
 		CABBCD82189521D10006213F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CABBCD7B189521D10006213F /* Main.storyboard */; };
 		CABBCD85189521D10006213F /* RMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CABBCD81189521D10006213F /* RMViewController.m */; };
 		CABBCD861895351E0006213F /* RMPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CABBCD79189521C00006213F /* RMPickerViewController.m */; };
@@ -31,13 +26,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		CABBCD72189521190006213F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CABBCD1E189520D50006213F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = CABBCD25189520D50006213F;
-			remoteInfo = "RMPickerViewController-Demo";
-		};
 		CACEDE451AD15C7500A49ECF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CABBCD1E189520D50006213F /* Project object */;
@@ -64,7 +52,6 @@
 /* Begin PBXFileReference section */
 		0B6007F06A3E88CCAEDED369 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		379C4BE9D5C0080CB2E1D517 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		CA04D6AD18990BBF00A5E59B /* RMPickerViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMPickerViewControllerTests.m; sourceTree = "<group>"; };
 		CA1E624A1A24D6840025A6A6 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		CABBCD26189520D50006213F /* RMPickerViewController-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RMPickerViewController-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CABBCD29189520D50006213F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -75,10 +62,6 @@
 		CABBCD39189520D50006213F /* RMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RMAppDelegate.m; sourceTree = "<group>"; };
 		CABBCD44189520D50006213F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CABBCD4B189520D60006213F /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		CABBCD65189521190006213F /* RMPickerViewController-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "RMPickerViewController-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		CABBCD6B189521190006213F /* RMPickerViewController-Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RMPickerViewController-Tests-Info.plist"; sourceTree = "<group>"; };
-		CABBCD6D189521190006213F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		CABBCD71189521190006213F /* RMPickerViewController-Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RMPickerViewController-Tests-Prefix.pch"; sourceTree = "<group>"; };
 		CABBCD78189521C00006213F /* RMPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMPickerViewController.h; sourceTree = "<group>"; };
 		CABBCD79189521C00006213F /* RMPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMPickerViewController.m; sourceTree = "<group>"; };
 		CABBCD7B189521D10006213F /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -101,16 +84,6 @@
 				CABBCD2E189520D50006213F /* UIKit.framework in Frameworks */,
 				CABBCD2A189520D50006213F /* Foundation.framework in Frameworks */,
 				F562FC195B2EFBDB0B0B0B2E /* libPods.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CABBCD62189521190006213F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CABBCD66189521190006213F /* XCTest.framework in Frameworks */,
-				CABBCD68189521190006213F /* UIKit.framework in Frameworks */,
-				CABBCD67189521190006213F /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,7 +112,6 @@
 			children = (
 				CABBCD771895212F0006213F /* RMPickerViewController */,
 				CABBCD2F189520D50006213F /* RMPickerViewController-Demo */,
-				CABBCD69189521190006213F /* RMPickerViewController-Tests */,
 				CACEDE3D1AD15C7500A49ECF /* RMPickerViewController-DemoExtension */,
 				CABBCD28189520D50006213F /* Frameworks */,
 				CABBCD27189520D50006213F /* Products */,
@@ -151,7 +123,6 @@
 			isa = PBXGroup;
 			children = (
 				CABBCD26189520D50006213F /* RMPickerViewController-Demo.app */,
-				CABBCD65189521190006213F /* RMPickerViewController-Tests.xctest */,
 				CACEDE3C1AD15C7500A49ECF /* RMPickerViewController-DemoExtension.appex */,
 			);
 			name = Products;
@@ -190,25 +161,6 @@
 				CABBCD7C189521D10006213F /* RMPickerViewController-Demo-Info.plist */,
 				CABBCD7D189521D10006213F /* RMPickerViewController-Demo-Prefix.pch */,
 				CABBCD35189520D50006213F /* main.m */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		CABBCD69189521190006213F /* RMPickerViewController-Tests */ = {
-			isa = PBXGroup;
-			children = (
-				CABBCD6A189521190006213F /* Supporting Files */,
-				CA04D6AD18990BBF00A5E59B /* RMPickerViewControllerTests.m */,
-			);
-			path = "RMPickerViewController-Tests";
-			sourceTree = "<group>";
-		};
-		CABBCD6A189521190006213F /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				CABBCD6B189521190006213F /* RMPickerViewController-Tests-Info.plist */,
-				CABBCD6C189521190006213F /* InfoPlist.strings */,
-				CABBCD71189521190006213F /* RMPickerViewController-Tests-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -263,24 +215,6 @@
 			productReference = CABBCD26189520D50006213F /* RMPickerViewController-Demo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		CABBCD64189521190006213F /* RMPickerViewController-Tests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = CABBCD76189521190006213F /* Build configuration list for PBXNativeTarget "RMPickerViewController-Tests" */;
-			buildPhases = (
-				CABBCD61189521190006213F /* Sources */,
-				CABBCD62189521190006213F /* Frameworks */,
-				CABBCD63189521190006213F /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				CABBCD73189521190006213F /* PBXTargetDependency */,
-			);
-			name = "RMPickerViewController-Tests";
-			productName = "RMPickerViewController-Tests";
-			productReference = CABBCD65189521190006213F /* RMPickerViewController-Tests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		CACEDE3B1AD15C7500A49ECF /* RMPickerViewController-DemoExtension */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CACEDE481AD15C7500A49ECF /* Build configuration list for PBXNativeTarget "RMPickerViewController-DemoExtension" */;
@@ -310,9 +244,6 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Roland Moers";
 				TargetAttributes = {
-					CABBCD64189521190006213F = {
-						TestTargetID = CABBCD25189520D50006213F;
-					};
 					CACEDE3B1AD15C7500A49ECF = {
 						CreatedOnToolsVersion = 6.2;
 					};
@@ -332,7 +263,6 @@
 			projectRoot = "";
 			targets = (
 				CABBCD25189520D50006213F /* RMPickerViewController-Demo */,
-				CABBCD64189521190006213F /* RMPickerViewController-Tests */,
 				CACEDE3B1AD15C7500A49ECF /* RMPickerViewController-DemoExtension */,
 			);
 		};
@@ -346,14 +276,6 @@
 				CA1E624B1A24D6840025A6A6 /* Launch Screen.xib in Resources */,
 				CABBCD45189520D50006213F /* Images.xcassets in Resources */,
 				CABBCD82189521D10006213F /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CABBCD63189521190006213F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CABBCD6E189521190006213F /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -442,14 +364,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CABBCD61189521190006213F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CA04D6AE18990BBF00A5E59B /* RMPickerViewControllerTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		CACEDE381AD15C7500A49ECF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -462,28 +376,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		CABBCD73189521190006213F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = CABBCD25189520D50006213F /* RMPickerViewController-Demo */;
-			targetProxy = CABBCD72189521190006213F /* PBXContainerItemProxy */;
-		};
 		CACEDE461AD15C7500A49ECF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = CACEDE3B1AD15C7500A49ECF /* RMPickerViewController-DemoExtension */;
 			targetProxy = CACEDE451AD15C7500A49ECF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		CABBCD6C189521190006213F /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CABBCD6D189521190006213F /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		CABBCD59189520D60006213F /* Debug */ = {
@@ -586,46 +484,6 @@
 			};
 			name = Release;
 		};
-		CABBCD74189521190006213F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/RMPickerViewController-Demo.app/RMPickerViewController-Demo";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "RMPickerViewController-Tests/RMPickerViewController-Tests-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "RMPickerViewController-Tests/RMPickerViewController-Tests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		CABBCD75189521190006213F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/RMPickerViewController-Demo.app/RMPickerViewController-Demo";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "RMPickerViewController-Tests/RMPickerViewController-Tests-Prefix.pch";
-				INFOPLIST_FILE = "RMPickerViewController-Tests/RMPickerViewController-Tests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
 		CACEDE491AD15C7500A49ECF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F9C0951546FA61A4F6301D66 /* Pods.debug.xcconfig */;
@@ -678,15 +536,6 @@
 			buildConfigurations = (
 				CABBCD5C189520D60006213F /* Debug */,
 				CABBCD5D189520D60006213F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		CABBCD76189521190006213F /* Build configuration list for PBXNativeTarget "RMPickerViewController-Tests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				CABBCD74189521190006213F /* Debug */,
-				CABBCD75189521190006213F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
