@@ -16,7 +16,7 @@ This is an iOS control for selecting something using UIPickerView in a UIActionS
 ###CocoaPods
 ```ruby
 platform :ios, '8.0'
-pod "RMPickerViewController", "~> 1.4.1"
+pod "RMPickerViewController", "~> 2.0.0"
 ```
 
 ###Manual
@@ -33,22 +33,31 @@ pod "RMPickerViewController", "~> 1.4.1"
 2. Create a picker view controller, set select and cancel block and present the view controller
 	
 	```objc
-    - (IBAction)openDateSelectionController:(id)sender {
-        RMPickerViewController *pickerVC = [RMPickerViewController pickerController];
-        pickerVC.picker.delegate = self;
-        pickerVC.picker.dataSource = self;
-        
-        //Set select and (optional) cancel blocks
-        [pickerVC setSelectButtonAction:^(RMPickerViewController *controller, NSArray *rows) {
-            NSLog(@"Successfully selected rows: %@", rows);
+    - (IBAction)openPickerController:(id)sender {
+        //Create select action
+        RMAction *selectAction = [RMAction actionWithTitle:@"Select" style:RMActionStyleDone andHandler:^(RMActionController *controller) {
+            UIPickerView *picker = ((RMPickerViewController *)controller).picker;
+            NSMutableArray *selectedRows = [NSMutableArray array];
+            
+            for(NSInteger i=0 ; i<[picker numberOfComponents] ; i++) {
+                [selectedRows addObject:@([picker selectedRowInComponent:i])];
+            }
+            
+            NSLog(@"Successfully selected rows: %@", selectedRows);
         }];
         
-        [pickerVC setCancelButtonAction:^(RMPickerViewController *controller) {
+
+        RMAction *cancelAction = [RMAction actionWithTitle:@"Cancel" style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
             NSLog(@"Row selection was canceled");
         }];
-        
-        //Now just present the date selection controller using the standard iOS presentation method
-        [self presentViewController:pickerVC animated:YES completion:nil];
+
+        //Create picker view controller
+        RMPickerViewController *pickerController = [RMPickerViewController actionControllerWithStyle:style selectAction:selectAction andCancelAction:cancelAction];
+        pickerController.picker.delegate = self;
+        pickerController.picker.dataSource = self;
+
+        //Now just present the picker controller using the standard iOS presentation method
+        [self presentViewController:pickerController animated:YES completion:nil];
     }
 	```
 	
@@ -60,26 +69,24 @@ Every RMPickerViewController has a property `picker`. With this property you hav
 Additionally, you can use the property `modalPresentationStyle` to control how the picker view controller is shown. By default, it is set to `UIModalPresentationOverCurrentContext`. But on the iPad you could use `UIModalPresentationPopover` to present the picker view controller within a popover. See the following example on how this works:
 
 ```objc
-- (IBAction)openDateSelectionController:(id)sender {
-    RMPickerViewController *pickerVC = [RMPickerViewController pickerController];
-    pickerVC.picker.delegate = self;
-    pickerVC.picker.dataSource = self;
-
-    //Set select and (optional) cancel blocks
+- (IBAction)openPickerController:(id)sender {
+    //Create select and cancel action
     ...
 
-    //On the iPad we want to show the date selection view controller within a popover.
+    RMPickerViewController *pickerController = [RMPickerViewController actionControllerWithStyle:style selectAction:selectAction andCancelAction:cancelAction];
+
+    //On the iPad we want to show the picker view controller within a popover.
     if([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         //First we set the modal presentation style to the popover style
-        pickerVC.modalPresentationStyle = UIModalPresentationPopover;
+        pickerController.modalPresentationStyle = UIModalPresentationPopover;
 
         //Then we tell the popover presentation controller, where the popover should appear
-        pickerVC.popoverPresentationController.sourceView = self.tableView;
-        pickerVC.popoverPresentationController.sourceRect = [self.tableView rectForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+        pickerController.popoverPresentationController.sourceView = self.tableView;
+        pickerController.popoverPresentationController.sourceRect = [self.tableView rectForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     }
     
-    //Now just present the date selection controller using the standard iOS presentation method
-    [self presentViewController:pickerVC animated:YES completion:nil];
+    //Now just present the picker view controller using the standard iOS presentation method
+    [self presentViewController:pickerController animated:YES completion:nil];
 }
 ```
 

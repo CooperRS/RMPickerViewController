@@ -45,11 +45,18 @@
     }
     
     RMAction *selectAction = [RMAction actionWithTitle:@"Select" style:RMActionStyleDone andHandler:^(RMActionController *controller) {
-        NSLog(@"Successfully selected date: %@", ((UIDatePicker *)controller.contentView).date);
+        UIPickerView *picker = ((RMPickerViewController *)controller).picker;
+        NSMutableArray *selectedRows = [NSMutableArray array];
+        
+        for(NSInteger i=0 ; i<[picker numberOfComponents] ; i++) {
+            [selectedRows addObject:@([picker selectedRowInComponent:i])];
+        }
+        
+        NSLog(@"Successfully selected rows: %@", selectedRows);
     }];
     
     RMAction *cancelAction = [RMAction actionWithTitle:@"Cancel" style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
-        NSLog(@"Date selection was canceled");
+        NSLog(@"Row selection was canceled");
     }];
     
     RMPickerViewController *pickerController = [RMPickerViewController actionControllerWithStyle:style];
@@ -66,7 +73,7 @@
     pickerController.disableMotionEffects = !self.motionSwitch.on;
     pickerController.disableBlurEffects = !self.blurSwitch.on;
     
-    //On the iPad we want to show the date selection view controller within a popover. Fortunately, we can use iOS 8 API for this! :)
+    //On the iPad we want to show the picker view controller within a popover. Fortunately, we can use iOS 8 API for this! :)
     //(Of course only if we are running on iOS 8 or later)
     if([pickerController respondsToSelector:@selector(popoverPresentationController)] && [UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         //First we set the modal presentation style to the popover style
@@ -77,7 +84,7 @@
         pickerController.popoverPresentationController.sourceRect = [self.tableView rectForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     }
     
-    //Now just present the date selection controller using the standard iOS presentation method
+    //Now just present the picker view controller using the standard iOS presentation method
     [self presentViewController:pickerController animated:YES completion:nil];
 }
 
