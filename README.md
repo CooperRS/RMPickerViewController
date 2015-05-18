@@ -16,7 +16,7 @@ This is an iOS control for selecting something using UIPickerView in a UIActionS
 ###CocoaPods
 ```ruby
 platform :ios, '8.0'
-pod "RMPickerViewController", "~> 2.0.0"
+pod "RMPickerViewController", "~> 1.4.1"
 ```
 
 ###Manual
