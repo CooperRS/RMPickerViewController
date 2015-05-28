@@ -22,6 +22,7 @@ pod "RMPickerViewController", "~> 1.4.1"
 ###Manual
 1. Check out the project
 2. Add all files in `RMPickerViewController folder to Xcode
+3. Check out [RMActionController](https://github.com/CooperRS/RMActionController) and follow the installation instructions.
 
 ##Usage
 ###Basic
