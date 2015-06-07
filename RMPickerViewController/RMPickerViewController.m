@@ -54,7 +54,7 @@
     controller.picker = [[UIPickerView alloc] initWithFrame:CGRectZero];
     controller.picker.translatesAutoresizingMaskIntoConstraints = NO;
     
-    controller.pickerHeightConstraint = [NSLayoutConstraint constraintWithItem:controller.picker attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:0 constant:0];
+    controller.pickerHeightConstraint = [NSLayoutConstraint constraintWithItem:controller.picker attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:0];
     
     if(RM_CURRENT_ORIENTATION_IS_LANDSCAPE_PREDICATE) {
         controller.pickerHeightConstraint.constant = RM_PICKER_HEIGHT_LANDSCAPE;
