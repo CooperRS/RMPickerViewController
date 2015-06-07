@@ -3,6 +3,7 @@ RMPickerViewController
 
 This is an iOS control for selecting something using UIPickerView in a UIActionSheet like fashion
 
+## Screenshots
 ### Portrait
 ![Portrait](http://cooperrs.github.io/RMPickerViewController/images/Blur-Screen1.png)
 
@@ -12,19 +13,23 @@ This is an iOS control for selecting something using UIPickerView in a UIActionS
 ### Black version
 ![Black version](http://cooperrs.github.com/RMPickerViewController/images/Blur-Screen3.png)
 
-##Installation
-###CocoaPods
+## Demo Project
+If you want to run the demo project you first need to run `pod install` to install the dependencies of RMPickerViewController.
+
+## Installation
+### CocoaPods
 ```ruby
 platform :ios, '8.0'
 pod "RMPickerViewController", "~> 2.0.0"
 ```
 
-###Manual
+### Manual
 1. Check out the project
 2. Add all files in `RMPickerViewController folder to Xcode
+3. Check out [RMActionController](https://github.com/CooperRS/RMActionController) and follow the installation instructions.
 
-##Usage
-###Basic
+## Usage
+### Basic
 1. Import `RMPickerViewController.h` in your view controller
 	
 	```objc
@@ -64,8 +69,11 @@ pod "RMPickerViewController", "~> 2.0.0"
 3. Do not forget to implement `UIPickerViewDelegate` and `UIPickerViewDataSource` methods.
 
 ###Advanced
+
+#### Accessing the Picker
 Every RMPickerViewController has a property `picker`. With this property you have total control over the UIPickerView that is shown on the screen.
 
+#### Presentation Style
 Additionally, you can use the property `modalPresentationStyle` to control how the picker view controller is shown. By default, it is set to `UIModalPresentationOverCurrentContext`. But on the iPad you could use `UIModalPresentationPopover` to present the picker view controller within a popover. See the following example on how this works:
 
 ```objc
@@ -90,10 +98,31 @@ Additionally, you can use the property `modalPresentationStyle` to control how t
 }
 ```
 
-Finially, RMPickerViewController can be used in both your main application and an action extension showing UI.
+#### Adding Additional Buttons
+You can add an arbitrary number of custom buttons to a RMPickerViewController. Each button has it's own block that is executed when tapping the button. See the following example on how to add buttons.
 
-###How to localize the buttons? 
-[Localization](https://github.com/CooperRS/RMPickerViewController/wiki/Localization)
+```objc
+- (IBAction)openPickerController:(id)sender {
+    //Create select and cancel action
+    ...
+
+    RMPickerViewController *pickerController = [RMPickerViewController actionControllerWithStyle:style selectAction:selectAction andCancelAction:cancelAction];
+    
+    //Create additional action and add it to picker view controller
+    RMAction *additionalAction = [RMAction actionWithTitle:@"Additional" style:RMActionStyleAdditional andHandler:^(RMActionController *controller) {
+        NSLog(@"Additional button tapped");
+    }];
+    additionalAction.dismissesActionController = NO;
+    
+    [pickerController addAction:additionalAction];
+    
+    //Now just present the picker view controller using the standard iOS presentation method
+    [self presentViewController:pickerController animated:YES completion:nil];
+}
+```
+
+#### Others
+Finially, RMPickerViewController can be used in both your main application and an action extension showing UI.
 
 ## Documentation
 There is an additional documentation available provided by the CocoaPods team. Take a look at [cocoadocs.org](http://cocoadocs.org/docsets/RMPickerViewController/).
@@ -112,6 +141,8 @@ Version 1.4.0 and above of RMPickerViewController use custom transitions for pre
 
 ## Further Info
 If you want to show an UIDatePicker instead of an UIPickerView, you may take a look at my other control called [RMDateSelectionViewController](https://github.com/CooperRS/RMDateSelectionViewController).
+
+If you want to show any other control you may want to take a look at [RMActionController](https://github.com/CooperRS/RMActionController).
 
 ##Credits
 Code contributions:

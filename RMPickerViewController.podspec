@@ -1,5 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "RMPickerViewController"
+  s.platform     = :ios, "8.0"
   s.version      = "2.0.0"
   s.summary      = "This is an iOS control for selecting something using UIPickerView in a UIActionSheet like fashion"
   s.homepage     = "https://github.com/CooperRS/RMPickerViewController"
@@ -8,7 +9,6 @@ Pod::Spec.new do |s|
   s.author       = { "Roland Moers" => "rm@cooperrs.de" }
   s.source       = { :git => "https://github.com/CooperRS/RMPickerViewController.git", :tag => "2.0.0" }
   s.source_files = 'RMPickerViewController/*'
-  s.platform     = :ios, '8.0'
   s.requires_arc = true
   
   s.dependency   'RMActionController', '~> 1.0.0'
