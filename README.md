@@ -16,17 +16,11 @@ This is an iOS control for selecting something using UIPickerView in a UIActionS
 ## Demo Project
 If you want to run the demo project you first need to run `pod install` to install the dependencies of RMPickerViewController.
 
-## Installation
-### CocoaPods
+## Installation (CocoaPods)
 ```ruby
 platform :ios, '8.0'
 pod "RMPickerViewController", "~> 1.4.1"
 ```
-
-### Manual
-1. Check out the project
-2. Add all files in `RMPickerViewController folder to Xcode
-3. Check out [RMActionController](https://github.com/CooperRS/RMActionController) and follow the installation instructions.
 
 ## Usage
 ### Basic
