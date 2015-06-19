@@ -19,7 +19,7 @@ If you want to run the demo project you first need to run `pod install` to insta
 ## Installation (CocoaPods)
 ```ruby
 platform :ios, '8.0'
-pod "RMPickerViewController", "~> 1.4.1"
+pod "RMPickerViewController", "~> 2.0.0"
 ```
 
 ## Usage
