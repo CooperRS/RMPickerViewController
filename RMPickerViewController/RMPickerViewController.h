@@ -24,7 +24,7 @@
 //  THE SOFTWARE.
 //
 
-#import <RMActionController.h>
+#import <RMActionController/RMActionController.h>
 
 /**
  *  RMPickerViewController is an iOS control for selecting a row using UIPickerView in a UIActionSheet like fashion. When a RMPickerViewController is shown the user gets the opportunity to select some rows using a UIPickerView.
