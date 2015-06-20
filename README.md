@@ -1,4 +1,4 @@
-RMPickerViewController
+RMPickerViewController ![Build Status](https://travis-ci.org/CooperRS/RMPickerViewController.svg?branch=master)
 =============================
 
 This is an iOS control for selecting something using UIPickerView in a UIActionSheet like fashion
