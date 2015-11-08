@@ -11,5 +11,5 @@ Pod::Spec.new do |s|
   s.source_files = 'RMPickerViewController/*'
   s.requires_arc = true
   
-  s.dependency   'RMActionController', '~> 1.0.0'
+  s.dependency   'RMActionController', '~> 1.0.5'
 end
