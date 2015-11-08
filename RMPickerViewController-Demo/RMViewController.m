@@ -44,18 +44,17 @@
         style = RMActionControllerStyleBlack;
     }
     
-    RMAction *selectAction = [RMAction actionWithTitle:@"Select" style:RMActionStyleDone andHandler:^(RMActionController *controller) {
-        UIPickerView *picker = ((RMPickerViewController *)controller).picker;
+    RMAction<RMActionController<UIPickerView *> *> *selectAction = [RMAction<RMActionController<UIPickerView *> *> actionWithTitle:@"Select" style:RMActionStyleDone andHandler:^(RMActionController<UIPickerView *> *controller) {
         NSMutableArray *selectedRows = [NSMutableArray array];
         
-        for(NSInteger i=0 ; i<[picker numberOfComponents] ; i++) {
-            [selectedRows addObject:@([picker selectedRowInComponent:i])];
+        for(NSInteger i=0 ; i<[controller.contentView numberOfComponents] ; i++) {
+            [selectedRows addObject:@([controller.contentView selectedRowInComponent:i])];
         }
         
         NSLog(@"Successfully selected rows: %@", selectedRows);
     }];
     
-    RMAction *cancelAction = [RMAction actionWithTitle:@"Cancel" style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
+    RMAction<RMActionController<UIPickerView *> *> *cancelAction = [RMAction<RMActionController<UIPickerView *> *> actionWithTitle:@"Cancel" style:RMActionStyleCancel andHandler:^(RMActionController<UIPickerView *> *controller) {
         NSLog(@"Row selection was canceled");
     }];
     

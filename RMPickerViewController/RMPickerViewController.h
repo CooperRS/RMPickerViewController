@@ -35,7 +35,7 @@
  *
  *  @warning RMPickerViewController is not designed to be reused. Each time you want to display a RMPickerViewController a new instance should be created. If you want to select a specific row before displaying, you can do so by using the picker property.
  */
-@interface RMPickerViewController : RMActionController
+@interface RMPickerViewController : RMActionController <UIPickerView *>
 
 /// @name User Interface
 
