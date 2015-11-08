@@ -3,3 +3,6 @@ xcode_sdk: iphonesimulator
 xcode_workspace: RMPickerViewController-Demo.xcworkspace
 xcode_scheme: RMPickerViewController-Demo
 
+before_install:
+    - gem update cocoapods
+
