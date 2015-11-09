@@ -48,23 +48,23 @@
 @implementation RMPickerViewController
 
 #pragma mark - Class
-+ (instancetype)actionControllerWithStyle:(RMActionControllerStyle)style title:(NSString *)aTitle message:(NSString *)aMessage selectAction:(RMAction *)selectAction andCancelAction:(RMAction *)cancelAction {
-    RMPickerViewController *controller = [super actionControllerWithStyle:style title:aTitle message:aMessage selectAction:selectAction andCancelAction:cancelAction];
-    
-    controller.picker = [[UIPickerView alloc] initWithFrame:CGRectZero];
-    controller.picker.translatesAutoresizingMaskIntoConstraints = NO;
-    
-    controller.pickerHeightConstraint = [NSLayoutConstraint constraintWithItem:controller.picker attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:0];
-    
-    if(RM_CURRENT_ORIENTATION_IS_LANDSCAPE_PREDICATE) {
-        controller.pickerHeightConstraint.constant = RM_PICKER_HEIGHT_LANDSCAPE;
-    } else {
-        controller.pickerHeightConstraint.constant = RM_PICKER_HEIGHT_PORTRAIT;
+- (instancetype)initWithStyle:(RMActionControllerStyle)style title:(NSString *)aTitle message:(NSString *)aMessage selectAction:(RMAction *)selectAction andCancelAction:(RMAction *)cancelAction {
+    self = [super initWithStyle:style title:aTitle message:aMessage selectAction:selectAction andCancelAction:cancelAction];
+    if(self) {
+        self.picker = [[UIPickerView alloc] initWithFrame:CGRectZero];
+        self.picker.translatesAutoresizingMaskIntoConstraints = NO;
+        
+        self.pickerHeightConstraint = [NSLayoutConstraint constraintWithItem:self.picker attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:0];
+        
+        if(RM_CURRENT_ORIENTATION_IS_LANDSCAPE_PREDICATE) {
+            self.pickerHeightConstraint.constant = RM_PICKER_HEIGHT_LANDSCAPE;
+        } else {
+            self.pickerHeightConstraint.constant = RM_PICKER_HEIGHT_PORTRAIT;
+        }
+        
+        [self.picker addConstraint:self.pickerHeightConstraint];
     }
-    
-    [controller.picker addConstraint:controller.pickerHeightConstraint];
-    
-    return controller;
+    return self;
 }
 
 #pragma mark - Init and Dealloc
