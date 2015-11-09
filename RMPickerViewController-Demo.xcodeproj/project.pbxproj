@@ -24,11 +24,9 @@
 		CABBCD45189520D50006213F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CABBCD44189520D50006213F /* Images.xcassets */; };
 		CABBCD82189521D10006213F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CABBCD7B189521D10006213F /* Main.storyboard */; };
 		CABBCD85189521D10006213F /* RMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CABBCD81189521D10006213F /* RMViewController.m */; };
-		CABBCD861895351E0006213F /* RMPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CABBCD79189521C00006213F /* RMPickerViewController.m */; };
 		CACEDE441AD15C7500A49ECF /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CACEDE431AD15C7500A49ECF /* MainInterface.storyboard */; };
 		CACEDE471AD15C7500A49ECF /* RMPickerViewController-DemoExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CACEDE3C1AD15C7500A49ECF /* RMPickerViewController-DemoExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		CACEDE4C1AD15C8200A49ECF /* RMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CABBCD81189521D10006213F /* RMViewController.m */; };
-		CACEDE4D1AD15C8400A49ECF /* RMPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CABBCD79189521C00006213F /* RMPickerViewController.m */; };
 		DEBC66F7972E5BDF701EAE08 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1834AFDAE6E00A9BF38C54B4 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -76,8 +74,6 @@
 		CABBCD39189520D50006213F /* RMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RMAppDelegate.m; sourceTree = "<group>"; };
 		CABBCD44189520D50006213F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CABBCD4B189520D60006213F /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		CABBCD78189521C00006213F /* RMPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMPickerViewController.h; sourceTree = "<group>"; };
-		CABBCD79189521C00006213F /* RMPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMPickerViewController.m; sourceTree = "<group>"; };
 		CABBCD7B189521D10006213F /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		CABBCD7C189521D10006213F /* RMPickerViewController-Demo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "RMPickerViewController-Demo-Info.plist"; sourceTree = "<group>"; };
 		CABBCD7D189521D10006213F /* RMPickerViewController-Demo-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RMPickerViewController-Demo-Prefix.pch"; sourceTree = "<group>"; };
@@ -146,7 +142,6 @@
 		CABBCD1D189520D50006213F = {
 			isa = PBXGroup;
 			children = (
-				CABBCD771895212F0006213F /* RMPickerViewController */,
 				CABBCD2F189520D50006213F /* RMPickerViewController-Demo */,
 				CACEDE3D1AD15C7500A49ECF /* RMPickerViewController-DemoExtension */,
 				CA33E07F1BF0D5EF003369F0 /* RMPickerViewController-SwiftDemo */,
@@ -201,15 +196,6 @@
 				CABBCD35189520D50006213F /* main.m */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		CABBCD771895212F0006213F /* RMPickerViewController */ = {
-			isa = PBXGroup;
-			children = (
-				CABBCD78189521C00006213F /* RMPickerViewController.h */,
-				CABBCD79189521C00006213F /* RMPickerViewController.m */,
-			);
-			path = RMPickerViewController;
 			sourceTree = "<group>";
 		};
 		CACEDE3D1AD15C7500A49ECF /* RMPickerViewController-DemoExtension */ = {
@@ -519,7 +505,6 @@
 				CABBCD85189521D10006213F /* RMViewController.m in Sources */,
 				CABBCD36189520D50006213F /* main.m in Sources */,
 				CABBCD3A189520D50006213F /* RMAppDelegate.m in Sources */,
-				CABBCD861895351E0006213F /* RMPickerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -528,7 +513,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CACEDE4C1AD15C8200A49ECF /* RMViewController.m in Sources */,
-				CACEDE4D1AD15C8400A49ECF /* RMPickerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
