@@ -97,14 +97,6 @@
 }
 
 #pragma mark - RMPickerViewController Delegates
-- (void)pickerViewController:(RMPickerViewController *)vc didSelectRows:(NSArray *)selectedRows {
-    NSLog(@"Successfully selected rows: %@", selectedRows);
-}
-
-- (void)pickerViewControllerDidCancel:(RMPickerViewController *)vc {
-    NSLog(@"Selection was canceled");
-}
-
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
     return 1;
 }

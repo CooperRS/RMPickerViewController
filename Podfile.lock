@@ -1,10 +1,17 @@
 PODS:
   - RMActionController (1.0.5)
+  - RMPickerViewController (2.0.2):
+    - RMActionController (~> 1.0.5)
 
 DEPENDENCIES:
-  - RMActionController (~> 1.0.0)
+  - RMPickerViewController (from `.`)
+
+EXTERNAL SOURCES:
+  RMPickerViewController:
+    :path: "."
 
 SPEC CHECKSUMS:
   RMActionController: b83653e7452ed51492094d65dc82151c36443c03
+  RMPickerViewController: 4000df576436d7eedd24d42571f18ab3f5934d40
 
 COCOAPODS: 0.39.0
