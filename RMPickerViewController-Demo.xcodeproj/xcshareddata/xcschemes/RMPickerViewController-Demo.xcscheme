@@ -28,6 +28,16 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "CAB580941BF0F2FF00563752"
+               BuildableName = "RMPickerViewController-Demo-Tests.xctest"
+               BlueprintName = "RMPickerViewController-Demo-Tests"
+               ReferencedContainer = "container:RMPickerViewController-Demo.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
