@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "F13EA91197178158C39D998EC71C1E2FAFF4B15F",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "A654F83E1FA6913C62FA529D3AF00D1F869A6C7E" : 9223372036854775807,
+    "F13EA91197178158C39D998EC71C1E2FAFF4B15F" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "060A4B42-C802-457C-A7BC-20694C68B07E",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "A654F83E1FA6913C62FA529D3AF00D1F869A6C7E" : "RMPickerViewController\/Extern\/RMActionController\/",
+    "F13EA91197178158C39D998EC71C1E2FAFF4B15F" : "RMPickerViewController\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "RMPickerViewController-Demo",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "RMPickerViewController-Demo.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/CooperRS\/RMActionController.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "A654F83E1FA6913C62FA529D3AF00D1F869A6C7E"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "ssh:\/\/cooperrs.de:222\/home\/git\/rmpickerviewcontroller",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "F13EA91197178158C39D998EC71C1E2FAFF4B15F"
+    }
+  ]
+}
