@@ -7,19 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA0D3ABC1DE1E5DE00DD6DCB /* RMActionController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA0D3AB91DE1E5A200DD6DCB /* RMActionController.framework */; };
+		CA0D3ABD1DE1E5F100DD6DCB /* RMActionController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CA0D3AB91DE1E5A200DD6DCB /* RMActionController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CA0D3ABF1DE1E60A00DD6DCB /* RMPickerViewController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CA2799651DC6B5910077712D /* RMPickerViewController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CA0D3AC01DE1E60F00DD6DCB /* RMActionController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CA0D3AB91DE1E5A200DD6DCB /* RMActionController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CA1E624B1A24D6840025A6A6 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA1E624A1A24D6840025A6A6 /* Launch Screen.xib */; };
 		CA27996C1DC6B5910077712D /* RMPickerViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA2799651DC6B5910077712D /* RMPickerViewController.framework */; };
 		CA27996D1DC6B5910077712D /* RMPickerViewController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CA2799651DC6B5910077712D /* RMPickerViewController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CA2799741DC6B5DC0077712D /* RMPickerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = CA2799721DC6B5DC0077712D /* RMPickerViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CA2799751DC6B5DC0077712D /* RMPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA2799731DC6B5DC0077712D /* RMPickerViewController.m */; };
-		CA2799891DC6B6C10077712D /* RMActionController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA2799821DC6B6C10077712D /* RMActionController.framework */; };
-		CA27998A1DC6B6C10077712D /* RMActionController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CA2799821DC6B6C10077712D /* RMActionController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		CA27998E1DC6B6CC0077712D /* RMActionController.h in Headers */ = {isa = PBXBuildFile; fileRef = CA2799791DC6B6AD0077712D /* RMActionController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CA27998F1DC6B6D00077712D /* RMActionController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA27997A1DC6B6AD0077712D /* RMActionController.m */; };
-		CA2799941DC6B7500077712D /* RMActionController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA2799821DC6B6C10077712D /* RMActionController.framework */; };
 		CA2799951DC6B7500077712D /* RMPickerViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA2799651DC6B5910077712D /* RMPickerViewController.framework */; };
-		CA2799981DC6B75E0077712D /* RMActionController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA2799821DC6B6C10077712D /* RMActionController.framework */; };
-		CA27999E1DC6B7F30077712D /* RMActionController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA2799821DC6B6C10077712D /* RMActionController.framework */; };
 		CA27999F1DC6B7F30077712D /* RMPickerViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA2799651DC6B5910077712D /* RMPickerViewController.framework */; };
 		CA33E0811BF0D5EF003369F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA33E0801BF0D5EF003369F0 /* AppDelegate.swift */; };
 		CA33E0881BF0D5EF003369F0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA33E0861BF0D5EF003369F0 /* Main.storyboard */; };
@@ -41,6 +38,55 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		CA0D3AAE1DE1E5A200DD6DCB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CA0D3AA51DE1E5A200DD6DCB /* RMActionController-Demo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CAD311A11B01507300D905F7;
+			remoteInfo = "RMActionController-Demo";
+		};
+		CA0D3AB01DE1E5A200DD6DCB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CA0D3AA51DE1E5A200DD6DCB /* RMActionController-Demo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CAE78B041B850F5600CBB165;
+			remoteInfo = "RMActionController-SwiftDemo";
+		};
+		CA0D3AB21DE1E5A200DD6DCB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CA0D3AA51DE1E5A200DD6DCB /* RMActionController-Demo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CAD311DB1B01517800D905F7;
+			remoteInfo = "RMActionController-DemoExtension";
+		};
+		CA0D3AB41DE1E5A200DD6DCB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CA0D3AA51DE1E5A200DD6DCB /* RMActionController-Demo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CA3FDC9B1B35E1A700590165;
+			remoteInfo = "RMActionController-Demo-Tests";
+		};
+		CA0D3AB61DE1E5A200DD6DCB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CA0D3AA51DE1E5A200DD6DCB /* RMActionController-Demo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CA55C7911B35E98E009CF003;
+			remoteInfo = "RMActionController-Demo-UITests";
+		};
+		CA0D3AB81DE1E5A200DD6DCB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CA0D3AA51DE1E5A200DD6DCB /* RMActionController-Demo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CA5EFC281D8EAC5A0020C8A8;
+			remoteInfo = RMActionController;
+		};
+		CA0D3ABA1DE1E5D200DD6DCB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CA0D3AA51DE1E5A200DD6DCB /* RMActionController-Demo.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = CA5EFC271D8EAC5A0020C8A8;
+			remoteInfo = RMActionController;
+		};
 		CA27996A1DC6B5910077712D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CABBCD1E189520D50006213F /* Project object */;
@@ -48,40 +94,12 @@
 			remoteGlobalIDString = CA2799641DC6B5910077712D;
 			remoteInfo = RMPickerViewController;
 		};
-		CA2799871DC6B6C10077712D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CABBCD1E189520D50006213F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = CA2799811DC6B6C10077712D;
-			remoteInfo = RMActionController;
-		};
-		CA2799901DC6B74B0077712D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CABBCD1E189520D50006213F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = CA2799811DC6B6C10077712D;
-			remoteInfo = RMActionController;
-		};
 		CA2799921DC6B74B0077712D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CABBCD1E189520D50006213F /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = CA2799641DC6B5910077712D;
 			remoteInfo = RMPickerViewController;
-		};
-		CA2799961DC6B75C0077712D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CABBCD1E189520D50006213F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = CA2799811DC6B6C10077712D;
-			remoteInfo = RMActionController;
-		};
-		CA27999A1DC6B7EE0077712D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CABBCD1E189520D50006213F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = CA2799811DC6B6C10077712D;
-			remoteInfo = RMActionController;
 		};
 		CA27999C1DC6B7EE0077712D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -107,14 +125,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		CA0D3ABE1DE1E5F900DD6DCB /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				CA0D3AC01DE1E60F00DD6DCB /* RMActionController.framework in Embed Frameworks */,
+				CA0D3ABF1DE1E60A00DD6DCB /* RMPickerViewController.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CA2799711DC6B5910077712D /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				CA0D3ABD1DE1E5F100DD6DCB /* RMActionController.framework in Embed Frameworks */,
 				CA27996D1DC6B5910077712D /* RMPickerViewController.framework in Embed Frameworks */,
-				CA27998A1DC6B6C10077712D /* RMActionController.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -133,14 +163,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		CA0D3AA51DE1E5A200DD6DCB /* RMActionController-Demo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = "RMActionController-Demo.xcodeproj"; sourceTree = "<group>"; };
 		CA1E624A1A24D6840025A6A6 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		CA2799651DC6B5910077712D /* RMPickerViewController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RMPickerViewController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA2799681DC6B5910077712D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CA2799721DC6B5DC0077712D /* RMPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMPickerViewController.h; sourceTree = "<group>"; };
 		CA2799731DC6B5DC0077712D /* RMPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMPickerViewController.m; sourceTree = "<group>"; };
-		CA2799791DC6B6AD0077712D /* RMActionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RMActionController.h; path = RMActionController/RMActionController.h; sourceTree = "<group>"; };
-		CA27997A1DC6B6AD0077712D /* RMActionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RMActionController.m; path = RMActionController/RMActionController.m; sourceTree = "<group>"; };
-		CA2799821DC6B6C10077712D /* RMActionController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RMActionController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA33E07E1BF0D5EF003369F0 /* RMPickerViewController-SwiftDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RMPickerViewController-SwiftDemo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA33E0801BF0D5EF003369F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CA33E0871BF0D5EF003369F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -174,14 +202,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA2799981DC6B75E0077712D /* RMActionController.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CA27997E1DC6B6C10077712D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				CA0D3ABC1DE1E5DE00DD6DCB /* RMActionController.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,7 +210,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA2799941DC6B7500077712D /* RMActionController.framework in Frameworks */,
 				CA2799951DC6B7500077712D /* RMPickerViewController.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -206,7 +226,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA27996C1DC6B5910077712D /* RMPickerViewController.framework in Frameworks */,
-				CA2799891DC6B6C10077712D /* RMActionController.framework in Frameworks */,
 				CABBCD2C189520D50006213F /* CoreGraphics.framework in Frameworks */,
 				CABBCD2E189520D50006213F /* UIKit.framework in Frameworks */,
 				CABBCD2A189520D50006213F /* Foundation.framework in Frameworks */,
@@ -217,7 +236,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA27999E1DC6B7F30077712D /* RMActionController.framework in Frameworks */,
 				CA27999F1DC6B7F30077712D /* RMPickerViewController.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -225,6 +243,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CA0D3AA61DE1E5A200DD6DCB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CA0D3AAF1DE1E5A200DD6DCB /* RMActionController-Demo.app */,
+				CA0D3AB11DE1E5A200DD6DCB /* RMActionController-SwiftDemo.app */,
+				CA0D3AB31DE1E5A200DD6DCB /* RMActionController-DemoExtension.appex */,
+				CA0D3AB51DE1E5A200DD6DCB /* RMActionController-Demo-Tests.xctest */,
+				CA0D3AB71DE1E5A200DD6DCB /* RMActionController-Demo-UITests.xctest */,
+				CA0D3AB91DE1E5A200DD6DCB /* RMActionController.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		CA2799661DC6B5910077712D /* RMPickerViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -246,8 +277,7 @@
 		CA2799781DC6B68C0077712D /* RMActionController */ = {
 			isa = PBXGroup;
 			children = (
-				CA2799791DC6B6AD0077712D /* RMActionController.h */,
-				CA27997A1DC6B6AD0077712D /* RMActionController.m */,
+				CA0D3AA51DE1E5A200DD6DCB /* RMActionController-Demo.xcodeproj */,
 			);
 			path = RMActionController;
 			sourceTree = "<group>";
@@ -304,7 +334,6 @@
 				CA33E07E1BF0D5EF003369F0 /* RMPickerViewController-SwiftDemo.app */,
 				CAB580951BF0F2FF00563752 /* RMPickerViewController-Demo-Tests.xctest */,
 				CA2799651DC6B5910077712D /* RMPickerViewController.framework */,
-				CA2799821DC6B6C10077712D /* RMActionController.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -372,14 +401,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CA27997F1DC6B6C10077712D /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CA27998E1DC6B6CC0077712D /* RMActionController.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -395,29 +416,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				CA2799971DC6B75C0077712D /* PBXTargetDependency */,
+				CA0D3ABB1DE1E5D200DD6DCB /* PBXTargetDependency */,
 			);
 			name = RMPickerViewController;
 			productName = RMPickerViewController;
 			productReference = CA2799651DC6B5910077712D /* RMPickerViewController.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		CA2799811DC6B6C10077712D /* RMActionController */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = CA27998B1DC6B6C10077712D /* Build configuration list for PBXNativeTarget "RMActionController" */;
-			buildPhases = (
-				CA27997D1DC6B6C10077712D /* Sources */,
-				CA27997E1DC6B6C10077712D /* Frameworks */,
-				CA27997F1DC6B6C10077712D /* Headers */,
-				CA2799801DC6B6C10077712D /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = RMActionController;
-			productName = RMActionController;
-			productReference = CA2799821DC6B6C10077712D /* RMActionController.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		CA33E07D1BF0D5EF003369F0 /* RMPickerViewController-SwiftDemo */ = {
@@ -427,11 +430,11 @@
 				CA33E07A1BF0D5EF003369F0 /* Sources */,
 				CA33E07B1BF0D5EF003369F0 /* Frameworks */,
 				CA33E07C1BF0D5EF003369F0 /* Resources */,
+				CA0D3ABE1DE1E5F900DD6DCB /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				CA2799911DC6B74B0077712D /* PBXTargetDependency */,
 				CA2799931DC6B74B0077712D /* PBXTargetDependency */,
 			);
 			name = "RMPickerViewController-SwiftDemo";
@@ -472,7 +475,6 @@
 			dependencies = (
 				CACEDE461AD15C7500A49ECF /* PBXTargetDependency */,
 				CA27996B1DC6B5910077712D /* PBXTargetDependency */,
-				CA2799881DC6B6C10077712D /* PBXTargetDependency */,
 			);
 			name = "RMPickerViewController-Demo";
 			productName = "RMPickerViewController-Demo";
@@ -490,7 +492,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				CA27999B1DC6B7EE0077712D /* PBXTargetDependency */,
 				CA27999D1DC6B7EE0077712D /* PBXTargetDependency */,
 			);
 			name = "RMPickerViewController-DemoExtension";
@@ -510,10 +511,6 @@
 				ORGANIZATIONNAME = "Roland Moers";
 				TargetAttributes = {
 					CA2799641DC6B5910077712D = {
-						CreatedOnToolsVersion = 8.1;
-						ProvisioningStyle = Automatic;
-					};
-					CA2799811DC6B6C10077712D = {
 						CreatedOnToolsVersion = 8.1;
 						ProvisioningStyle = Automatic;
 					};
@@ -541,9 +538,14 @@
 			mainGroup = CABBCD1D189520D50006213F;
 			productRefGroup = CABBCD27189520D50006213F /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = CA0D3AA61DE1E5A200DD6DCB /* Products */;
+					ProjectRef = CA0D3AA51DE1E5A200DD6DCB /* RMActionController-Demo.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
-				CA2799811DC6B6C10077712D /* RMActionController */,
 				CA2799641DC6B5910077712D /* RMPickerViewController */,
 				CABBCD25189520D50006213F /* RMPickerViewController-Demo */,
 				CA33E07D1BF0D5EF003369F0 /* RMPickerViewController-SwiftDemo */,
@@ -553,15 +555,53 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		CA0D3AAF1DE1E5A200DD6DCB /* RMActionController-Demo.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "RMActionController-Demo.app";
+			remoteRef = CA0D3AAE1DE1E5A200DD6DCB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CA0D3AB11DE1E5A200DD6DCB /* RMActionController-SwiftDemo.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "RMActionController-SwiftDemo.app";
+			remoteRef = CA0D3AB01DE1E5A200DD6DCB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CA0D3AB31DE1E5A200DD6DCB /* RMActionController-DemoExtension.appex */ = {
+			isa = PBXReferenceProxy;
+			fileType = "wrapper.app-extension";
+			path = "RMActionController-DemoExtension.appex";
+			remoteRef = CA0D3AB21DE1E5A200DD6DCB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CA0D3AB51DE1E5A200DD6DCB /* RMActionController-Demo-Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "RMActionController-Demo-Tests.xctest";
+			remoteRef = CA0D3AB41DE1E5A200DD6DCB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CA0D3AB71DE1E5A200DD6DCB /* RMActionController-Demo-UITests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "RMActionController-Demo-UITests.xctest";
+			remoteRef = CA0D3AB61DE1E5A200DD6DCB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CA0D3AB91DE1E5A200DD6DCB /* RMActionController.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = RMActionController.framework;
+			remoteRef = CA0D3AB81DE1E5A200DD6DCB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXResourcesBuildPhase section */
 		CA2799631DC6B5910077712D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CA2799801DC6B6C10077712D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -614,14 +654,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CA27997D1DC6B6C10077712D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CA27998F1DC6B6D00077712D /* RMActionController.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		CA33E07A1BF0D5EF003369F0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -660,35 +692,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		CA0D3ABB1DE1E5D200DD6DCB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = RMActionController;
+			targetProxy = CA0D3ABA1DE1E5D200DD6DCB /* PBXContainerItemProxy */;
+		};
 		CA27996B1DC6B5910077712D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = CA2799641DC6B5910077712D /* RMPickerViewController */;
 			targetProxy = CA27996A1DC6B5910077712D /* PBXContainerItemProxy */;
 		};
-		CA2799881DC6B6C10077712D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = CA2799811DC6B6C10077712D /* RMActionController */;
-			targetProxy = CA2799871DC6B6C10077712D /* PBXContainerItemProxy */;
-		};
-		CA2799911DC6B74B0077712D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = CA2799811DC6B6C10077712D /* RMActionController */;
-			targetProxy = CA2799901DC6B74B0077712D /* PBXContainerItemProxy */;
-		};
 		CA2799931DC6B74B0077712D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = CA2799641DC6B5910077712D /* RMPickerViewController */;
 			targetProxy = CA2799921DC6B74B0077712D /* PBXContainerItemProxy */;
-		};
-		CA2799971DC6B75C0077712D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = CA2799811DC6B6C10077712D /* RMActionController */;
-			targetProxy = CA2799961DC6B75C0077712D /* PBXContainerItemProxy */;
-		};
-		CA27999B1DC6B7EE0077712D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = CA2799811DC6B6C10077712D /* RMActionController */;
-			targetProxy = CA27999A1DC6B7EE0077712D /* PBXContainerItemProxy */;
 		};
 		CA27999D1DC6B7EE0077712D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -784,71 +801,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = de.cooperrs.RMPickerViewController;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		CA27998C1DC6B6C10077712D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = YES;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_SUSPICIOUS_MOVES = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_IDENTITY = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = Extern/RMActionController/RMActionController/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = de.cooperrs.RMActionController;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		CA27998D1DC6B6C10077712D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = YES;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_SUSPICIOUS_MOVES = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CODE_SIGN_IDENTITY = "";
-				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = Extern/RMActionController/RMActionController/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = de.cooperrs.RMActionController;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1091,15 +1043,6 @@
 			buildConfigurations = (
 				CA27996E1DC6B5910077712D /* Debug */,
 				CA27996F1DC6B5910077712D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		CA27998B1DC6B6C10077712D /* Build configuration list for PBXNativeTarget "RMActionController" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				CA27998C1DC6B6C10077712D /* Debug */,
-				CA27998D1DC6B6C10077712D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
