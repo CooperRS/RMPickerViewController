@@ -4,17 +4,19 @@ RMPickerViewController ![Build Status](https://travis-ci.org/CooperRS/RMPickerVi
 This is an iOS control for selecting something using UIPickerView in a UIActionSheet like fashion
 
 ## Screenshots
+
 ### Portrait
-![Portrait](http://cooperrs.github.io/RMPickerViewController/images/Blur-Screen1.png)
+
+| White | Black |
+|:-----:|:-----:|
+|![Portrait](http://cooperrs.github.io/RMPickerViewController/images/Blur-Screen1.png)|![Black version](http://cooperrs.github.com/RMPickerViewController/images/Blur-Screen3.png)|
 
 ### Landscape
+
 ![Landscape](http://cooperrs.github.com/RMPickerViewController/images/Blur-Screen2.png)
 
-### Black version
-![Black version](http://cooperrs.github.com/RMPickerViewController/images/Blur-Screen3.png)
-
 ## Demo Project
-If you want to run the demo project you first need to run `pod install` to install the dependencies of RMPickerViewController.
+If you want to run the demo project do not forget to initialize submodules.
 
 ## Installation (CocoaPods)
 ```ruby
@@ -24,7 +26,71 @@ pod "RMPickerViewController", "~> 2.1.0"
 
 ## Usage
 
-See the [Wiki Pages](https://github.com/CooperRS/RMPickerViewController/wiki) on how to use RMPickerViewController. Also take a look at [Migration](https://github.com/CooperRS/RMPickerViewController/wiki/Migration) on how to migrate to the latest version of RMPickerViewController.
+For a detailed description on how to use RMPickerViewController take a look at the [Wiki Pages](https://github.com/CooperRS/RMPickerViewController/wiki). The following four steps are a very short intro:
+
+* Import RMPickerViewController:
+
+```objc
+#import <RMPickerViewController/RMPickerViewController.h>
+```
+
+* Create select and cancel actions:
+
+```objc
+RMAction<UIPickerView *> *selectAction = [RMAction<UIPickerView *> actionWithTitle:@"Select" style:RMActionStyleDone andHandler:^(RMActionController<UIPickerView *> *controller) {
+    NSMutableArray *selectedRows = [NSMutableArray array];
+    
+    for(NSInteger i=0 ; i<[controller.contentView numberOfComponents] ; i++) {
+        [selectedRows addObject:@([controller.contentView selectedRowInComponent:i])];
+    }
+    
+    NSLog(@"Successfully selected rows: %@", selectedRows);
+}];
+
+RMAction<UIPickerView *> *cancelAction = [RMAction<UIPickerView *> actionWithTitle:@"Cancel" style:RMActionStyleCancel andHandler:^(RMActionController<UIPickerView *> *controller) {
+    NSLog(@"Row selection was canceled");
+}];
+```
+
+* Create and instance of RMPickerViewController and present it:
+
+```objc
+RMPickerViewController *pickerController = [RMPickerViewController actionControllerWithStyle:style title:@"Test" message:@"This is a test message.\nPlease choose a row and press 'Select' or 'Cancel'." selectAction:selectAction andCancelAction:cancelAction];
+pickerController.picker.dataSource = self;
+pickerController.picker.delegate = self;
+
+[self presentViewController:pickerController animated:YES completion:nil];
+```
+
+* The following code block shows you a complete method:
+
+```objc
+- (IBAction)openPickerController:(id)sender {
+    RMAction<UIPickerView *> *selectAction = [RMAction<UIPickerView *> actionWithTitle:@"Select" style:RMActionStyleDone andHandler:^(RMActionController<UIPickerView *> *controller) {
+        NSMutableArray *selectedRows = [NSMutableArray array];
+    
+        for(NSInteger i=0 ; i<[controller.contentView numberOfComponents] ; i++) {
+            [selectedRows addObject:@([controller.contentView selectedRowInComponent:i])];
+        }
+        
+        NSLog(@"Successfully selected rows: %@", selectedRows);
+    }];
+    
+    RMAction<UIPickerView *> *cancelAction = [RMAction<UIPickerView *> actionWithTitle:@"Cancel" style:RMActionStyleCancel andHandler:^(RMActionController<UIPickerView *> *controller) {
+        NSLog(@"Row selection was canceled");
+    }];
+    
+    RMPickerViewController *pickerController = [RMPickerViewController actionControllerWithStyle:style title:@"Test" message:@"This is a test message.\nPlease choose a row and press 'Select' or 'Cancel'." selectAction:selectAction andCancelAction:cancelAction];
+    pickerController.picker.dataSource = self;
+    pickerController.picker.delegate = self;
+    
+    [self presentViewController:pickerController animated:YES completion:nil];
+}
+```
+
+## Migration
+
+See [Migration](https://github.com/CooperRS/RMPickerViewController/wiki/Migration) on how to migrate to the latest version of RMPickerViewController.
 
 ## Documentation
 There is an additional documentation available provided by the CocoaPods team. Take a look at [cocoadocs.org](http://cocoadocs.org/docsets/RMPickerViewController/).
@@ -56,7 +122,9 @@ Code contributions:
 I want to thank everyone who has contributed code and/or time to this project!
 
 ## License (MIT License)
-Copyright (c) 2013-2015 Roland Moers
+
+```
+Copyright (c) 2013-2016 Roland Moers
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -75,3 +143,4 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+```
