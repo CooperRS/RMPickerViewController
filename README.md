@@ -1,7 +1,7 @@
 RMPickerViewController [![Build Status](https://travis-ci.org/CooperRS/RMPickerViewController.svg?branch=master)](https://travis-ci.org/CooperRS/RMPickerViewController/) [![Pod Version](https://img.shields.io/cocoapods/v/RMPickerViewController.svg)](https://cocoapods.org/pods/RMPickerViewController)
 =============================
 
-This is an iOS control for selecting something using UIPickerView in a UIActionSheet like fashion
+This is an iOS control for selecting something using UIPickerView in a UIAlertController like fashion
 
 ## Screenshots
 
