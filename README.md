@@ -1,4 +1,4 @@
-RMPickerViewController [![Build Status](https://travis-ci.org/CooperRS/RMPickerViewController.svg?branch=master)](https://travis-ci.org/CooperRS/RMPickerViewController/) [![Pod Version](https://img.shields.io/cocoapods/v/RMPickerViewController.svg)](https://cocoapods.org/pods/RMPickerViewController)
+RMPickerViewController [![Build Status](https://travis-ci.org/CooperRS/RMPickerViewController.svg?branch=master)](https://travis-ci.org/CooperRS/RMPickerViewController/) [![Pod Version](https://img.shields.io/cocoapods/v/RMPickerViewController.svg)](https://cocoapods.org/pods/RMPickerViewController) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 =============================
 
 This is an iOS control for selecting something using UIPickerView in a UIAlertController like fashion
