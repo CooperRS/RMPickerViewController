@@ -1,7 +1,9 @@
 RMPickerViewController [![Build Status](https://travis-ci.org/CooperRS/RMPickerViewController.svg?branch=master)](https://travis-ci.org/CooperRS/RMPickerViewController/) [![Pod Version](https://img.shields.io/cocoapods/v/RMPickerViewController.svg)](https://cocoapods.org/pods/RMPickerViewController) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 =============================
 
-This is an iOS control for selecting something using UIPickerView in a UIAlertController like fashion
+This framework allows you to pick something with a picker presented as an action sheet. In addition, it allows you to add actions arround the presented picker which behave like a button and can be tapped by the user. The result looks very much like an UIActionSheet or UIAlertController with a UIPickerView and some UIActions attached.
+
+Besides being a fully-usable project, RMPickerViewController also is an example for an use case of [RMActionController](https://github.com/CooperRS/RMActionController). You can use it to learn how to present a picker other than UIPickerView.
 
 ## Screenshots
 
