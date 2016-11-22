@@ -11,7 +11,7 @@ Besides being a fully-usable project, RMPickerViewController also is an example 
 
 | White | Black |
 |:-----:|:-----:|
-|![Portrait](http://cooperrs.github.io/RMPickerViewController/images/Blur-Screen1.png)|![Black version](http://cooperrs.github.com/RMPickerViewController/images/Blur-Screen3.png)|
+|![White Version](http://cooperrs.github.io/RMPickerViewController/images/Blur-Screen1.png)|![Black version](http://cooperrs.github.com/RMPickerViewController/images/Blur-Screen3.png)|
 
 ### Landscape
 
