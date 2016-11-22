@@ -11,11 +11,11 @@ Besides being a fully-usable project, RMPickerViewController also is an example 
 
 | White | Black |
 |:-----:|:-----:|
-|![White Version](http://cooperrs.github.io/RMPickerViewController/images/Blur-Screen1.png)|![Black version](http://cooperrs.github.com/RMPickerViewController/images/Blur-Screen3.png)|
+|![White Version](https://raw.githubusercontent.com/CooperRS/RMPickerViewController/gh-pages/images/Blur-Screen1.png)|![Black version](https://raw.githubusercontent.com/CooperRS/RMPickerViewController/gh-pages/images/Blur-Screen3.png)|
 
 ### Landscape
 
-![Landscape](http://cooperrs.github.com/RMPickerViewController/images/Blur-Screen2.png)
+![Landscape](https://raw.githubusercontent.com/CooperRS/RMPickerViewController/gh-pages/images/Blur-Screen2.png)
 
 ## Demo Project
 If you want to run the demo project do not forget to initialize submodules.
