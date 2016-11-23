@@ -5,6 +5,10 @@ RMPickerViewController adheres to [Semantic Versioning](http://semver.org/).
 
 ---
 
+## [2.2.1](https://github.com/CooperRS/RMPickerViewController/releases/tag/2.2.1)
+
+* Fix RMPickerViewController.podspec
+
 ## [2.2.0](https://github.com/CooperRS/RMPickerViewController/releases/tag/2.2.0)
 
 * Updated to RMActionController 1.2.0
