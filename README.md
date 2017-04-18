@@ -114,7 +114,7 @@ If you want to show an UIDatePicker instead of an UIPickerView, you may take a l
 
 If you want to show any other control you may want to take a look at [RMActionController](https://github.com/CooperRS/RMActionController).
 
-##Credits
+## Credits
 Code contributions:
 * Denis Andrasec
 	* Bugfixes
