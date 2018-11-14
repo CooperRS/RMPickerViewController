@@ -14,6 +14,7 @@ class ViewController: UITableViewController, UIPickerViewDelegate, UIPickerViewD
     //MARK: Properties
     @IBOutlet weak var blackSwitch: UISwitch!
     @IBOutlet weak var blurSwitch: UISwitch!
+    @IBOutlet weak var blurActionSwitch: UISwitch!
     @IBOutlet weak var motionSwitch: UISwitch!
     @IBOutlet weak var bouncingSwitch: UISwitch!
     
@@ -36,12 +37,13 @@ class ViewController: UITableViewController, UIPickerViewDelegate, UIPickerViewD
             print("Row selection was canceled")
         }
         
-        let actionController = RMPickerViewController(style: style, title: "Test", message: "This is a test message.\nPlease choose a row and press 'Select' or 'Cancel'.", select: selectAction, andCancel: cancelAction)!;
+        let actionController = RMPickerViewController(style: style, title: "Test", message: "This is a test message.\nPlease choose a row and press 'Select' or 'Cancel'.", select: selectAction, andCancel: cancelAction);
         
         //You can enable or disable blur, bouncing and motion effects
         actionController.disableBouncingEffects = !self.bouncingSwitch.isOn
         actionController.disableMotionEffects = !self.motionSwitch.isOn
         actionController.disableBlurEffects = !self.blurSwitch.isOn
+        actionController.disableBlurEffectsForActions = !self.blurActionSwitch.isOn
         
         actionController.picker.delegate = self;
         actionController.picker.dataSource = self;
